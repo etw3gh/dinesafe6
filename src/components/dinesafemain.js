@@ -1,65 +1,60 @@
 import React from 'react'
 import { createStore } from 'redux'
 let page = require('page')
-let axios = require('axios')
-import { Button, Icon, Modal } from 'semantic-ui-react'
-import { Urls } from '../data/urls.js'
+//let axios = require('axios')
+//import { Icon } from 'semantic-ui-react'
+//import { Urls } from '../data/urls'
+import { Pop } from '../classes/pop'
 
-const actions = { GEO: 'GEO', NEARBY: 'NEARBY', PHO: 'PHO', SETVIEW: 'SETVIEW'}
-const views = { INFO: 'info', HELP: 'help', HOME: 'home', LIST: 'list', MAP: 'map', PHO: 'pho', SEARCH: 'search', TWITTER: 'twitter'}
+import { views, actions, initialState } from '../classes/app_config'
+import { reducer } from '../classes/reducer'
 
+import { Pho } from './pho'
 
-const initialState = {
-  app: {
-    view: views.HOME,
-    geo: { lat: -1, lng: -1},
-    phoVenues: [],
-    nearbyVenues: []
-  }
-};
+Pop.OK('Welcome to DinesafeTO');
 
-function reducer(state, action) {
-  if (action.type === actions.GEO){
-    console.log('geo action');
-    let localState = Object.assign({}, state);;
-    localState.app.geo.lat = action.lat;
-    localState.app.geo.lng = action.lng;
-    return localState;
-  }
-  else if (action.type === actions.SETVIEW) {
-    console.log('reducer|setview')
-    let localState = Object.assign({}, state);;
-    localState.app.view = action.view;
-    return localState;
-  }
-  else if (action.type === actions.PHO) {
-    let localState = Object.assign({}, state);;
-    localState.app.phoVenues = action.venues;
-    return localState;
-  }
-  else {
-    return state;
-  }
-}
+// function reducer(state, action) {
+//   if (action.type === actions.GEO){
+//     console.log('geo action');
+//     let localState = Object.assign({}, state);;
+//     localState.app.geo.lat = action.lat;
+//     localState.app.geo.lng = action.lng;
+//     return localState;
+//   }
+//   else if (action.type === actions.SETVIEW) {
+//     console.log('reducer|setview')
+//     let localState = Object.assign({}, state);;
+//     localState.app.view = action.view;
+//     return localState;
+//   }
+//   else if (action.type === actions.PHO) {
+//     let localState = Object.assign({}, state);;
+//     localState.app.phoVenues = action.venues;
+//     return localState;
+//   }
+//   else {
+//     return state;
+//   }
+// }
 
 
 
-const store = createStore(reducer, initialState);
-
-class Pho extends React.Component {
-  componentDidMount = () => {
-    const geo = store.getState().app.geo;
-    const phourl = `${Urls.heroku.pho.near}lat=${geo.lat}&lng=${geo.lng}&limit=50`;
-    console.log(phourl);
-    axios.get(phourl).then( (res) => {
-      console.log(res.data);
-      store.dispatch( { type: actions.PHO, venues: res.data } )
-    })
-  }
-  render() {
-    return (<div>phos</div>)
-  }
-}
+export const store = createStore(reducer, initialState);
+//
+// class Pho extends React.Component {
+//   componentDidMount = () => {
+//     const geo = store.getState().app.geo;
+//     const phourl = `${Urls.heroku.pho.near}lat=${geo.lat}&lng=${geo.lng}&limit=50`;
+//     //console.log(phourl);
+//     axios.get(phourl).then( (res) => {
+//       console.log(res.data);
+//       store.dispatch( { type: actions.PHO, venues: res.data } )
+//     })
+//   }
+//   render() {
+//     return (<div>phos</div>)
+//   }
+// }
 
 class AppComponent extends React.Component {
   render() {
@@ -123,7 +118,7 @@ class AppRoot extends React.Component {
   render() {
     this.pageRouter();
     const currentState = store.getState().app;
-    console.log(currentState);
+    //console.log(currentState);
     return (
 
       <AppComponent view={currentState.view} />

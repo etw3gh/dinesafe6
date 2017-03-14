@@ -12,7 +12,7 @@
     "serve:dist": "node server.js --env=dist",
     "dist": "npm run copy & webpack --env=dist",
     "lint": "eslint ./src",
-    "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
+    "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist &&  cp -r ./src/data ./src/images ./dist ",
     "clean": "rimraf dist/*",
     "release:major": "npm version major && npm publish && git push --follow-tags",
     "release:minor": "npm version minor && npm publish && git push --follow-tags",
@@ -34,7 +34,7 @@
   "bugs": {
     "url": "https://github.com/react-webpack-generators/react-webpack-template/issues"
   },
-  "homepage": "https://github.com/react-webpack-generators/react-webpack-template#readme",
+  "homepage": "./",
   "devDependencies": {
     "babel-core": "^6.0.0",
     "babel-eslint": "^6.0.0",
@@ -77,12 +77,15 @@
   "dependencies": {
     "axios": "^0.15.3",
     "core-js": "^2.0.0",
+    "jquery": "^3.1.1",
+    "lodash.uniqueid": "^4.0.1",
     "normalize.css": "^4.0.0",
     "page": "^1.7.1",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
-    "semantic-ui-react": "^0.67.0"
+    "semantic-ui-react": "^0.67.0",
+    "toastr": "^2.1.2"
   }
 }
