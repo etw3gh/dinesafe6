@@ -32,6 +32,6 @@ export class Pho extends Component {
       )
     });
 
-    return <div>{phos}</div>;
+    return <div><h2>Nearby Pho</h2>{phos}</div>;
   }
 }
