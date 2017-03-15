@@ -19,12 +19,12 @@ export class Pho extends Component {
       return (
         <div key={'pho_' + venue.id}>
           <div >
-            <h3>Distance: {venue.distance.toFixed(2)} KM</h3>
+            Distance: {venue.distance.toFixed(2)} KM<br />
             <figure>
               <img width="160px" height="120px" src={`images/pho/${venue.id}.png`} />
-              <figcaption>{venue.id} | {venue.name}</figcaption>
+              <figcaption>{venue.name}</figcaption>
             </figure>
-            <h4>{venue.address} , {venue.mun}</h4>
+            <h4>{venue.address}, {venue.mun}</h4>
             <h5>({venue.lat}, {venue.lng})</h5>
           </div>
           <hr /><br />
