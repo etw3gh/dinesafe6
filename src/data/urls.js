@@ -1,5 +1,7 @@
 export class Urls  {
 
+  static base = 'https://openciti.ca/dsto/'
+
   static local = {
     info: 'data/infoitems.json'
   }

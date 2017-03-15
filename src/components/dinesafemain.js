@@ -100,9 +100,11 @@ class AppRoot extends React.Component {
         store.dispatch( { type: actions.SETVIEW, view: views.TWITTER } );
       })
       page('/pho', ()=> {
+        console.log('pho')
         store.dispatch( { type: actions.SETVIEW, view: views.PHO } );
       })
       page('/help', ()=> {
+        console.log('help')
         store.dispatch( { type: actions.SETVIEW, view: views.HELP } );
       })
   }
