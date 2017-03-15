@@ -7,7 +7,7 @@ import React, { Component } from 'react'
 export class Pho extends Component {
   componentDidMount = () => {
     const geo = store.getState().app.geo;
-    const phourl = `${Urls.heroku.pho.near}lat=${geo.lat}&lng=${geo.lng}&limit=50`;
+    const phourl = `${Urls.heroku.pho.near}lat=${geo.lat}&lng=${geo.lng}&limit=500`;
     axios.get(phourl).then( (res) => {
       store.dispatch( { type: actions.PHO, venues: res.data } )
     })
@@ -21,8 +21,8 @@ export class Pho extends Component {
           <div >
             Distance: {venue.distance.toFixed(2)} KM<br />
             <figure>
-              <img width="160px" height="120px" src={`images/pho/${venue.id}.png`} />
-              <figcaption>{venue.name}</figcaption>
+              <img width="160px" height="120px" src={`/images/pho/${venue.eid}.png`} />
+              <figcaption>eid: {venue.eid}, id: {venue.id} | {venue.name}</figcaption>
             </figure>
             <h4>{venue.address}, {venue.mun}</h4>
             <h5>({venue.lat}, {venue.lng})</h5>
