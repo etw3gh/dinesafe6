@@ -1,62 +1,26 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { createStore } from 'redux'
-let page = require('page')
-//let axios = require('axios')
-//import { Icon } from 'semantic-ui-react'
-//import { Urls } from '../data/urls'
+
 import { Pop } from '../classes/pop'
 
-import { views, actions, initialState } from '../classes/app_config'
+import { menu, views, actions, initialState } from '../classes/app_config'
 import { reducer } from '../classes/reducer'
 
 import { Pho } from './pho'
 
-Pop.OK('Welcome to DinesafeTO');
+require('semantic-ui/dist/semantic.min.css')
+require('onsenui/css/onsenui.css')
+require('onsenui/css/onsen-css-components.css')
+import { Button, List, ListItem, Page, Splitter, SplitterContent, SplitterSide, Toolbar, ToolbarButton } from 'react-onsenui'
+import { Icon } from 'semantic-ui-react'
 
-// function reducer(state, action) {
-//   if (action.type === actions.GEO){
-//     console.log('geo action');
-//     let localState = Object.assign({}, state);;
-//     localState.app.geo.lat = action.lat;
-//     localState.app.geo.lng = action.lng;
-//     return localState;
-//   }
-//   else if (action.type === actions.SETVIEW) {
-//     console.log('reducer|setview')
-//     let localState = Object.assign({}, state);;
-//     localState.app.view = action.view;
-//     return localState;
-//   }
-//   else if (action.type === actions.PHO) {
-//     let localState = Object.assign({}, state);;
-//     localState.app.phoVenues = action.venues;
-//     return localState;
-//   }
-//   else {
-//     return state;
-//   }
-// }
 
+Pop.OK('Welcome to Dinesafe6 (Toronto)');
 
 
 export const store = createStore(reducer, initialState);
-//
-// class Pho extends React.Component {
-//   componentDidMount = () => {
-//     const geo = store.getState().app.geo;
-//     const phourl = `${Urls.heroku.pho.near}lat=${geo.lat}&lng=${geo.lng}&limit=50`;
-//     //console.log(phourl);
-//     axios.get(phourl).then( (res) => {
-//       console.log(res.data);
-//       store.dispatch( { type: actions.PHO, venues: res.data } )
-//     })
-//   }
-//   render() {
-//     return (<div>phos</div>)
-//   }
-// }
 
-class AppComponent extends React.Component {
+class AppComponent extends Component {
   render() {
     if (this.props.view === views.PHO){
       return (<Pho />)
@@ -68,47 +32,63 @@ class AppComponent extends React.Component {
   }
 }
 
-/*
-Using page to implement a homebrew router
-because it plays better with pure html sidebar
-*/
-class AppRoot extends React.Component {
+
+class AppRoot extends Component {
+
+  state = { isOpen: false }
+
   componentDidMount = () => {
     store.subscribe( () => this.forceUpdate() );
-    page.start();
+
     this.getLocation();
   }
 
-  pageRouter = () => {
-      page('/', (ctx) => {
-        console.log(ctx)
-        store.dispatch( { type: actions.SETVIEW, view: views.HOME } );
-      });
-      page('/info', ()=> {
-        store.dispatch( { type: actions.SETVIEW, view: views.INFO } );
-      })
-      page('/map', ()=> {
-        store.dispatch( { type: actions.SETVIEW, view: views.MAP } );
-      })
-      page('/list', ()=> {
-        store.dispatch( { type: actions.SETVIEW, view: views.LIST } );
-      })
-      page('/search', ()=> {
-        store.dispatch( { type: actions.SETVIEW, view: views.SEARCH } );
-      })
-      page('/twitter', ()=> {
-        store.dispatch( { type: actions.SETVIEW, view: views.TWITTER } );
-      })
-      page('/pho', ()=> {
-        console.log('pho')
-        store.dispatch( { type: actions.SETVIEW, view: views.PHO } );
-      })
-      page('/help', ()=> {
-        console.log('help')
-        store.dispatch( { type: actions.SETVIEW, view: views.HELP } );
-      })
+  renderToolbar = () => {
+    return (
+      <Toolbar>
+        <div className='left'>
+          <Icon onClick={this.showMenu} size='large' className='hamburger' name='sidebar'/>
+        </div>
+        <div className='center'>Dinesafe 6<Icon size='large' name='food'/></div>
+      </Toolbar>
+    )
   }
-
+  hideMenu = () => {
+    this.setState( { isOpen: false } );
+  }
+  menuChoice = (v) => {
+    this.hideMenu();
+    if (v === views.INFO) {
+      store.dispatch( { type: actions.SETVIEW, view: views.INFO } )
+    }
+    else if (v === views.HELP) {
+      store.dispatch( { type: actions.SETVIEW, view: views.HELP } )
+    }
+    else if (v === views.HOME) {
+      store.dispatch( { type: actions.SETVIEW, view: views.HOME } )
+    }
+    else if (v === views.LIST) {
+      store.dispatch( { type: actions.SETVIEW, view: views.LIST } )
+    }
+    else if (v === views.MAP) {
+      store.dispatch( { type: actions.SETVIEW, view: views.MAP } )
+    }
+    else if (v === views.PHO) {
+      store.dispatch( { type: actions.SETVIEW, view: views.PHO } )
+    }
+    else if (v === views.SEARCH) {
+      store.dispatch( { type: actions.SETVIEW, view: views.SEARCH } )
+    }
+    else if (v === views.TWITTER) {
+      store.dispatch( { type: actions.SETVIEW, view: views.TWITTER } )
+    }
+    else {
+      store.dispatch( { type: actions.SETVIEW, view: views.HOME } )
+    }
+  }
+  showMenu = () => {
+    this.setState( { isOpen: true } )
+  }
   getLocation = () => {
     navigator.geolocation.getCurrentPosition((pos) => {
       var lat = pos.coords.latitude;
@@ -118,12 +98,50 @@ class AppRoot extends React.Component {
   }
 
   render() {
-    this.pageRouter();
-    const currentState = store.getState().app;
-    //console.log(currentState);
-    return (
 
-      <AppComponent view={currentState.view} />
+    const currentState = store.getState().app;
+    const view = currentState.view;
+    const splitterStyle = "boxShadow: boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'";
+
+
+    const menuItems = menu.items.map( (item) => {
+
+      // some menu items may use a custom image instead of the SemanticUI Icon component
+      const icon_or_image = item.icon === null ? <span><img className='phoIcon' src={item.img} />&nbsp;</span> : <Icon name={item.icon} />;
+
+      return (
+        <ListItem key={item.label} onClick={ () => {this.menuChoice(item.view)}} tappable>{icon_or_image}
+          <span className='alignMenuItems'>{item.label}</span>
+        </ListItem>
+      )}
+    )
+
+    return (
+      <Splitter>
+        <SplitterSide
+          style={ {splitterStyle} }
+          side='left'
+          width={200}
+          collapse={true}
+          isSwipeable={true}
+          isOpen={this.state.isOpen}
+          onClose={this.hideMenu}
+          onOpen={this.showMenu} >
+          <Page>
+            <List>{menuItems}</List>
+          </Page>
+        </SplitterSide>
+        <SplitterContent>
+          <Page renderToolbar={this.renderToolbar}>
+            <section style={{textAlign: 'center', margin: '16px'}}>
+              <p>
+                CurrentView: {currentState.view}
+              </p>
+            </section>
+          </Page>
+        </SplitterContent>
+      </Splitter>
+
     )
   }
 }

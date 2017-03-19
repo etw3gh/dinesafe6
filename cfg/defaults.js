@@ -45,6 +45,10 @@ function getDefaultModules() {
         loader: 'style-loader!css-loader!stylus-loader'
       },
       {
+        test: /\.(svg|ttf|eot|ico)$/,
+        loader: 'file?name=assets/[name].[hash].[ext]'
+      },
+      {
         test: /\.(png|jpg|gif|woff|woff2)$/,
         loader: 'url-loader?limit=8192'
       },
