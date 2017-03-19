@@ -2,9 +2,9 @@
 
 ReactJS front end for Dinesafe inspections in the Six (Toronto)
 
-## PhoNet 
+## PhoNet
 
-
+Gets nearby restaruants that specialize in Vietnamese Pho
 
 ### Backend
 
