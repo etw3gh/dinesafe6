@@ -2,7 +2,13 @@
 
 ReactJS front end for Dinesafe inspections in the Six (Toronto)
 
+# Demo
+
+[openciti.ca](https://openciti.ca)
+
+
 ## PhoNet
+
 
 Gets nearby restaruants that specialize in Vietnamese Pho
 
