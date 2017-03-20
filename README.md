@@ -22,7 +22,7 @@ Gets nearby restaruants that specialize in Vietnamese Pho
 
 ## copyright
 
-&copy; Elias Tabello 2017
+&copy; Eli Tabello 2017
 
 ## GNU General Public License
 
