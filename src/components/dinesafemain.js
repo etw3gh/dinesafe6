@@ -31,7 +31,14 @@ export const store = createStore(reducer, initialState);
 //
 //   }
 // }
+class IconOrImage extends Component {
+  render () {
+    const P = this.props;
+    const icon_or_image = P.icon === null ? <span><img className='imgIcon' src={P.img} />&nbsp;</span> : <Icon name={P.icon} />;
 
+    return icon_or_image;
+  }
+}
 
 class AppRoot extends Component {
 
@@ -54,14 +61,10 @@ class AppRoot extends Component {
     )
   }
   renderSpeedDial = () => {
-    const dialItems = speedDialMenu.items.map( (item) => {
-
-      //TODO refactor this
-      const icon_or_image = item.icon === null ? <span><img className='phoIcon' src={item.img} />&nbsp;</span> : <Icon name={item.icon} />;
-
+    const dialItems = speedDialMenu.items.map( (item, index) => {
     return (
-      <SpeedDialItem onClick={ () => {this.menuChoice(item.view)}}>
-        {icon_or_image}
+      <SpeedDialItem key={'speed_dial_' + index} onClick={ () => {this.menuChoice(item.view)}}>
+        <IconOrImage icon={item.icon} img={item.img}  />
       </SpeedDialItem>
     )
 
@@ -128,13 +131,9 @@ class AppRoot extends Component {
 
 
     const menuItems = menu.items.map( (item) => {
-
-      // some menu items may use a custom image instead of the SemanticUI Icon component
-      const icon_or_image = item.icon === null ? <span><img className='phoIcon' src={item.img} />&nbsp;</span> : <Icon name={item.icon} />;
-
       return (
-        <ListItem key={item.label} onClick={ () => {this.menuChoice(item.view)}} tappable>{icon_or_image}
-          <span className='alignMenuItems'>{item.label}</span>
+        <ListItem key={item.label} onClick={ () => {this.menuChoice(item.view)}} tappable><IconOrImage icon={item.icon} img={icon.img} />
+           <span className='alignMenuItems'>{item.label}</span>
         </ListItem>
       )}
     )
