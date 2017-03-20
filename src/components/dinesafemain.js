@@ -132,7 +132,7 @@ class AppRoot extends Component {
 
     const menuItems = menu.items.map( (item) => {
       return (
-        <ListItem key={item.label} onClick={ () => {this.menuChoice(item.view)}} tappable><IconOrImage icon={item.icon} img={icon.img} />
+        <ListItem key={item.label} onClick={ () => {this.menuChoice(item.view)}} tappable><IconOrImage icon={item.icon} img={item.img} />
            <span className='alignMenuItems'>{item.label}</span>
         </ListItem>
       )}
