@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 
 import { Pop } from '../classes/pop'
 
-import { menu, views, actions, initialState } from '../classes/app_config'
+import { menu, speedDialMenu, views, actions, initialState } from '../classes/app_config'
 import { reducer } from '../classes/reducer'
 
 import { Pho } from './pho'
@@ -11,7 +11,7 @@ import { Pho } from './pho'
 require('semantic-ui/dist/semantic.min.css')
 require('onsenui/css/onsenui.css')
 require('onsenui/css/onsen-css-components.css')
-import { Button, List, ListItem, Page, Splitter, SplitterContent, SplitterSide, Toolbar, ToolbarButton } from 'react-onsenui'
+import { Fab, List, ListItem, Page, Splitter,  SpeedDial, SpeedDialItem, SplitterContent, SplitterSide, Toolbar } from 'react-onsenui'
 import { Icon } from 'semantic-ui-react'
 
 
@@ -20,17 +20,17 @@ Pop.OK('Welcome to Dinesafe6 (Toronto)');
 
 export const store = createStore(reducer, initialState);
 
-class AppComponent extends Component {
-  render() {
-    if (this.props.view === views.PHO){
-      return (<Pho />)
-    }
-    else {
-      return (<div>app component {this.props.view}</div>)
-    }
-
-  }
-}
+// class AppComponent extends Component {
+//   render() {
+//     if (this.props.view === views.PHO){
+//       return (<Pho />)
+//     }
+//     else {
+//       return (<div>app component {this.props.view}</div>)
+//     }
+//
+//   }
+// }
 
 
 class AppRoot extends Component {
@@ -49,10 +49,33 @@ class AppRoot extends Component {
         <div className='left'>
           <Icon onClick={this.showMenu} size='large' className='hamburger' name='sidebar'/>
         </div>
-        <div className='center'>Dinesafe 6<Icon size='large' name='food'/></div>
+        <div className='center'>Dinesafe 6</div>
       </Toolbar>
     )
   }
+  renderSpeedDial = () => {
+    const dialItems = speedDialMenu.items.map( (item) => {
+
+      //TODO refactor this
+      const icon_or_image = item.icon === null ? <span><img className='phoIcon' src={item.img} />&nbsp;</span> : <Icon name={item.icon} />;
+
+    return (
+      <SpeedDialItem onClick={ () => {this.menuChoice(item.view)}}>
+        {icon_or_image}
+      </SpeedDialItem>
+    )
+
+    })
+    return(
+      <SpeedDial position='bottom right'>
+        <Fab>
+          <Icon size='large' name='food' />
+        </Fab>
+        {dialItems}
+      </SpeedDial>
+    )
+  }
+
   hideMenu = () => {
     this.setState( { isOpen: false } );
   }
@@ -100,8 +123,8 @@ class AppRoot extends Component {
   render() {
 
     const currentState = store.getState().app;
-    const view = currentState.view;
-    const splitterStyle = "boxShadow: boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'";
+    //const view = currentState.view;
+    const splitterStyle = 'boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)';
 
 
     const menuItems = menu.items.map( (item) => {
@@ -132,7 +155,7 @@ class AppRoot extends Component {
           </Page>
         </SplitterSide>
         <SplitterContent>
-          <Page renderToolbar={this.renderToolbar}>
+          <Page renderToolbar={this.renderToolbar} renderFixed={this.renderSpeedDial}>
             <section style={{textAlign: 'center', margin: '16px'}}>
               <p>
                 CurrentView: {currentState.view}

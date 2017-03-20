@@ -19,3 +19,14 @@ body {
   border-width: 1px 0;
   background: #666;
 }
+.alignMenuItems {
+  position: fixed!important;
+  left: 150px!important;
+}
+.hamburger {
+  color: black!important;
+  padding 10px;
+}
+.phoIcon {
+  padding-right: 4px;
+}
