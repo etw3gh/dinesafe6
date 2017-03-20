@@ -47,7 +47,6 @@ const menuItems = [
 
 // speed dial menu for main UX
 const speedDialMenuItems = [
-  { icon: 'food', label: 'Home', view: views.HOME },
   { icon: null, img: 'images/phoicon_white_34x34.png', label: ' Pho', view: views.PHO },
   { icon: 'search', label: 'Search', view: views.SEARCH },
   { icon: 'map outline', label: 'Map', view: views.MAP },
