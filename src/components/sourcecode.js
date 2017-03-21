@@ -17,7 +17,7 @@ export class SourceCode extends Component {
       <List>
         <ListHeader>Github links</ListHeader>
         <ListItem>
-          <a href={ocurl}>
+          <a href={ocurl} target='_blank'>
             <div className='left'>
               <img className='img-circle matchHuge' src={ocavatar} />
             </div>
@@ -27,7 +27,7 @@ export class SourceCode extends Component {
           </a>
         </ListItem>
         <ListItem>
-          <a href={ds6url}>
+          <a href={ds6url} target='_blank'>
             <div className='left'>
               <Icon size='huge' name='github' />
             </div>
