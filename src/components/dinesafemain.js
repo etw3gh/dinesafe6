@@ -129,15 +129,23 @@ class AppRoot extends Component {
   showMenu = () => {
     this.setState( { isOpen: true } )
   }
-  getLocation = (regeo) => {
+  getLocation = (isRefresh) => {
+    if (!navigator.geolocation) {
+      this.badGeo;
+      return;
+    }
     navigator.geolocation.getCurrentPosition((pos) => {
       var lat = pos.coords.latitude;
       var lng = pos.coords.longitude;
       store.dispatch( { type: actions.GEO, lat: lat, lng: lng } );
-      if (regeo) {
+      if (isRefresh) {
         Pop.INFO(`<h3>Location Set</h3>(${lat}, ${lng})`);
       }
-    });
+    }, () => this.badGeo());
+  };
+
+  badGeo = () => {
+    Pop.ERR('Geolocation failed');
   }
 
   render() {
