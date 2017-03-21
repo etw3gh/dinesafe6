@@ -1,6 +1,6 @@
 {
   "name": "ds6.ca",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Dinesafe restaurant front end for The Six (Toronto)",
   "main": "server.js",
   "scripts": {
