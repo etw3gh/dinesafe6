@@ -10,7 +10,7 @@ import { List, ListHeader, ListItem } from 'react-onsenui'
 
 export class SourceCode extends Component {
   render() {
-    const ds6url = 'https://github.com/openciti/dinesafe6';
+    const ds6url = 'https://github.com/openciti/dinesafe6/blob/master/README.md';
     const ocavatar = 'https://avatars2.githubusercontent.com/u/4270738?v=3&s=460';
     const ocurl = 'https://github.com/openciti?tab=repositories';
     return (
