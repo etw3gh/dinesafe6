@@ -138,7 +138,7 @@ class AppRoot extends Component {
       var lat = pos.coords.latitude;
       var lng = pos.coords.longitude;
       store.dispatch( { type: actions.GEO, lat: lat, lng: lng } );
-      if (isRefresh) {
+      if (true) { //isRefresh using true for testing
         Pop.INFO(`<h3>Location Set</h3>(${lat}, ${lng})`);
       }
     }, () => this.badGeo());
