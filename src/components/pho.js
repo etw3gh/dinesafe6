@@ -16,12 +16,16 @@ export class Pho extends Component {
     const phovenues = store.getState().app.phoVenues;
 
     const phos = phovenues.map( (venue) => {
+      const partialFilename =  `/images/pho/${venue.eid}`;
+      const jpgImg = `${partialFilename}.jpg`;
+      const pngImg = `${partialFilename}.png`;
+      const errImg = `"this.src='${jpgImg}'"`;
       return (
         <div key={'pho_' + venue.id}>
           <div >
             Distance: {venue.distance.toFixed(2)} KM<br />
             <figure>
-              <img width="160px" height="120px" src={`/images/pho/${venue.eid}.png`} />
+              <img width="160px" height="120px" src={pngImg} />
               <figcaption>eid: {venue.eid}, id: {venue.id} | {venue.name}</figcaption>
             </figure>
             <h4>{venue.address}, {venue.mun}</h4>

@@ -1,3 +1,7 @@
+require('semantic-ui/dist/semantic.min.css')
+require('onsenui/css/onsenui.css')
+require('onsenui/css/onsen-css-components.css')
+
 import React, { Component } from 'react'
 import { createStore } from 'redux'
 
@@ -7,10 +11,9 @@ import { menu, speedDialMenu, views, actions, initialState } from '../classes/ap
 import { reducer } from '../classes/reducer'
 
 import { Pho } from './pho'
+import { IconOrImage } from './ioi'
 
-require('semantic-ui/dist/semantic.min.css')
-require('onsenui/css/onsenui.css')
-require('onsenui/css/onsen-css-components.css')
+
 import { Fab, List, ListItem, Page, Splitter,  SpeedDial, SpeedDialItem, SplitterContent, SplitterSide, Toolbar } from 'react-onsenui'
 import { Icon } from 'semantic-ui-react'
 
@@ -20,23 +23,19 @@ Pop.OK('Welcome to Dinesafe6 (Toronto)');
 
 export const store = createStore(reducer, initialState);
 
-// class AppComponent extends Component {
-//   render() {
-//     if (this.props.view === views.PHO){
-//       return (<Pho />)
-//     }
-//     else {
-//       return (<div>app component {this.props.view}</div>)
-//     }
-//
-//   }
-// }
-class IconOrImage extends Component {
+class MainView extends Component {
   render () {
-    const P = this.props;
-    const icon_or_image = P.icon === null ? <span><img className='imgIcon' src={P.img} />&nbsp;</span> : <Icon name={P.icon} />;
+    const V = this.props.view;
+    const renderView = <div>View: {V}</div>
+    if (V === views.PHO)
+    {
+      return <Pho />
+    }
+    else
+    {
+      return renderView;
+    }
 
-    return icon_or_image;
   }
 }
 
@@ -105,8 +104,20 @@ class AppRoot extends Component {
     else if (v === views.SEARCH) {
       store.dispatch( { type: actions.SETVIEW, view: views.SEARCH } )
     }
-    else if (v === views.TWITTER) {
-      store.dispatch( { type: actions.SETVIEW, view: views.TWITTER } )
+    else if (v === views.TWITTERBOT) {
+      store.dispatch( { type: actions.SETVIEW, view: views.TWITTERBOT } )
+    }
+    else if (v === views.TWITTERHELP) {
+      store.dispatch( { type: actions.SETVIEW, view: views.TWITTERHELP } )
+    }
+    else if (v === views.OPENDATA) {
+      store.dispatch( { type: actions.SETVIEW, view: views.OPENDATA } )
+    }
+    else if (v === views.LICENCE) {
+      store.dispatch( { type: actions.SETVIEW, view: views.LICENCE } )
+    }
+    else if (v === views.SOURCE) {
+      store.dispatch( { type: actions.SETVIEW, view: views.SOURCE } )
     }
     else {
       store.dispatch( { type: actions.SETVIEW, view: views.HOME } )
@@ -156,9 +167,7 @@ class AppRoot extends Component {
         <SplitterContent>
           <Page renderToolbar={this.renderToolbar} renderFixed={this.renderSpeedDial}>
             <section style={{textAlign: 'center', margin: '16px'}}>
-              <p>
-                CurrentView: {currentState.view}
-              </p>
+              <MainView view={currentState.view} />
             </section>
           </Page>
         </SplitterContent>

@@ -1,20 +1,19 @@
-//import { createStore } from 'redux'
-//import { reducer } from './reducer'
+
 export const views = {
 
-  HOME: 'home',
-  LIST: 'list',
-  MAP: 'map',
-  PHO: 'pho',
-  SEARCH: 'search',
+  HOME: 'HOME',
+  LIST: 'LIST',
+  MAP: 'MAP',
+  PHO: 'PHO',
+  SEARCH: 'SEARCH',
 
-  OPENDATA: 'opendata',
-  LICENCE: 'licence',
-  SOURCE: 'source',
-  TWITTERBOT: 'twitter',
-  TWITTERHELP: 'twitterhelp',
-  HELP: 'help',
-  INFO: 'info'
+  OPENDATA: 'OPENDATA',
+  LICENCE: 'LICENCE',
+  SOURCE: 'SOURCE',
+  TWITTERBOT: 'TWITTERBOT',
+  TWITTERHELP: 'TWITTERHELP',
+  HELP: 'HELP',
+  INFO: 'INFO'
 }
 
 export const actions = {
