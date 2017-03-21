@@ -11,7 +11,7 @@ ReactJS front end for Dinesafe inspections in the Six (Toronto)
 
 Gets nearby restaruants that specialize in Vietnamese Pho
 
-Click the bowl of soup from the floating action menu (Fork and Knife)
+Click the bowl of soup from the floating action menu at the bottom right of the screen (Fork and Knife)
 
 ![screenshot](https://raw.githubusercontent.com/openciti/dinesafe6/master/src/images/screenshots/screenshot_00.png)
 

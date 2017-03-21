@@ -16,8 +16,14 @@ export const views = {
   INFO: 'INFO'
 }
 
+export const GEO = {
+  INIT: false,
+  REFRESH: true
+}
+
 export const actions = {
   GEO: 'GEO',
+  REGEO: 'REGEO',
   NEARBY: 'NEARBY',
   PHO: 'PHO',
   SETVIEW: 'SETVIEW'
@@ -35,6 +41,7 @@ export const initialState = {
 // hamburger menu for admin stuff
 const menuItems = [
   { icon: 'home', label: 'Home', view: views.HOME },
+  { icon: 'compass', label: 'Get Location', view: views.REGEO },
   { icon: 'creative commons', label: 'Open Data Licence', view: views.OPENDATA },
   { icon: 'copyright', label: 'Licence', view: views.LICENCE },
   { icon: 'github', label: 'Source Code', view: views.SOURCE },
@@ -48,7 +55,7 @@ const menuItems = [
 const speedDialMenuItems = [
   { icon: null, img: 'images/phoicon_white_34x34.png', label: ' Pho', view: views.PHO },
   { icon: 'search', label: 'Search', view: views.SEARCH },
-  { icon: 'map outline', label: 'Map', view: views.MAP },
+  { icon: 'map', label: 'Map', view: views.MAP },
   { icon: 'columns', label: 'List', view: views.LIST }
 ]
 export const speedDialMenu = {

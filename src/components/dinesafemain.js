@@ -7,7 +7,7 @@ import { createStore } from 'redux'
 
 import { Pop } from '../classes/pop'
 
-import { menu, speedDialMenu, views, actions, initialState } from '../classes/app_config'
+import { GEO, menu, speedDialMenu, views, actions, initialState } from '../classes/app_config'
 import { reducer } from '../classes/reducer'
 
 import { Pho } from './pho'
@@ -46,7 +46,7 @@ class AppRoot extends Component {
   componentDidMount = () => {
     store.subscribe( () => this.forceUpdate() );
 
-    this.getLocation();
+    this.getLocation(GEO.INIT);
   }
 
   renderToolbar = () => {
@@ -98,6 +98,9 @@ class AppRoot extends Component {
     else if (v === views.MAP) {
       store.dispatch( { type: actions.SETVIEW, view: views.MAP } )
     }
+    else if (v === views.REGEO) {
+      this.getLocation(GEO.REFRESH);
+    }
     else if (v === views.PHO) {
       store.dispatch( { type: actions.SETVIEW, view: views.PHO } )
     }
@@ -126,11 +129,14 @@ class AppRoot extends Component {
   showMenu = () => {
     this.setState( { isOpen: true } )
   }
-  getLocation = () => {
+  getLocation = (regeo) => {
     navigator.geolocation.getCurrentPosition((pos) => {
       var lat = pos.coords.latitude;
       var lng = pos.coords.longitude;
       store.dispatch( { type: actions.GEO, lat: lat, lng: lng } );
+      if (regeo) {
+        Pop.INFO(`<h3>Location Set</h3>(${lat}, ${lng})`);
+      }
     });
   }
 
