@@ -6,7 +6,8 @@ export const views = {
   MAP: 'MAP',
   PHO: 'PHO',
   SEARCH: 'SEARCH',
-
+  REGEO: 'REGEO',
+  SHOWGEO: 'SHOWGEO',
   OPENDATA: 'OPENDATA',
   LICENCE: 'LICENCE',
   SOURCE: 'SOURCE',
@@ -42,7 +43,8 @@ export const initialState = {
 // hamburger menu for admin stuff
 const menuItems = [
   { icon: 'home', label: 'Home', view: views.HOME },
-  { icon: 'compass', label: 'Get Location', view: views.REGEO },
+  { icon: 'compass', label: 'Set Location', view: views.REGEO },
+  { icon: 'compass', label: 'Show Location', view: views.SHOWGEO },
   { icon: 'creative commons', label: 'Open Data Licence', view: views.OPENDATA },
   { icon: 'copyright', label: 'Licence', view: views.LICENCE },
   { icon: 'github', label: 'Source Code', view: views.SOURCE },

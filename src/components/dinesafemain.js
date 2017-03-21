@@ -101,6 +101,12 @@ class AppRoot extends Component {
     else if (v === views.REGEO) {
       this.getLocation(GEO.REFRESH);
     }
+    else if (v === views.SHOWGEO) {
+      const geoData = store.getState().app.geo;
+      const lat = geoData.lat;
+      const lng = geoData.lng;
+      Pop.INFO(`<h3>Location Set</h3>(${lat}, ${lng})`);
+    }
     else if (v === views.PHO) {
       store.dispatch( { type: actions.SETVIEW, view: views.PHO } )
     }
