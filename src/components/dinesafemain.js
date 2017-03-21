@@ -12,7 +12,7 @@ import { reducer } from '../classes/reducer'
 
 import { Pho } from './pho'
 import { IconOrImage } from './ioi'
-
+import { SourceCode } from './sourcecode'
 
 import { Fab, List, ListItem, Page, Splitter,  SpeedDial, SpeedDialItem, SplitterContent, SplitterSide, Toolbar } from 'react-onsenui'
 import { Icon } from 'semantic-ui-react'
@@ -30,6 +30,10 @@ class MainView extends Component {
     if (V === views.PHO)
     {
       return <Pho />
+    }
+    else if (V === views.SOURCE)
+    {
+      return <SourceCode />
     }
     else
     {
