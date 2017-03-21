@@ -14,7 +14,7 @@ export class SourceCode extends Component {
     const ocavatar = 'https://avatars2.githubusercontent.com/u/4270738?v=3&s=460';
     const ocurl = 'https://github.com/openciti?tab=repositories';
     return (
-      <List>
+      <List className='listStyle'>
         <ListHeader>Github links</ListHeader>
         <ListItem>
           <a href={ocurl} target='_blank'>
