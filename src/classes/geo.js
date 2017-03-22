@@ -1,5 +1,5 @@
 import { store } from '../components/dinesafemain'
-import { Pop } fronm './pop'
+import { Pop } from './pop'
 
 /*
 Config and helpers for geolocation
