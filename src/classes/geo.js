@@ -1,5 +1,6 @@
 import { store } from '../components/dinesafemain'
 import { Pop } from './pop'
+import { actions } from '../appConfig/actions'
 
 /*
 Config and helpers for geolocation

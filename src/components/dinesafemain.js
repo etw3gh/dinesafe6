@@ -31,17 +31,20 @@ Pop.OK('Welcome to Dinesafe6 (Toronto)');
 export const store = createStore(reducer, initialState);
 
 class MainView extends Component {
+
+
   render () {
+    const home = (
+      <div>
+        <h2>Welcome</h2>
+        <div>
+          <img className='vertImg cn' src='../images/cn.png' />
+        </div>
+      </div>
+     )
     const V = this.props.view;
     if (V === views.HOME) {
-      return (
-        <div>
-          <h2>Welcome</h2>
-          <div>
-            <img className='vertImg cn' src='../images/cn.png' />
-          </div>
-        </div>
-      )
+      return home;
     }
     else if (V === views.PHO) {
       return <Pho />
@@ -74,11 +77,13 @@ class MainView extends Component {
     }
     else if (V === views.REGEO) {
       Geo.getLocation(Geo.REFRESH);
+      return home;
     }
     else if (V === views.SHOWGEO) {
       const geoData = store.getState().app.geo;
       const poptart = Geo.currentLoc(geoData.lat, geoData.lng);
       Pop.INFO(poptart);
+      return home;
     }
 
     else if (V === views.TWITTERHELP) {
