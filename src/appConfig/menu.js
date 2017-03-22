@@ -1,6 +1,4 @@
-import { actions } from './actions'
 import { views } from './views'
-import { initialState } from './initstate'
 
 
 // hamburger menu for admin stuff

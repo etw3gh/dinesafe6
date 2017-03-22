@@ -146,18 +146,20 @@ class AppRoot extends Component {
     this.setState( { isOpen: true } )
   }
   getLocation = (isRefresh) => {
-    if (!navigator.geolocation) {
-      this.badGeo;
-      return;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        var lat = pos.coords.latitude;
+        var lng = pos.coords.longitude;
+        store.dispatch( { type: actions.GEO, lat: lat, lng: lng } );
+        if (isRefresh) {
+          Pop.INFO(`<h3>Location Set</h3>(${lat}, ${lng})`);
+        }
+      }, () => this.badGeo());
     }
-    navigator.geolocation.getCurrentPosition((pos) => {
-      var lat = pos.coords.latitude;
-      var lng = pos.coords.longitude;
-      store.dispatch( { type: actions.GEO, lat: lat, lng: lng } );
-      if (true) { //isRefresh using true for testing
-        Pop.INFO(`<h3>Location Set</h3>(${lat}, ${lng})`);
-      }
-    }, () => this.badGeo());
+    else {
+      this.badGeo();
+    }
+
   };
 
   badGeo = () => {
