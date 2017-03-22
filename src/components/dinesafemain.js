@@ -49,6 +49,16 @@ class MainView extends Component {
                        header='GNU GENERAL PUBLIC LICENSE'
                        desc='Copyright 2017 Eli Tabello' />
     }
+    else if (V == views.OPENDATA) {
+      return <InfoCard link='http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=4a37e03bb8d1e310VgnVCM10000071d60f89RCRD'
+                       icon='creative commons'
+                       icontxt='opendata.toronto.ca'
+                       iconimg=''
+                       img='../images/to.png'
+                       meta='Toronto'
+                       header='Open Government Licence'
+                       desc='Version 1.0' />
+    }
     else
     {
       return renderView;

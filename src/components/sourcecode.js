@@ -15,7 +15,7 @@ export class SourceCode extends Component {
     const ocurl = 'https://github.com/openciti?tab=repositories';
     return (
       <List className='listStyle'>
-        <ListHeader>Github links</ListHeader>
+        <ListHeader><h3>Github links</h3></ListHeader>
         <ListItem>
           <a href={ocurl} target='_blank'>
             <div className='left'>
