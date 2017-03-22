@@ -23,9 +23,6 @@ import { TwitterTL } from './twitter'
 import { Fab, List, ListItem, Page, Splitter,  SpeedDial, SpeedDialItem, SplitterContent, SplitterSide, Toolbar } from 'react-onsenui'
 import { Icon } from 'semantic-ui-react'
 
-
-Pop.OK('Welcome to Dinesafe6 (Toronto)');
-
 export const store = createStore(reducer, initialState);
 
 class MainView extends Component {
@@ -80,6 +77,7 @@ class MainView extends Component {
       const geoData = store.getState().app.geo;
       const poptart = Geo.currentLoc(geoData.lat, geoData.lng);
       Pop.INFO(poptart);
+      store.dispatch( { type: actions.SETVIEW, view: views.HOME } )
       return home;
     }
 
