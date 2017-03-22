@@ -10,7 +10,7 @@ export class InfoCard extends Component {
     const picon = P.icon === '' ? null : P.icon
     const icon_or_image = <IconOrImage img={P.iconimg} icon={picon} />
 
-    const bottomIcon = <a href={P.link}>{icon_or_image}{P.icontxt}</a>
+    const bottomIcon = <a target='_blank' href={P.link}>{icon_or_image}{P.icontxt}</a>
 
     return (
       <Card className='listStyle'

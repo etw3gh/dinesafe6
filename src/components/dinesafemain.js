@@ -42,11 +42,12 @@ class MainView extends Component {
     else if (V == views.LICENCE) {
       return <InfoCard link='https://www.gnu.org/licenses/gpl-3.0.en.html'
                        icon=''
+                       icontxt='gnu.org'
                        iconimg='../images/gnu_black_30x26.png'
                        img='../images/gplv3-127x51.png'
                        meta='Version 3, 29 June 2007'
-                       description='GNU GENERAL PUBLIC LICENSE'
-                       header='Copyright 2017 Eli Tabello' />
+                       header='GNU GENERAL PUBLIC LICENSE'
+                       desc='Copyright 2017 Eli Tabello' />
     }
     else
     {
