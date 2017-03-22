@@ -5,11 +5,17 @@ require('onsenui/css/onsen-css-components.css')
 import React, { Component } from 'react'
 import { createStore } from 'redux'
 
+
+import { views } from './appConfig/views'
+import { actions } from './appConfig/actions'
+
+
+import { GEO } from '../appConfig/geo'
+
+import { initialState } from '../appConfig/initstate'
+import { hamburgerMenu, speedDialMenu } from '../appConfig/menu'
 import { Pop } from '../classes/pop'
-
-import { GEO, menu, speedDialMenu, views, actions, initialState } from '../classes/app_config'
 import { reducer } from '../classes/reducer'
-
 import { Pho } from './pho'
 import { IconOrImage } from './ioi'
 import { SourceCode } from './sourcecode'

@@ -1,5 +1,5 @@
-import { Urls } from '../data/urls.js'
-import { actions } from '../classes/app_config'
+import { Urls } from '../appConfig/urls'
+import { actions } from './appConfig/actions'
 import { store } from './dinesafemain'
 let axios = require('axios')
 import React, { Component } from 'react'
@@ -7,7 +7,8 @@ import React, { Component } from 'react'
 export class Pho extends Component {
   componentDidMount = () => {
     const geo = store.getState().app.geo;
-    const phourl = `${Urls.heroku.pho.near}lat=${geo.lat}&lng=${geo.lng}&limit=500`;
+    const phourl = Urls.phoUrlGen(geo.lat, geo.lng, 500);
+
     axios.get(phourl).then( (res) => {
       store.dispatch( { type: actions.PHO, venues: res.data } )
     })
