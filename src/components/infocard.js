@@ -1,6 +1,7 @@
 require('../styles/pagecontent.css')
+
 import React, { Component } from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import { IconOrImage } from './ioi'
 
 export class InfoCard extends Component {
@@ -10,15 +11,16 @@ export class InfoCard extends Component {
     const picon = P.icon === '' ? null : P.icon
     const icon_or_image = <IconOrImage img={P.iconimg} icon={picon} />
 
-    const bottomIcon = <a target='_blank' href={P.link}>{icon_or_image}{P.icontxt}</a>
+    const bottom =  <a target='_blank' href={P.link}>{icon_or_image}{P.icontxt}</a>
 
     return (
-      <Card className='listStyle'
-            image={P.img}
-            header={P.header}
-            meta={P.meta}
-            description={P.desc}
-            extra={bottomIcon} />
+      <div className='listStyle'>
+          <Card image={P.img}
+                header={P.header}
+                meta={P.meta}
+                description={P.desc}
+                extra={bottom} />
+      </div>
     )
   }
 }

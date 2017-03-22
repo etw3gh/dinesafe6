@@ -10,3 +10,11 @@
   text-align: center!important;
   margin: auto!important;
 }
+.infoStyle {
+  width: 100%;
+  text-align: center!important;
+  margin: auto!important;
+}
+.cardStyle {
+  width: 80%;
+}
