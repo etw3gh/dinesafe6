@@ -30,3 +30,8 @@ body {
 .imgIcon {
   padding-right: 4px;
 }
+
+
+.vertImg {
+    vertical-align: middle;
+}

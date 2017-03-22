@@ -33,8 +33,15 @@ export const store = createStore(reducer, initialState);
 class MainView extends Component {
   render () {
     const V = this.props.view;
-    const renderView = <div>View: {V}</div>
-    if (V === views.PHO) {
+    if (V === views.HOME) {
+      return (
+        <div>
+          <h2>Welcome</h2>
+          <img className='vertImg' src='../images/cn.png' />
+        </div>
+      )
+    }
+    else if (V === views.PHO) {
       return <Pho />
     }
     else if (V === views.SOURCE) {
@@ -74,7 +81,7 @@ class MainView extends Component {
     }
     else
     {
-      return renderView;
+      return <div>View: {V}</div>
     }
 
   }
