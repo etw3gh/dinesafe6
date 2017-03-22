@@ -1,5 +1,5 @@
 import { Urls } from '../appConfig/urls'
-import { actions } from './appConfig/actions'
+import { actions } from '../appConfig/actions'
 import { store } from './dinesafemain'
 let axios = require('axios')
 import React, { Component } from 'react'

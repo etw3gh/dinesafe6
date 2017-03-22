@@ -6,8 +6,8 @@ import React, { Component } from 'react'
 import { createStore } from 'redux'
 
 
-import { views } from './appConfig/views'
-import { actions } from './appConfig/actions'
+import { views } from '../appConfig/views'
+import { actions } from '../appConfig/actions'
 
 
 import { GEO } from '../appConfig/geo'
