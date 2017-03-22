@@ -71,12 +71,18 @@ class MainView extends Component {
     }
     else if (V === views.REGEO) {
       Geo.getLocation(Geo.REFRESH);
+      // reset view to home, prevents duplicate Pops
+      // TODO: take this out of views.....
+      store.dispatch( { type: actions.SETVIEW, view: views.HOME } )
       return home;
     }
     else if (V === views.SHOWGEO) {
       const geoData = store.getState().app.geo;
       const poptart = Geo.currentLoc(geoData.lat, geoData.lng);
       Pop.INFO(poptart);
+
+      // reset view to home, prevents duplicate Pops
+      // TODO: take this out of views.....
       store.dispatch( { type: actions.SETVIEW, view: views.HOME } )
       return home;
     }
