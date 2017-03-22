@@ -171,7 +171,7 @@ class AppRoot extends Component {
     const splitterStyle = 'boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)';
 
 
-    const menuItems = menu.items.map( (item) => {
+    const menuItems = hamburgerMenu.items.map( (item) => {
       return (
         <ListItem key={item.label} onClick={ () => {this.menuChoice(item.view)}} tappable><IconOrImage icon={item.icon} img={item.img} />
            <span className='alignMenuItems'>{item.label}</span>

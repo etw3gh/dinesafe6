@@ -1,4 +1,4 @@
-import { views } from './views'
+import { views } from '.views'
 
 /*
 Initial state for the reducer
