@@ -1,3 +1,4 @@
+require('../styles/pagecontent.css')
 import React, { Component } from 'react'
 import { Card, Icon } from 'semantic-ui-react'
 import { IconOrImage } from './ioi'
@@ -12,7 +13,8 @@ export class InfoCard extends Component {
     const bottomIcon = <a href={P.link}>{icon_or_image}{P.icontxt}</a>
 
     return (
-      <Card image={P.img}
+      <Card className='listStyle'
+            image={P.img}
             header={P.header}
             meta={P.meta}
             description={P.desc}

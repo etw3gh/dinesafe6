@@ -1,4 +1,4 @@
-require('../styles/img.css')
+require('../styles/pagecontent.css')
 require('onsenui/css/onsenui.css')
 require('onsenui/css/onsen-css-components.css')
 import React, { Component } from 'react'
