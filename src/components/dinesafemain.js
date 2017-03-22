@@ -10,7 +10,7 @@ import { views } from '../appConfig/views'
 import { actions } from '../appConfig/actions'
 
 
-import { GEO } from '../appConfig/geo'
+import { Geo } from '../appConfig/geo'
 
 import { initialState } from '../appConfig/initstate'
 import { hamburgerMenu, speedDialMenu } from '../appConfig/menu'
@@ -56,7 +56,7 @@ class AppRoot extends Component {
   componentDidMount = () => {
     store.subscribe( () => this.forceUpdate() );
 
-    this.getLocation(GEO.INIT);
+    this.getLocation(Geo.INIT);
   }
 
   renderToolbar = () => {
@@ -109,13 +109,11 @@ class AppRoot extends Component {
       store.dispatch( { type: actions.SETVIEW, view: views.MAP } )
     }
     else if (v === views.REGEO) {
-      this.getLocation(GEO.REFRESH);
+      this.getLocation(Geo.REFRESH);
     }
     else if (v === views.SHOWGEO) {
       const geoData = store.getState().app.geo;
-      const lat = geoData.lat;
-      const lng = geoData.lng;
-      Pop.INFO(`<h3>Location Set</h3>(${lat}, ${lng})`);
+      Pop.INFO(Geo.currentLoc(geoData.lat, geoData.lng));
     }
     else if (v === views.PHO) {
       store.dispatch( { type: actions.SETVIEW, view: views.PHO } )
@@ -146,13 +144,14 @@ class AppRoot extends Component {
     this.setState( { isOpen: true } )
   }
   getLocation = (isRefresh) => {
+    console.log(navigator.geolocation);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         var lat = pos.coords.latitude;
         var lng = pos.coords.longitude;
         store.dispatch( { type: actions.GEO, lat: lat, lng: lng } );
-        if (isRefresh) {
-          Pop.INFO(`<h3>Location Set</h3>(${lat}, ${lng})`);
+        if (isRefresh || true) { // || true is temporary
+          Pop.OK(Geo.locSet(lat, lng));
         }
       }, () => this.badGeo());
     }
@@ -163,7 +162,7 @@ class AppRoot extends Component {
   };
 
   badGeo = () => {
-    Pop.ERR('Geolocation failed');
+    Pop.ERR(Geo.badGeoNav());
   }
 
   render() {

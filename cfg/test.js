@@ -41,11 +41,10 @@ module.exports = {
   resolve: {
     extensions: [ '', '.js', '.jsx' ],
     alias: {
-      actions: srcPath + 'actions/',
+      classes: srcPath + 'classes/',
       helpers: path.join(__dirname, '/../test/helpers'),
       components: srcPath + 'components/',
-      sources: srcPath + 'sources/',
-      stores: srcPath + 'stores/',
+      appConfig: srcPath + 'appConfig/',
       styles: srcPath + 'styles/',
       config: srcPath + 'config/' + process.env.REACT_WEBPACK_ENV
     }
