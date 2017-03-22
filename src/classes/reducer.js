@@ -1,4 +1,4 @@
-import { actions } from './appConfig/actions'
+import { actions } from '../appConfig/actions'
 
 
 
