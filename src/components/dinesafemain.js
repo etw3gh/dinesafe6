@@ -35,9 +35,9 @@ class MainView extends Component {
     const home = (
       <div>
         <h2>Welcome</h2>
-        <div>
-          <img className='vertImg cn' src='../images/cn.png' />
-        </div>
+        <p>
+          Click the Fork and Knife at the bottom of the page to begin
+        </p>
       </div>
      )
     const V = this.props.view;
