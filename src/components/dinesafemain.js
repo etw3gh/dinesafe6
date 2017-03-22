@@ -20,6 +20,7 @@ import { Pho } from './pho'
 import { IconOrImage } from './ioi'
 import { SourceCode } from './sourcecode'
 import { InfoCard } from './infocard'
+import { TwitterTL } from './twitter'
 import { Fab, List, ListItem, Page, Splitter,  SpeedDial, SpeedDialItem, SplitterContent, SplitterSide, Toolbar } from 'react-onsenui'
 import { Icon } from 'semantic-ui-react'
 
