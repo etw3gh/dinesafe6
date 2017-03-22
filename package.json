@@ -12,7 +12,7 @@
     "serve:dist": "node server.js --env=dist",
     "dist": "npm run copy & webpack --env=dist",
     "lint": "eslint ./src",
-    "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist &&  cp -r ./src/styles ./src/data ./src/images ./dist ",
+    "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist &&  cp -r ./src/styles ./src/images ./dist ",
     "clean": "rimraf dist/*",
     "pub": "npm run dist && npm run gitpub && cd ../dinesafeto",
     "gitpub": "cd dist && cp -r * ../../ocpub && cd ../../ocpub && gp auto commit `date '+%s'`",
