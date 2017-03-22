@@ -3,19 +3,18 @@ require('onsenui/css/onsenui.css')
 require('onsenui/css/onsen-css-components.css')
 
 import React, { Component } from 'react'
+
 import { createStore } from 'redux'
-
-
 import { views } from '../appConfig/views'
-import { actions } from '../appConfig/actions'
 import { Dispatch } from '../classes/dispatcher'
+import { reducer } from '../classes/reducer'
 
 import { Geo } from '../classes/geo'
 
 import { initialState } from '../appConfig/initstate'
 import { hamburgerMenu, speedDialMenu } from '../appConfig/menu'
 import { Pop } from '../classes/pop'
-import { reducer } from '../classes/reducer'
+
 import { Pho } from './pho'
 import { IconOrImage } from './ioi'
 import { SourceCode } from './sourcecode'
