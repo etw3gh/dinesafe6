@@ -60,8 +60,17 @@ class MainView extends Component {
                        header='Open Government Licence'
                        desc='Version 1.0' />
     }
-    else if (V === views.TWITTERBOT){
+    else if (V === views.TWITTERBOT) {
       return <TwitterTL />
+    }
+    else if (V === views.TWITTERHELP) {
+      return <InfoCard link='https://twitter.com/mydinesafe'
+                       icon='twitter'
+                       icontxt='@mydinesafe'
+                       img=''
+                       meta='In development'
+                       desc='You will soon be able to query the dinesafe inspection database via this interactive twitterbot....'
+                       header='Twitter Bot' />
     }
     else
     {
