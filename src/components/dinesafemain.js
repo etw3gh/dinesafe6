@@ -10,7 +10,7 @@ import { views } from '../appConfig/views'
 import { actions } from '../appConfig/actions'
 
 
-import { Geo } from '../appConfig/geo'
+import { Geo } from '../classes/geo'
 
 import { initialState } from '../appConfig/initstate'
 import { hamburgerMenu, speedDialMenu } from '../appConfig/menu'
@@ -37,7 +37,9 @@ class MainView extends Component {
       return (
         <div>
           <h2>Welcome</h2>
-          <img className='vertImg cn' src='../images/cn.png' />
+          <div>
+            <img className='vertImg cn' src='../images/cn.png' />
+          </div>
         </div>
       )
     }
@@ -70,6 +72,15 @@ class MainView extends Component {
     else if (V === views.TWITTERBOT) {
       return <TwitterTL />
     }
+    else if (V === views.REGEO) {
+      Geo.getLocation(Geo.REFRESH);
+    }
+    else if (V === views.SHOWGEO) {
+      const geoData = store.getState().app.geo;
+      const poptart = Geo.currentLoc(geoData.lat, geoData.lng);
+      Pop.INFO(poptart);
+    }
+
     else if (V === views.TWITTERHELP) {
       return <InfoCard link='https://twitter.com/mydinesafe'
                        icon='twitter'
@@ -94,7 +105,7 @@ class AppRoot extends Component {
   componentDidMount = () => {
     store.subscribe( () => this.forceUpdate() );
 
-    this.getLocation(Geo.INIT);
+    Geo.getLocation(Geo.INIT);
   }
 
   renderToolbar = () => {
@@ -147,11 +158,10 @@ class AppRoot extends Component {
       store.dispatch( { type: actions.SETVIEW, view: views.MAP } )
     }
     else if (v === views.REGEO) {
-      this.getLocation(Geo.REFRESH);
+      store.dispatch( { type: actions.SETVIEW, view: views.REGEO } )
     }
     else if (v === views.SHOWGEO) {
-      const geoData = store.getState().app.geo;
-      Pop.INFO(Geo.currentLoc(geoData.lat, geoData.lng));
+      store.dispatch( { type: actions.SETVIEW, view: views.SHOWGEO } )
     }
     else if (v === views.PHO) {
       store.dispatch( { type: actions.SETVIEW, view: views.PHO } )
@@ -181,26 +191,26 @@ class AppRoot extends Component {
   showMenu = () => {
     this.setState( { isOpen: true } )
   }
-  getLocation = (isRefresh) => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        var lat = pos.coords.latitude;
-        var lng = pos.coords.longitude;
-        store.dispatch( { type: actions.GEO, lat: lat, lng: lng } );
-        if (isRefresh || true) { // || true is temporary
-          Pop.OK(Geo.locSet(lat, lng));
-        }
-      }, () => this.badGeo());
-    }
-    else {
-      this.badGeo();
-    }
+  // getLocation = (isRefresh) => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition((pos) => {
+  //       var lat = pos.coords.latitude;
+  //       var lng = pos.coords.longitude;
+  //       store.dispatch( { type: actions.GEO, lat: lat, lng: lng } );
+  //       if (isRefresh || true) { // || true is temporary
+  //         Pop.OK(Geo.locSet(lat, lng));
+  //       }
+  //     }, () => this.badGeo());
+  //   }
+  //   else {
+  //     this.badGeo();
+  //   }
+  //
+  // };
 
-  };
-
-  badGeo = () => {
-    Pop.ERR(Geo.badGeoNav());
-  }
+  // badGeo = () => {
+  //   Pop.ERR(Geo.badGeoNav());
+  // }
 
   render() {
 
