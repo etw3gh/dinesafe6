@@ -19,7 +19,7 @@ export class Geo {
       return `<h3>Current Location</h3>(${lat}, ${lng})`;
     }
 
-    static badGeoNav 'Geolocation failed';
+    static badGeoNav = 'Geolocation failed';
 
     static getLocation = (isRefresh) => {
       if (navigator.geolocation) {
