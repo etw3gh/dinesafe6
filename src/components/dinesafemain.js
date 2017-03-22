@@ -39,7 +39,7 @@ class MainView extends Component {
     else if (V === views.SOURCE) {
       return <SourceCode />
     }
-    else if (V == views.LICENCE) {
+    else if (V === views.LICENCE) {
       return <InfoCard link='https://www.gnu.org/licenses/gpl-3.0.en.html'
                        icon=''
                        icontxt='gnu.org'
@@ -49,7 +49,7 @@ class MainView extends Component {
                        header='GNU GENERAL PUBLIC LICENSE'
                        desc='Copyright 2017 Eli Tabello' />
     }
-    else if (V == views.OPENDATA) {
+    else if (V === views.OPENDATA) {
       return <InfoCard link='http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=4a37e03bb8d1e310VgnVCM10000071d60f89RCRD'
                        icon='creative commons'
                        icontxt='toronto.ca'
@@ -58,6 +58,9 @@ class MainView extends Component {
                        meta='Toronto'
                        header='Open Government Licence'
                        desc='Version 1.0' />
+    }
+    else if (V === views.TWITTERBOT){
+      return <TwitterTL />
     }
     else
     {
