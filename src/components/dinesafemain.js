@@ -37,7 +37,7 @@ class MainView extends Component {
       return (
         <div>
           <h2>Welcome</h2>
-          <img className='vertImg' src='../images/cn.png' />
+          <img className='vertImg cn' src='../images/cn.png' />
         </div>
       )
     }

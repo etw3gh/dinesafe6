@@ -33,5 +33,9 @@ body {
 
 
 .vertImg {
-    vertical-align: middle;
+  vertical-align: middle;
+}
+.cn {
+  height: 65%;
+  width: auto;
 }
