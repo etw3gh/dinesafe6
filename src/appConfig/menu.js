@@ -4,8 +4,8 @@ import { views } from './views'
 // hamburger menu for admin stuff
 const menuItems = [
   { icon: 'home', label: 'Home', view: views.HOME },
-  { icon: 'compass', label: 'Set Location', view: views.REGEO },
-  { icon: 'compass', label: 'Show Location', view: views.SHOWGEO },
+  { icon: 'location arrow', label: 'Reset Location', view: views.REGEO },
+  { icon: 'marker', label: 'Show Location', view: views.SHOWGEO },
   { icon: 'creative commons', label: 'Open Data Licence', view: views.OPENDATA },
   { icon: 'copyright', label: 'Licence', view: views.LICENCE },
   { icon: 'github', label: 'Source Code', view: views.SOURCE },

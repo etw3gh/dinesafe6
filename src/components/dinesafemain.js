@@ -19,7 +19,7 @@ import { reducer } from '../classes/reducer'
 import { Pho } from './pho'
 import { IconOrImage } from './ioi'
 import { SourceCode } from './sourcecode'
-
+import { InfoCard } from './infocard'
 import { Fab, List, ListItem, Page, Splitter,  SpeedDial, SpeedDialItem, SplitterContent, SplitterSide, Toolbar } from 'react-onsenui'
 import { Icon } from 'semantic-ui-react'
 
@@ -33,13 +33,20 @@ class MainView extends Component {
   render () {
     const V = this.props.view;
     const renderView = <div>View: {V}</div>
-    if (V === views.PHO)
-    {
+    if (V === views.PHO) {
       return <Pho />
     }
-    else if (V === views.SOURCE)
-    {
+    else if (V === views.SOURCE) {
       return <SourceCode />
+    }
+    else if (V == views.LICENCE) {
+      return <InfoCard link='https://www.gnu.org/licenses/gpl-3.0.en.html'
+                       icon=''
+                       iconimg='../images/gnu_black_30x26.png'
+                       img='../images/gplv3-127x51.png'
+                       meta='Version 3, 29 June 2007'
+                       description='GNU GENERAL PUBLIC LICENSE'
+                       header='Copyright 2017 Eli Tabello' />
     }
     else
     {
@@ -144,7 +151,6 @@ class AppRoot extends Component {
     this.setState( { isOpen: true } )
   }
   getLocation = (isRefresh) => {
-    console.log(navigator.geolocation);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         var lat = pos.coords.latitude;
