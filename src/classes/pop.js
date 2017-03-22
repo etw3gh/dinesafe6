@@ -13,9 +13,9 @@ export class Pop {
     static toaster = {
       'closeButton': false,
       'debug': false,
-      'newestOnTop': false,
+      'newestOnTop': true,
       'progressBar': false,
-      'preventDuplicates': false,
+      'preventDuplicates': true,
       'onclick': null,
       'positionClass': 'toast-bottom-left',
       'showDuration': '1500',
