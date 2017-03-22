@@ -19,9 +19,9 @@ export class Pop {
       'onclick': null,
       'positionClass': 'toast-bottom-left',
       'showDuration': '1500',
-      'hideDuration': '1500',
-      'timeOut': '1500',
-      'extendedTimeOut': '1500',
+      'hideDuration': '2500',
+      'timeOut': '2500',
+      'extendedTimeOut': '2500',
       'showEasing': 'swing',
       'hideEasing': 'linear',
       'showMethod': 'fadeIn',
@@ -29,24 +29,20 @@ export class Pop {
     }
 
     static OK = (tart) => {
-      toastr.clear();
       toastr.options = Pop.toaster;
       toastr['success'](tart)
     }
     static ERR = (tart) => {
-      toastr.clear();
       toastr.options = Pop.toaster;
       toastr['error'](tart)
     }
 
     static WARN = (tart ) => {
-      toastr.clear();
       toastr.options = Pop.toaster;
       toastr['warning'](tart);
     }
 
     static INFO = (tart) => {
-      toastr.clear();
       toastr.options = Pop.toaster;
       toastr['info'](tart);
     }
