@@ -102,13 +102,12 @@ class MainView extends Component {
 }
 class AppRoot extends Component {
 
-  state = { isOpen: false, portrait: true }
+  state = { isOpen: false }
 
   componentDidMount = () => {
     store.subscribe( () => this.forceUpdate() );
     Geo.getLocation(Geo.INIT);
-    let portrait = window.innerHeight > window.innerWidth;
-    this.setState( { portrait: portrait } )    
+
   }
 
   renderToolbar = () => {
@@ -130,8 +129,8 @@ class AppRoot extends Component {
     )
 
     })
-
-    let openDirection = this.state.portrait ? 'up' : 'left';
+    let portrait = window.innerHeight > window.innerWidth;
+    let openDirection = portrait ? 'up' : 'left';
 
     return(
       <SpeedDial position='bottom right' direction={openDirection} >
