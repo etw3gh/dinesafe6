@@ -117,7 +117,7 @@ class AppRoot extends Component {
   componentDidMount = () => {
     store.subscribe( () => this.forceUpdate() );
     Geo.getLocation(Geo.INIT);
-    window.addEventListener("resize", this.updateDimensions);
+    window.addEventListener('resize', this.updateDimensions);
   }
 
 
