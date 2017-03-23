@@ -129,8 +129,8 @@ class AppRoot extends Component {
     )
 
     })
-    const portrait = window.innerHeight > window.innerWidth;
-    const openDirection = portrait ? 'up' : 'left';
+    let portrait = window.innerHeight > window.innerWidth;
+    let openDirection = portrait ? 'up' : 'left';
 
     return(
       <SpeedDial position='bottom right' direction={openDirection} >
