@@ -102,13 +102,24 @@ class MainView extends Component {
 }
 class AppRoot extends Component {
 
-  state = { isOpen: false }
+  state = { isOpen: false, portrait: true }
+
+  updateDimensions = () => {
+    let portrait = window.innerHeight > window.innerWidth;
+    this.setState( { portrait: portrait } );
+    //console.log(this.state.portrait)
+  }
+
+  componentWillMount = () => {
+      this.updateDimensions();
+  }
 
   componentDidMount = () => {
     store.subscribe( () => this.forceUpdate() );
     Geo.getLocation(Geo.INIT);
-
+    window.addEventListener("resize", this.updateDimensions);
   }
+
 
   renderToolbar = () => {
     return (
@@ -129,8 +140,8 @@ class AppRoot extends Component {
     )
 
     })
-    let portrait = window.innerHeight > window.innerWidth;
-    let openDirection = portrait ? 'up' : 'left';
+    //let portrait = window.innerHeight > window.innerWidth;
+    let openDirection = this.state.portrait ? 'up' : 'left';
 
     return(
       <SpeedDial position='bottom right' direction={openDirection} >
