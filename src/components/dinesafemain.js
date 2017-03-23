@@ -129,8 +129,11 @@ class AppRoot extends Component {
     )
 
     })
+    const portrait = window.innerHeight > window.innerWidth;
+    const openDirection = portrait ? 'up' : 'left';
+
     return(
-      <SpeedDial position='bottom right'>
+      <SpeedDial position='bottom right' direction={openDirection} >
         <Fab>
           <Icon size='large' name='food' />
         </Fab>
