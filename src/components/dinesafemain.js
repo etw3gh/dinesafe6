@@ -5,6 +5,7 @@ require('onsenui/css/onsen-css-components.css')
 import React, { Component } from 'react'
 
 import { createStore } from 'redux'
+import { actions } from '../appConfig/actions'
 import { views } from '../appConfig/views'
 import { Dispatch } from '../classes/dispatcher'
 import { reducer } from '../classes/reducer'
@@ -37,6 +38,20 @@ class MainView extends Component {
       </div>
      )
     const V = this.props.view;
+
+    const doRefreshGeo = this.props.doRefreshGeo;
+    const doShowGeo = this.props.doShowGeo;
+
+    if (doShowGeo || doRefreshGeo) {
+      if (doShowGeo ) {
+        const poptart = Geo.currentLoc(this.props.lat, this.props.lng);
+        Pop.INFO(poptart);
+      }
+      if (doRefreshGeo) {
+        Geo.getLocation(Geo.REFRESH, true);
+      }
+    }
+
     if (V === views.HOME) {
       return home;
     }
@@ -69,24 +84,6 @@ class MainView extends Component {
     else if (V === views.TWITTERBOT) {
       return <TwitterTL />
     }
-    else if (V === views.REGEO) {
-      Geo.getLocation(Geo.REFRESH);
-      // reset view to home, prevents duplicate Pops
-      // TODO: take this out of views.....
-      store.dispatch( { type: actions.SETVIEW, view: views.HOME } )
-      return home;
-    }
-    else if (V === views.SHOWGEO) {
-      const geoData = store.getState().app.geo;
-      const poptart = Geo.currentLoc(geoData.lat, geoData.lng);
-      Pop.INFO(poptart);
-
-      // reset view to home, prevents duplicate Pops
-      // TODO: take this out of views.....
-      store.dispatch( { type: actions.SETVIEW, view: views.HOME } )
-      return home;
-    }
-
     else if (V === views.TWITTERHELP) {
       return <InfoCard link='https://twitter.com/mydinesafe'
                        icon='twitter'
@@ -103,7 +100,6 @@ class MainView extends Component {
 
   }
 }
-
 class AppRoot extends Component {
 
   state = { isOpen: false }
@@ -157,7 +153,9 @@ class AppRoot extends Component {
   render() {
 
     const currentState = store.getState().app;
-    //const view = currentState.view;
+    const doRefreshGeo = currentState.doRefreshGeo;
+    const doShowGeo = currentState.doShowGeo;
+    const geo = store.getState().app.geo;
     const splitterStyle = 'boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)';
 
 
@@ -187,7 +185,7 @@ class AppRoot extends Component {
         <SplitterContent>
           <Page renderToolbar={this.renderToolbar} renderFixed={this.renderSpeedDial}>
             <section style={{textAlign: 'center', margin: '16px'}}>
-              <MainView view={currentState.view} />
+              <MainView view={currentState.view} doRefreshGeo={doRefreshGeo} doShowGeo={doShowGeo} lat={geo.lat} lng={geo.lng}/>
             </section>
           </Page>
         </SplitterContent>
