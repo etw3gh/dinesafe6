@@ -107,13 +107,16 @@ class AppRoot extends Component {
   updateDimensions = () => {
     let portrait = window.innerHeight > window.innerWidth;
     this.setState( { portrait: portrait } );
-    //console.log(this.state.portrait)
   }
 
   componentWillMount = () => {
-      this.updateDimensions();
+    this.updateDimensions();
   }
 
+  componentWillUnmount = () => {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
+  
   componentDidMount = () => {
     store.subscribe( () => this.forceUpdate() );
     Geo.getLocation(Geo.INIT);
