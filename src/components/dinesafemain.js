@@ -5,7 +5,7 @@ require('onsenui/css/onsen-css-components.css')
 import React, { Component } from 'react'
 
 import { createStore } from 'redux'
-import { actions } from '../appConfig/actions'
+//import { actions } from '../appConfig/actions'
 import { views } from '../appConfig/views'
 import { Dispatch } from '../classes/dispatcher'
 import { reducer } from '../classes/reducer'
@@ -102,12 +102,13 @@ class MainView extends Component {
 }
 class AppRoot extends Component {
 
-  state = { isOpen: false }
+  state = { isOpen: false, portrait: true }
 
   componentDidMount = () => {
     store.subscribe( () => this.forceUpdate() );
-
     Geo.getLocation(Geo.INIT);
+    let portrait = window.innerHeight > window.innerWidth;
+    this.setState( { portrait: portrait } )    
   }
 
   renderToolbar = () => {
@@ -129,8 +130,8 @@ class AppRoot extends Component {
     )
 
     })
-    let portrait = window.innerHeight > window.innerWidth;
-    let openDirection = portrait ? 'up' : 'left';
+
+    let openDirection = this.state.portrait ? 'up' : 'left';
 
     return(
       <SpeedDial position='bottom right' direction={openDirection} >
