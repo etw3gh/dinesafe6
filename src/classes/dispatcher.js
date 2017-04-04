@@ -22,12 +22,6 @@ export class Dispatch {
     else if (v === views.MAP) {
       store.dispatch( { type: actions.SETVIEW, view: views.MAP } )
     }
-    else if (v === views.REGEO) {
-      store.dispatch( { type: actions.REGEO, do: true } )
-    }
-    else if (v === views.SHOWGEO) {
-      store.dispatch( { type: actions.SHOWGEO, do: true } )
-    }
     else if (v === views.PHO) {
       store.dispatch( { type: actions.SETVIEW, view: views.PHO } )
     }

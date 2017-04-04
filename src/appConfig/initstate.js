@@ -11,5 +11,11 @@ export const initialState = {
     doShowGeo: false,
     phoVenues: [],
     nearbyVenues: []
+  },
+  screen: {
+    initH: null,
+    initW: null,
+    lastH: -1,
+    lastW: -1
   }
 };

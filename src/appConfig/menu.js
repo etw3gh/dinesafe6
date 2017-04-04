@@ -1,11 +1,11 @@
 import { views } from './views'
-
+import { actions } from './actions'
 
 // hamburger menu for admin stuff
 const menuItems = [
   { icon: 'home', label: 'Home', view: views.HOME },
-  { icon: 'location arrow', label: 'Reset Location', view: views.REGEO },
-  { icon: 'marker', label: 'Show Location', view: views.SHOWGEO },
+  { icon: 'location arrow', label: 'Reset Location', view: null, action: actions.REGEO },
+  { icon: 'marker', label: 'Show Location', view: null, action: actions.SHOWGEO },
   { icon: 'creative commons', label: 'Open Data Licence', view: views.OPENDATA },
   { icon: 'copyright', label: 'Licence', view: views.LICENCE },
   { icon: 'github', label: 'Source Code', view: views.SOURCE },

@@ -5,7 +5,7 @@ require('onsenui/css/onsen-css-components.css')
 import React, { Component } from 'react'
 
 import { createStore } from 'redux'
-//import { actions } from '../appConfig/actions'
+import { actions } from '../appConfig/actions'
 import { views } from '../appConfig/views'
 import { Dispatch } from '../classes/dispatcher'
 import { reducer } from '../classes/reducer'
@@ -14,6 +14,7 @@ import { Geo } from '../classes/geo'
 
 import { initialState } from '../appConfig/initstate'
 import { hamburgerMenu, speedDialMenu } from '../appConfig/menu'
+
 import { Pop } from '../classes/pop'
 
 import { Pho } from './pho'
@@ -21,8 +22,11 @@ import { IconOrImage } from './ioi'
 import { SourceCode } from './sourcecode'
 import { InfoCard } from './infocard'
 import { TwitterTL } from './twitter'
-import { Fab, List, ListItem, Page, Splitter,  SpeedDial, SpeedDialItem, SplitterContent, SplitterSide, Toolbar } from 'react-onsenui'
+import { Fab, List, ListItem, Page, Splitter } from 'react-onsenui'
+import { SpeedDial, SpeedDialItem, SplitterContent, SplitterSide, Toolbar } from 'react-onsenui'
+
 import { Icon } from 'semantic-ui-react'
+let axios = require('axios')
 
 export const store = createStore(reducer, initialState);
 
@@ -35,22 +39,12 @@ class MainView extends Component {
         <p>
           Click the Fork and Knife at the bottom of the page to begin
         </p>
+        <br />
+        <input type='text' />
       </div>
      )
+
     const V = this.props.view;
-
-    const doRefreshGeo = this.props.doRefreshGeo;
-    const doShowGeo = this.props.doShowGeo;
-
-    if (doShowGeo || doRefreshGeo) {
-      if (doShowGeo ) {
-        const poptart = Geo.currentLoc(this.props.lat, this.props.lng);
-        Pop.INFO(poptart);
-      }
-      if (doRefreshGeo) {
-        Geo.getLocation(Geo.REFRESH, true);
-      }
-    }
 
     if (V === views.HOME) {
       return home;
@@ -105,7 +99,17 @@ class AppRoot extends Component {
   state = { isOpen: false, portrait: true }
 
   updateDimensions = () => {
-    let portrait = window.innerHeight > window.innerWidth;
+    const w = window.innerWidth;
+    const lastW = store.getState().screen.lastW;
+    const lastH = store.getState().screen.lastH;
+    const msg = `currentW: ${w}, lastW: ${lastW}, lastH: ${lastH}`;
+    Pop.INFO(msg);
+    // indicates a mobile keyboard event and not a resize or rotate.
+    if (w === lastH) {
+      Pop.INFO('ROTATE DETECTED');
+      //return;
+    }
+    const portrait = window.innerHeight > w;
     this.setState( { portrait: portrait } );
   }
 
@@ -116,11 +120,27 @@ class AppRoot extends Component {
   componentWillUnmount = () => {
     window.removeEventListener('resize', this.updateDimensions);
   }
-  
+
+  // initialize screen initial dimensions in state only once on startup
+  initScreen = () => {
+    const screen = store.getState().screen;
+    console.log(screen);
+
+    // get init values and see if either is null
+    const iw = screen.initW;
+    const ih = screen.initH;
+    if (iw === null || ih === null) {
+      store.dispatch( { type: actions.INITSCREEN, w: window.innerWidth, h: window.innerHeight } )
+    }
+  }
   componentDidMount = () => {
+    this.initScreen();
     store.subscribe( () => this.forceUpdate() );
     Geo.getLocation(Geo.INIT);
     window.addEventListener('resize', this.updateDimensions);
+    axios.get('https://dinesafe.herokuapp.com/pho/43.7186761904/-79.5075579683/5').then( (res) => {
+      console.log(res);
+    })
   }
 
 
@@ -159,9 +179,29 @@ class AppRoot extends Component {
   hideMenu = () => {
     this.setState( { isOpen: false } );
   }
-  menuChoice = (v) => {
+  menuChoice = (view, action) => {
     this.hideMenu();
-    Dispatch.menu(v);
+    console.log(`view: ${view}, action: ${action}`);
+
+    // if view is null, then we are doing something without dispatching a view
+    // the view will be saved under the action attribute
+    if (view === null) {
+       if (action === actions.SHOWGEO) {
+        const geo = store.getState().app.geo;
+        const poptart = Geo.currentLoc(geo.lat, geo.lng);
+        Pop.INFO(poptart);
+      }
+      else if (action === actions.REGEO) {
+        Geo.getLocation(Geo.REFRESH, true);
+      }
+      else {
+        console.err(`invalid action: ${action}`)
+      }
+    }
+    // if view is not null, then we want to dispatch a view change to the reducer
+    else {
+      Dispatch.menu(view);
+    }
   }
   showMenu = () => {
     this.setState( { isOpen: true } )
@@ -169,16 +209,14 @@ class AppRoot extends Component {
 
   render() {
 
-    const currentState = store.getState().app;
-    const doRefreshGeo = currentState.doRefreshGeo;
-    const doShowGeo = currentState.doShowGeo;
+    const currentView = store.getState().app.view;
+
     const geo = store.getState().app.geo;
     const splitterStyle = 'boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)';
 
-
     const menuItems = hamburgerMenu.items.map( (item) => {
       return (
-        <ListItem key={item.label} onClick={ () => {this.menuChoice(item.view)}} tappable><IconOrImage icon={item.icon} img={item.img} />
+        <ListItem key={item.label} onClick={ () => {this.menuChoice(item.view, item.action)}} tappable><IconOrImage icon={item.icon} img={item.img} />
            <span className='alignMenuItems'>{item.label}</span>
         </ListItem>
       )}
@@ -202,7 +240,9 @@ class AppRoot extends Component {
         <SplitterContent>
           <Page renderToolbar={this.renderToolbar} renderFixed={this.renderSpeedDial}>
             <section style={{textAlign: 'center', margin: '16px'}}>
-              <MainView view={currentState.view} doRefreshGeo={doRefreshGeo} doShowGeo={doShowGeo} lat={geo.lat} lng={geo.lng}/>
+              <MainView view={currentView}
+                        lat={geo.lat}
+                        lng={geo.lng} />
             </section>
           </Page>
         </SplitterContent>
