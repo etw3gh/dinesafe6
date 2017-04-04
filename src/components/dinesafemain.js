@@ -138,9 +138,6 @@ class AppRoot extends Component {
     store.subscribe( () => this.forceUpdate() );
     Geo.getLocation(Geo.INIT);
     window.addEventListener('resize', this.updateDimensions);
-    axios.get('https://dinesafe.herokuapp.com/pho/43.7186761904/-79.5075579683/5').then( (res) => {
-      console.log(res);
-    })
   }
 
 

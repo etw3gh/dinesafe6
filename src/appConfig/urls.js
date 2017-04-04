@@ -7,34 +7,34 @@ export class Urls  {
   static base = 'https://openciti.ca/dsto/';
 
   static api = 'https://dinesafe.herokuapp.com';
-  static addresses = `#{api}/addresses/`;
-  static inspections = `#{api}/inspections/`;
-  static venues = `#{api}/venues/`;
+  static addresses = `${api}/addresses/`;
+  static inspections = `{api}/inspections/`;
+  static venues = `${api}/venues/`;
 
   static maps = {
     static: 'https://maps.googleapis.com/maps/api/staticmap?zoom=19&size=600x600&maptype=roadmap&markers=color:blue%7C'
   }
   static heroku = {
-      municipalities: `#{addresses}/mun`,
+      municipalities: `${addresses}/mun`,
       addresses: {
-        munstreets: `#{addresses}munstreets`,
-        mun: `#{addresses}mun`,
-        streets: `#{addresses}streets`,
-        numbers: `#{addresses}numbers`
+        munstreets: `${addresses}munstreets`,
+        mun: `${addresses}mun`,
+        streets: `${addresses}streets`,
+        numbers: `${addresses}numbers`
       },
       venues: {
-        nearby: `#{venues}nearby`,
-        get: `#{venues}get`,
-        pho: `#{venues}pho`
+        nearby: `${venues}nearby`,
+        get: `${venues}get`,
+        pho: `${venues}pho`
       },
       inspections: {
-        find: `#{inspections}find`,
-        near: `#{inspections}near`,
-        nearsearch: `#{inspections}nearsearch`,
-        byaddress: `#{inspections}byaddress`,
-        get: `#{inspections}get`,
-        statuses: `#{inspections}status`,
-        byaddr: `#{inspections}byaddr`
+        find: `${inspections}find`,
+        near: `${inspections}near`,
+        nearsearch: `${inspections}nearsearch`,
+        byaddress: `${inspections}byaddress`,
+        get: `${inspections}get`,
+        statuses: `${inspections}status`,
+        byaddr: `${inspections}byaddr`
       }
   }
   static phoUrlGen = (lat, lng, limit) => {
