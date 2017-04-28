@@ -38,7 +38,6 @@ export class Urls  {
       }
   }
   static phoUrlGen = (lat, lng, limit) => {
-    const url = `${Urls.heroku.venues.pho}/${lat}/${lng}/${limit}`;
-    return url;
+    return `${Urls.heroku.venues.pho}/${lat}/${lng}/${limit}`;
   }
 }
