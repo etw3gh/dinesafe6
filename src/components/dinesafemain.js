@@ -44,10 +44,10 @@ class MainView extends Component {
       </div>
      )
 
-    const V = this.props.view;
+    const V = this.props.view
 
     if (V === views.HOME) {
-      return home;
+      return home
     }
     else if (V === views.PHO) {
       return <Pho />
@@ -98,6 +98,14 @@ class AppRoot extends Component {
 
   state = { isOpen: false, portrait: true }
 
+  // http://stackoverflow.com/a/4723302/6826791
+  forceHttps = () => {
+    if (location.protocol != 'https:') {
+      Pop.WARN('SECURITY ALERT: SWITCHING TO HTTPS')
+      location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    }
+  }
+
   updateDimensions = () => {
     const w = window.innerWidth;
     const lastW = store.getState().screen.lastW;
@@ -114,7 +122,7 @@ class AppRoot extends Component {
   }
 
   componentWillMount = () => {
-    this.updateDimensions();
+    this.updateDimensions()
   }
 
   componentWillUnmount = () => {
@@ -134,7 +142,8 @@ class AppRoot extends Component {
     }
   }
   componentDidMount = () => {
-    this.initScreen();
+    this.forceHttps()
+    this.initScreen()
     store.subscribe( () => this.forceUpdate() );
     Geo.getLocation(Geo.INIT);
     window.addEventListener('resize', this.updateDimensions);
