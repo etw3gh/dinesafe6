@@ -28,7 +28,7 @@ import { SpeedDial, SpeedDialItem, SplitterContent, SplitterSide, Toolbar } from
 import { Icon } from 'semantic-ui-react'
 let axios = require('axios')
 
-export const store = createStore(reducer, initialState);
+export const store = createStore(reducer, initialState)
 
 class MainView extends Component {
 
@@ -102,23 +102,23 @@ class AppRoot extends Component {
   forceHttps = () => {
     if (location.protocol != 'https:') {
       Pop.WARN('SECURITY ALERT: SWITCHING TO HTTPS')
-      location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+      location.href = 'https:' + window.location.href.substring(window.location.protocol.length)
     }
   }
 
   updateDimensions = () => {
-    const w = window.innerWidth;
-    const lastW = store.getState().screen.lastW;
-    const lastH = store.getState().screen.lastH;
-    const msg = `currentW: ${w}, lastW: ${lastW}, lastH: ${lastH}`;
-    Pop.INFO(msg);
+    const w = window.innerWidth
+    const lastW = store.getState().screen.lastW
+    const lastH = store.getState().screen.lastH
+    const msg = `currentW: ${w}, lastW: ${lastW}, lastH: ${lastH}`
+    Pop.INFO(msg)
     // indicates a mobile keyboard event and not a resize or rotate.
     if (w === lastH) {
-      Pop.INFO('ROTATE DETECTED');
-      //return;
+      Pop.INFO('ROTATE DETECTED')
+      //return
     }
-    const portrait = window.innerHeight > w;
-    this.setState( { portrait: portrait } );
+    const portrait = window.innerHeight > w
+    this.setState( { portrait: portrait } )
   }
 
   componentWillMount = () => {
@@ -126,17 +126,17 @@ class AppRoot extends Component {
   }
 
   componentWillUnmount = () => {
-    window.removeEventListener('resize', this.updateDimensions);
+    window.removeEventListener('resize', this.updateDimensions)
   }
 
   // initialize screen initial dimensions in state only once on startup
   initScreen = () => {
-    const screen = store.getState().screen;
-    console.log(screen);
+    const screen = store.getState().screen
+    console.log(screen)
 
     // get init values and see if either is null
-    const iw = screen.initW;
-    const ih = screen.initH;
+    const iw = screen.initW
+    const ih = screen.initH
     if (iw === null || ih === null) {
       store.dispatch( { type: actions.INITSCREEN, w: window.innerWidth, h: window.innerHeight } )
     }
@@ -144,9 +144,9 @@ class AppRoot extends Component {
   componentDidMount = () => {
     this.forceHttps()
     this.initScreen()
-    store.subscribe( () => this.forceUpdate() );
-    Geo.getLocation(Geo.INIT);
-    window.addEventListener('resize', this.updateDimensions);
+    store.subscribe( () => this.forceUpdate() )
+    Geo.getLocation(Geo.INIT)
+    window.addEventListener('resize', this.updateDimensions)
   }
 
 
@@ -169,8 +169,8 @@ class AppRoot extends Component {
     )
 
     })
-    //let portrait = window.innerHeight > window.innerWidth;
-    let openDirection = this.state.portrait ? 'up' : 'left';
+    //let portrait = window.innerHeight > window.innerWidth
+    let openDirection = this.state.portrait ? 'up' : 'left'
 
     return(
       <SpeedDial position='bottom right' direction={openDirection} >
@@ -183,22 +183,22 @@ class AppRoot extends Component {
   }
 
   hideMenu = () => {
-    this.setState( { isOpen: false } );
+    this.setState( { isOpen: false } )
   }
   menuChoice = (view, action) => {
-    this.hideMenu();
-    console.log(`view: ${view}, action: ${action}`);
+    this.hideMenu()
+    console.log(`view: ${view}, action: ${action}`)
 
     // if view is null, then we are doing something without dispatching a view
     // the view will be saved under the action attribute
     if (view === null) {
        if (action === actions.SHOWGEO) {
-        const geo = store.getState().app.geo;
-        const poptart = Geo.currentLoc(geo.lat, geo.lng);
-        Pop.INFO(poptart);
+        const geo = store.getState().app.geo
+        const poptart = Geo.currentLoc(geo.lat, geo.lng)
+        Pop.INFO(poptart)
       }
       else if (action === actions.REGEO) {
-        Geo.getLocation(Geo.REFRESH, true);
+        Geo.getLocation(Geo.REFRESH, true)
       }
       else {
         console.err(`invalid action: ${action}`)
@@ -206,7 +206,7 @@ class AppRoot extends Component {
     }
     // if view is not null, then we want to dispatch a view change to the reducer
     else {
-      Dispatch.menu(view);
+      Dispatch.menu(view)
     }
   }
   showMenu = () => {
@@ -215,10 +215,10 @@ class AppRoot extends Component {
 
   render() {
 
-    const currentView = store.getState().app.view;
+    const currentView = store.getState().app.view
 
-    const geo = store.getState().app.geo;
-    const splitterStyle = 'boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)';
+    const geo = store.getState().app.geo
+    const splitterStyle = 'boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
 
     const menuItems = hamburgerMenu.items.map( (item) => {
       return (
@@ -258,4 +258,4 @@ class AppRoot extends Component {
   }
 }
 
-export default AppRoot;
+export default AppRoot
