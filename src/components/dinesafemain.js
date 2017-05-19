@@ -108,27 +108,24 @@ class AppRoot extends Component {
 
   // http://stackoverflow.com/a/4723302/6826791
   forceHttps = () => {
-      const notHttps = location.protocol != 'https:'
-      const notLocal = location.href.indexOf('localhost') === -1
+    const notHttps = location.protocol != 'https:'
+    const notLocal = location.href.indexOf('localhost') === -1
 
-      if (notHttps && notLocal) {
+    if (notHttps && notLocal) {
       location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
-      }
+    }
   }
 
+  /*
+  called from the resize window event
+  will close floating action menu
+  prevents poor UX when the mobile keyboard is activated
+  */
   updateDimensions = () => {
     const w = window.innerWidth
-    const lastW = store.getState().screen.lastW
-    const lastH = store.getState().screen.lastH
-    const msg = `currentW: ${w}, lastW: ${lastW}, lastH: ${lastH}`
-    Pop.INFO(msg)
-    // indicates a mobile keyboard event and not a resize or rotate.
-    if (w === lastH) {
-      Pop.INFO('ROTATE DETECTED')
-      //return
-    }
-    const portrait = window.innerHeight > w
-    this.setState( { portrait: portrait } )
+    const h = window.innerHeight
+    const portrait = h > w
+    this.setState( { portrait: portrait, isOpen: false } )
   }
 
   componentWillMount = () => {
@@ -170,6 +167,7 @@ class AppRoot extends Component {
       </Toolbar>
     )
   }
+  
   renderSpeedDial = () => {
     const dialItems = speedDialMenu.items.map( (item, index) => {
     return (
