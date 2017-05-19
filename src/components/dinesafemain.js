@@ -31,6 +31,12 @@ let axios = require('axios')
 
 export const store = createStore(reducer, initialState)
 
+class MainViewRouter extends Component {
+  render () {
+    return(<div>hi</div>)
+  }
+}
+
 class MainView extends Component {
 
   render () {
@@ -102,10 +108,12 @@ class AppRoot extends Component {
 
   // http://stackoverflow.com/a/4723302/6826791
   forceHttps = () => {
-    if (location.protocol != 'https:') {
-      Pop.WARN('SECURITY ALERT: SWITCHING TO HTTPS')
-      location.href = 'https:' + window.location.href.substring(window.location.protocol.length)
-    }
+      const notHttps = location.protocol != 'https:'
+      const notLocal = location.href.indexOf('localhost') === -1
+
+      if (notHttps && notLocal) {
+      location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+      }
   }
 
   updateDimensions = () => {
@@ -248,9 +256,7 @@ class AppRoot extends Component {
         <SplitterContent>
           <Page renderToolbar={this.renderToolbar} renderFixed={this.renderSpeedDial}>
             <section style={{textAlign: 'center', margin: '16px'}}>
-              <MainView view={currentView}
-                        lat={geo.lat}
-                        lng={geo.lng} />
+              <MainViewRouter view={currentView} lat={geo.lat} lng={geo.lng} />
             </section>
           </Page>
         </SplitterContent>
