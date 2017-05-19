@@ -3,6 +3,7 @@ require('onsenui/css/onsenui.css')
 require('onsenui/css/onsen-css-components.css')
 
 import React, { Component } from 'react'
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory, DefaultRoute, IndexLink } from 'react-router'
 
 import { createStore } from 'redux'
 import { actions } from '../appConfig/actions'
