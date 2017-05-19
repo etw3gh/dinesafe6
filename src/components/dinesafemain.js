@@ -95,6 +95,7 @@ class MainView extends Component {
 
   }
 }
+
 class AppRoot extends Component {
 
   state = { isOpen: false, portrait: true }

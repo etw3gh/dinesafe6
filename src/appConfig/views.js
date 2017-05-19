@@ -8,8 +8,6 @@ export const views = {
   MAP: 'MAP',
   PHO: 'PHO',
   SEARCH: 'SEARCH',
-  REGEO: 'REGEO',
-  SHOWGEO: 'SHOWGEO',
   OPENDATA: 'OPENDATA',
   LICENCE: 'LICENCE',
   SOURCE: 'SOURCE',
