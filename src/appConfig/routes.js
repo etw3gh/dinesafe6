@@ -1,7 +1,7 @@
 /*
 An enumeration for routes. replaces views.js
 */
-export const views = {
+export const routes = {
   HOME: '/',
   LIST: '/list',
   MAP: '/map',
