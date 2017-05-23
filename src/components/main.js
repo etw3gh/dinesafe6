@@ -67,15 +67,15 @@ class App2 extends Component {
                 <Route exact path={routes.HOME} component={rts.Home} />
                 <Route path={routes.INFO} component={rts.About} />
                 <Route path={routes.HELP} component={rts.Help} />
-                <Route path={routes.PHO} component={rts.Pho} />
+                <Route path={routes.PHO} component={rts.Soup} />
                 <Route path={routes.OPENDATA} component={rts.OpenData} />
                 <Route path={routes.LICENCE} component={rts.Licence} />
                 <Route path={routes.SOURCE} component={rts.Source} />
                 <Route path={routes.TWITTERBOT} component={rts.TwitterBot} />
                 <Route path={routes.TWITTERHELP} component={rts.TwitterHelp} />
-                <Route path={routes.MAP} component={rts.Map} />
-                <Route path={routes.SEARCH} component={rts.Search} />
-                <Route path={routes.LIST} component={rts.List} />
+                <Route path={routes.MAP} component={rts.VenueMap} />
+                <Route path={routes.SEARCH} component={rts.VenueSearch} />
+                <Route path={routes.LIST} component={rts.VenueList} />
               </section>
             </Page>
           </SplitterContent>

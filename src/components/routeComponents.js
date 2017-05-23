@@ -7,12 +7,12 @@ import { TwitterTL } from './twitter'
 
 export class rts {
   static Home = () => <StaticHome />
-  static List = () => <div>venue list</div>
-  static Map = () =><div>venue map</div>
-  static Search = () => <div>venue search</div>
+  static VenueList = () => <div>venue list</div>
+  static VenueMap = () =><div>venue map</div>
+  static VenueSearch = () => <div>venue search</div>
   static Help = () => <StaticHelp />
   static About = () => <div><h2>About</h2></div>
-  static Pho = () => <Pho />
+  static Soup = () => <Pho />
   static Source = () => <SourceCode />
   static TwitterBot = () => <TwitterTL />
 
