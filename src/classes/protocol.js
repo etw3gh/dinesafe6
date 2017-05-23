@@ -25,7 +25,6 @@ export class Protocol {
     // force https if not running on localhost and protocol is not already https
     if (!Protocol.isHttps() && !Protocol.isLocal()) {
       const href = Protocol.reformHref(Protocol.HTTPS)
-      alert(`switching to https: ${href}`)
       location.href = href
     }
   }
