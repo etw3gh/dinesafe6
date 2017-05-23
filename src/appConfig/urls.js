@@ -4,12 +4,12 @@ as well as methods to form them
 */
 export class Urls  {
 
-  static base = 'https://openciti.ca/dsto/';
+  static base = 'https://openciti.ca/dsto/'
 
-  static api = 'https://dinesafe.herokuapp.com';
-  static addresses = `${Urls.api}/addresses/`;
-  static inspections = `${Urls.api}/inspections/`;
-  static venues = `${Urls.api}/venues/`;
+  static api = 'https://dinesafe.herokuapp.com'
+  static addresses = `${Urls.api}/addresses/`
+  static inspections = `${Urls.api}/inspections/`
+  static venues = `${Urls.api}/venues/`
 
   static maps = {
     static: 'https://maps.googleapis.com/maps/api/staticmap?zoom=19&size=600x600&maptype=roadmap&markers=color:blue%7C'

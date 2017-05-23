@@ -18,4 +18,4 @@ export const initialState = {
     lastH: -1,
     lastW: -1
   }
-};
+}
