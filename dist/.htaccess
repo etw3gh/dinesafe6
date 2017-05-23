@@ -1,4 +1,3 @@
-#https://stackoverflow.com/a/32150846/6826791
 #prevents apache from 404ing routed paths that dont actally exist as file paths on the serveri
 #enamble mod_rewrite: sudo a2enmod rewrite
 #restart apache: sudo service apache2 restart

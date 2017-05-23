@@ -12,10 +12,10 @@
     "serve:dist": "node server.js --env=dist",
     "dist": "npm run copy & webpack --env=dist",
     "lint": "eslint ./src",
-    "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist &&  cp -r ./src/styles ./src/images ./dist ",
+    "copy": "copyfiles -f ./src/.htaccess ./src/index.html ./src/favicon.ico ./dist &&  cp -r ./src/styles ./src/images ./dist ",
     "clean": "rimraf dist/*",
     "pub": "npm run dist && npm run gitpub && cd ../dinesafeto",
-    "gitpub": "cd dist && cp -r * ../../ocpub && cd ../../ocpub && gp auto commit `date '+%s'`",
+    "gitpub": "cd dist && cp -r * ../../ocpub && cp .htaccess ../../ocpub && cd ../../ocpub && gp auto commit `date '+%s'`",
     "gitpub_comments": "publish to live dir by git. gp is a shorcut for `git add . && git commit -m 'a message' && git push`. so all commits will have a message: 'auto commit [TIMESTAMP]'"
   },
   "repository": {
