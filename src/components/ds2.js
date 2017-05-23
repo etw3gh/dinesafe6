@@ -1,71 +1,87 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+require('semantic-ui/dist/semantic.min.css')
+require('onsenui/css/onsenui.css')
+require('onsenui/css/onsen-css-components.css')
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Protocol } from '../classes/protocol'
+import { List, Page, Splitter, SplitterContent, SplitterSide } from 'react-onsenui'
+import { createStore } from 'redux'
+import { routes } from '../appConfig/routes'
+import { reducer } from '../classes/reducer'
+import { Geo } from '../classes/geo'
+import { initialState } from '../appConfig/initstate'
+import { RenderToolBar, RenderMenus } from './renderMenus'
+import { rts } from './routeComponents'
 
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-)
+export const store = createStore(reducer, initialState)
 
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-)
+class App2 extends Component {
 
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-)
+  state = { isOpen: false }
 
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <Link to={`${match.url}/rendering`}>
-          Rendering with React
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/components`}>
-          Components
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/props-v-state`}>
-          Props v. State
-        </Link>
-      </li>
-    </ul>
+  componentDidMount = () => {
+    Protocol.forceProtocol()
+    store.subscribe( () => this.forceUpdate() )
+    Geo.getLocation(Geo.INIT)
+    window.addEventListener('resize', this.closeFab)
+  }
 
-    <Route path={`${match.url}/:topicId`} component={Topic}/>
-    <Route exact path={match.url} render={() => (
-      <h3>Please select a topic.</h3>
-    )}/>
-  </div>
-)
+  hideMenu = () => {
+    this.setState( { isOpen: false } )
+  }
+  closeFab = () => {
+    console.log('TODO: close FAB')
+  }
+  showMenu = () => {
+    this.setState( { isOpen: true } )
+  }
 
-const App2 = () => (
-  <Router>
-    <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/topics">Topics</Link></li>
-      </ul>
+  render() {
+    const toolbar =  () => {
+      return <RenderToolBar ShowMenuClick={this.showMenu} />
+    }
 
-      <hr/>
+    const menuItems = RenderMenus.items()
 
-      <Route exact path="/" component={Home}/>
-      <Route path="/about" component={About}/>
-      <Route path="/topics" component={Topics}/>
-    </div>
-  </Router>
-)
+    const splitterStyle = 'boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
+
+    return (
+      <Router>
+        <Splitter>
+          <SplitterSide
+            style={ {splitterStyle} }
+            side='left'
+            width={200}
+            collapse={true}
+            isSwipeable={true}
+            isOpen={this.state.isOpen}
+            onClose={this.hideMenu}
+            onOpen={this.showMenu} >
+            <Page>
+              <List>{menuItems}</List>
+            </Page>
+          </SplitterSide>
+          <SplitterContent>
+            <Page renderToolbar={toolbar} renderFixed={RenderMenus.speedDial}>
+              <section style={{textAlign: 'center', margin: '16px'}}>
+                <Route exact path={routes.HOME} component={rts.Home} />
+                <Route path={routes.INFO} component={rts.About} />
+                <Route path={routes.HELP} component={rts.Help} />
+                <Route path={routes.PHO} component={rts.Pho} />
+                <Route path={routes.OPENDATA} component={rts.OpenData} />
+                <Route path={routes.LICENCE} component={rts.Licence} />
+                <Route path={routes.SOURCE} component={rts.Source} />
+                <Route path={routes.TWITTERBOT} component={rts.TwitterBot} />
+                <Route path={routes.TWITTERHELP} component={rts.TwitterHelp} />
+                <Route path={routes.MAP} component={rts.Map} />
+                <Route path={routes.SEARCH} component={rts.Search} />
+                <Route path={routes.LIST} component={rts.List} />
+              </section>
+            </Page>
+          </SplitterContent>
+        </Splitter>
+      </Router>
+    )
+  }
+}
 export default App2

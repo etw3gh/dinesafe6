@@ -15,7 +15,7 @@ export class Pho extends Component {
   }
   render() {
     const phovenues = store.getState().app.phoVenues;
-
+    
     const phos = phovenues.map( (venue) => {
       const partialFilename =  `/images/pho/${venue.eid}`;
       const pngImg = `${partialFilename}.png`;
