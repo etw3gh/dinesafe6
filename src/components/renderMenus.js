@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Fab, ListItem, SpeedDial, SpeedDialItem, Toolbar } from 'react-onsenui'
-import { IconOrImage } from './ioi'
+import { LinkOrAction } from './loa'
 import { hamburgerMenu, speedDialMenu } from '../appConfig/menu'
 import { Icon } from 'semantic-ui-react'
 
@@ -25,11 +25,10 @@ export class RenderMenus {
 
   static speedDial = () => {
     const dialItems = speedDialMenu.items.map( (item, index) => {
+
     return (
       <SpeedDialItem isOpen={false} key={'speed_dial_' + index}>
-        <Link to={item.route}>
-          <IconOrImage icon={item.icon} img={item.img} />
-        </Link>
+        <LinkOrAction item={item} hasExtra={false} spanClass='' />
       </SpeedDialItem>
     )
 
@@ -50,10 +49,7 @@ export class RenderMenus {
     return hamburgerMenu.items.map( (item) => {
       return (
         <ListItem key={item.label} tappable>
-           <Link to={item.route}>
-             <IconOrImage icon={item.icon} img={item.img} />
-             <span className='alignMenuItems'>{item.label}</span>
-           </Link>
+           <LinkOrAction item={item} hasExtra={true} spanClass='alignMenuItems' />
         </ListItem>
       )
     })
