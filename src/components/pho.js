@@ -1,6 +1,6 @@
 import { Urls } from '../appConfig/urls'
 import { actions } from '../appConfig/actions'
-import { store } from './dinesafemain'
+import { store } from './main'
 let axios = require('axios')
 import React, { Component } from 'react'
 
@@ -15,7 +15,7 @@ export class Pho extends Component {
   }
   render() {
     const phovenues = store.getState().app.phoVenues;
-    
+
     const phos = phovenues.map( (venue) => {
       const partialFilename =  `/images/pho/${venue.eid}`;
       const pngImg = `${partialFilename}.png`;

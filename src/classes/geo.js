@@ -1,4 +1,4 @@
-import { store } from '../components/dinesafemain'
+import { store } from '../components/main'
 import { Pop } from './pop'
 import { actions } from '../appConfig/actions'
 
