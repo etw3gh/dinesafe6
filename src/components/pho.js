@@ -7,7 +7,9 @@ import React, { Component } from 'react'
 export class Pho extends Component {
   componentDidMount = () => {
     const geo = store.getState().app.geo;
-    const phourl = Urls.phoUrlGen(geo.lat, geo.lng, 500);
+
+    // TODO set limit in config by user input
+    const phourl = Urls.phoUrlGen(geo.lat, geo.lng, 500)
 
     axios.get(phourl).then( (res) => {
       store.dispatch( { type: actions.PHO, venues: res.data } )
@@ -17,8 +19,8 @@ export class Pho extends Component {
     const phovenues = store.getState().app.phoVenues;
 
     const phos = phovenues.map( (venue) => {
-      const partialFilename =  `/images/pho/${venue.eid}`;
-      const pngImg = `${partialFilename}.png`;
+      const partialFilename =  `/images/pho/${venue.eid}`
+      const pngImg = `${partialFilename}.png`
 
       return (
         <div key={'pho_' + venue.id}>
@@ -34,8 +36,7 @@ export class Pho extends Component {
           <hr /><br />
         </div>
       )
-    });
-
-    return <div><h2>Nearby Pho</h2>{phos}</div>;
+    })
+    return <div><h2>Nearby Pho</h2>{phos}</div>
   }
 }

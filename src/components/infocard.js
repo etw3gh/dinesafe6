@@ -6,8 +6,7 @@ import { IconOrImage } from './ioi'
 
 export class InfoCard extends Component {
   render() {
-
-    const P = this.props;
+    const P = this.props
     const picon = P.icon === '' ? null : P.icon
     const icon_or_image = <IconOrImage img={P.iconimg} icon={picon} />
 
