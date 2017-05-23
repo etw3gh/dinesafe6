@@ -29,21 +29,21 @@ export class Pop {
     }
 
     static OK = (tart) => {
-      toastr.options = Pop.toaster;
+      toastr.options = Pop.toaster
       toastr['success'](tart)
     }
     static ERR = (tart) => {
-      toastr.options = Pop.toaster;
+      toastr.options = Pop.toaster
       toastr['error'](tart)
     }
 
     static WARN = (tart ) => {
-      toastr.options = Pop.toaster;
-      toastr['warning'](tart);
+      toastr.options = Pop.toaster
+      toastr['warning'](tart)
     }
 
     static INFO = (tart) => {
-      toastr.options = Pop.toaster;
-      toastr['info'](tart);
+      toastr.options = Pop.toaster
+      toastr['info'](tart)
     }
  }

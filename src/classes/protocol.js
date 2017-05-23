@@ -28,6 +28,5 @@ export class Protocol {
       alert(`switching to https: ${href}`)
       location.href = href
     }
-
   }
 }
