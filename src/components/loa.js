@@ -16,11 +16,9 @@ export class LinkOrAction extends Component {
   */
   doAction = (action) => {
     if (action === actions.SHOWGEO) {
-      console.log('show geo click')
       Geo.showGeo()
     }
     else if (action === actions.REGEO) {
-      console.log('refresh geo click')
       Geo.refreshGeo()
     }
     else {
@@ -38,8 +36,6 @@ export class LinkOrAction extends Component {
 
     const extraSpan = !P.hasExtra ? '' : <span className='alignMenuItems'>{I.label}</span>
 
-    const navStyle = 'a:link.text-decoration: none!important; a:link.pointer-events:none;'
-
     let imageSpan = ''
     if (onClick) {
       imageSpan = <span onClick={ () => {this.doAction(I.action)} }><IconOrImage icon={I.icon} img={I.img} />{extraSpan}</span>
@@ -47,9 +43,7 @@ export class LinkOrAction extends Component {
     else {
       imageSpan = <span><IconOrImage icon={I.icon} img={I.img} />{extraSpan}</span>
     }
-    if (noRoute) {
-      console.log(`action ${I.action} has no route`)
-    }
+
     const link_or_action = noRoute ? imageSpan : <Link className='navStyle' to={I.route}>{imageSpan}</Link>
 
     return link_or_action
