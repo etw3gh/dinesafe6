@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Fab, ListItem, SpeedDial, SpeedDialItem, Toolbar } from 'react-onsenui'
-import { LinkOrAction } from './loa'
+import { Fab, List, ListItem, SpeedDial, SpeedDialItem, Toolbar } from 'react-onsenui'
 import { hamburgerMenu, speedDialMenu } from '../appConfig/menu'
 import { Icon } from 'semantic-ui-react'
+import { IconOrImage } from './ioi'
+import { LinkOrAction } from './loa'
 
 export class RenderToolBar extends Component {
   handleClick = () => {
@@ -21,22 +22,20 @@ export class RenderToolBar extends Component {
   }
 }
 
-export class RenderMenus {
-
-  static speedDial = () => {
+export class RenderSpeedDial extends Component {
+  render() {
     const dialItems = speedDialMenu.items.map( (item, index) => {
-
-    return (
-      <SpeedDialItem isOpen={false} key={'speed_dial_' + index}>
-        <LinkOrAction item={item} hasExtra={false} spanClass='' />
-      </SpeedDialItem>
-    )
-
+    const sdstyle = 'color: red'
+      return (
+        <SpeedDialItem style={{sdstyle}} key={'speed_dial_' + index}>
+          <Link to={item.route}>
+            <IconOrImage icon={item.icon} img={item.img} />
+          </Link>
+        </SpeedDialItem>
+      )
     })
-    let openDirection =  'up'
-
     return(
-      <SpeedDial position='bottom right' direction={openDirection} >
+      <SpeedDial position='bottom right' direction='up' >
         <Fab>
           <Icon size='large' name='food' />
         </Fab>
@@ -44,15 +43,17 @@ export class RenderMenus {
       </SpeedDial>
     )
   }
-  static items = () => {
+}
 
-    return hamburgerMenu.items.map( (item) => {
+export class RenderHamburger extends Component {
+  render() {
+    const hm = hamburgerMenu.items.map( (item) => {
       return (
         <ListItem key={item.label} tappable>
-           <LinkOrAction item={item} hasExtra={true} spanClass='alignMenuItems' />
+          <LinkOrAction item={item} hasExtra={true} />
         </ListItem>
       )
     })
+    return <List>{hm}</List>
   }
-
 }

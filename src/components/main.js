@@ -10,7 +10,7 @@ import { routes } from '../appConfig/routes'
 import { reducer } from '../classes/reducer'
 import { Geo } from '../classes/geo'
 import { initialState } from '../appConfig/initstate'
-import { RenderToolBar, RenderMenus } from './renderMenus'
+import { RenderToolBar, RenderSpeedDial, RenderHamburger } from './renderMenus'
 import { rts } from './routeComponents'
 
 export const store = createStore(reducer, initialState)
@@ -40,9 +40,9 @@ class App2 extends Component {
     const toolbar =  () => {
       return <RenderToolBar ShowMenuClick={this.showMenu} />
     }
-
-    const menuItems = RenderMenus.items()
-
+    const speedDial = () => {
+      return <RenderSpeedDial />
+    }
     const splitterStyle = 'boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
 
     return (
@@ -58,11 +58,11 @@ class App2 extends Component {
             onClose={this.hideMenu}
             onOpen={this.showMenu} >
             <Page>
-              <List>{menuItems}</List>
+              <List><RenderHamburger /></List>
             </Page>
           </SplitterSide>
           <SplitterContent>
-            <Page renderToolbar={toolbar} renderFixed={RenderMenus.speedDial}>
+            <Page renderToolbar={toolbar} renderFixed={speedDial}>
               <section style={{textAlign: 'center', margin: '16px'}}>
                 <Route exact path={routes.HOME} component={rts.Home} />
                 <Route path={routes.INFO} component={rts.About} />

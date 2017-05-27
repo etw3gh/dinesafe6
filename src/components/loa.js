@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link as RteLink } from 'react-router-dom'
 import { actions } from '../appConfig/actions'
 import { Geo } from '../classes/geo'
 import { IconOrImage } from './ioi'
@@ -30,22 +30,14 @@ export class LinkOrAction extends Component {
   render () {
     const P = this.props
     const I = P.item
-    const noRoute = I.route === null
-    const spanClass = P.spanClass === null || P.spanClass === ''
-    const onClick = I.action !== null
 
     const extraSpan = !P.hasExtra ? '' : <span className='alignMenuItems'>{I.label}</span>
 
-    let imageSpan = ''
-    if (onClick) {
-      imageSpan = <span onClick={ () => {this.doAction(I.action)} }><IconOrImage icon={I.icon} img={I.img} />{extraSpan}</span>
+    if (I.action !== null) {
+      return <span onClick={ () => {this.doAction(I.action)} }><IconOrImage icon={I.icon} img={I.img} />{extraSpan}</span>
     }
     else {
-      imageSpan = <span><IconOrImage icon={I.icon} img={I.img} />{extraSpan}</span>
+      return <RteLink to={I.route}><IconOrImage icon={I.icon} img={I.img} col={I.col} />{extraSpan}</RteLink>
     }
-
-    const link_or_action = noRoute ? imageSpan : <Link className='navStyle' to={I.route}>{imageSpan}</Link>
-
-    return link_or_action
   }
 }

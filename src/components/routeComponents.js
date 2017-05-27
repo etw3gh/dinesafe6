@@ -7,13 +7,13 @@ import { TwitterTL } from './twitter'
 
 export class rts {
   static Home = () => <StaticHome />
-  static VenueList = () => <div>venue list</div>
+  static VenueList = () => <StaticHome />
   static VenueMap = () =><div>venue map</div>
   static VenueSearch = () => <div>venue search</div>
   static Help = () => <StaticHelp />
   static About = () => <div><h2>About</h2></div>
   static Soup = () => <Pho />
-  static Source = () => <SourceCode />
+  static Source = () => <Pho /> //<SourceCode />
   static TwitterBot = () => <TwitterTL />
 
   static Licence = () => (<InfoCard link='https://www.gnu.org/licenses/gpl-3.0.en.html'
