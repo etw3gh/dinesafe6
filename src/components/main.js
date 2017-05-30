@@ -40,9 +40,7 @@ class App2 extends Component {
     const toolbar =  () => {
       return <RenderToolBar ShowMenuClick={this.showMenu} />
     }
-    const speedDial = () => {
-      return <RenderSpeedDial />
-    }
+
     const splitterStyle = 'boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
 
     return (
@@ -62,7 +60,7 @@ class App2 extends Component {
             </Page>
           </SplitterSide>
           <SplitterContent>
-            <Page renderToolbar={toolbar} renderFixed={speedDial}>
+            <Page renderToolbar={toolbar}>
               <section style={{textAlign: 'center', margin: '16px'}}>
                 <Route exact path={routes.HOME} component={rts.Home} />
                 <Route path={routes.INFO} component={rts.About} />
@@ -76,6 +74,7 @@ class App2 extends Component {
                 <Route path={routes.MAP} component={rts.VenueMap} />
                 <Route path={routes.SEARCH} component={rts.VenueSearch} />
                 <Route path={routes.LIST} component={rts.VenueList} />
+                <RenderSpeedDial />
               </section>
             </Page>
           </SplitterContent>
