@@ -4,11 +4,12 @@ import { Pho } from './pho'
 import { SourceCode } from './sourcecode'
 import { InfoCard } from './infocard'
 import { TwitterTL } from './twitter'
+import { MapWrap } from './map'
 
 export class rts {
   static Home = () => <StaticHome />
   static VenueList = () => <StaticHome />
-  static VenueMap = () =><div>venue map</div>
+  static VenueMap = () => <MapWrap />
   static VenueSearch = () => <div>venue search</div>
   static Help = () => <StaticHelp />
   static About = () => <div><h2>About</h2></div>

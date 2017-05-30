@@ -85,6 +85,7 @@
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-addons-shallow-compare": "^15.4.2",
+    "react-async-script-loader": "^0.3.0",
     "react-dom": "^15.0.0",
     "react-onsenui": "^1.2.0",
     "react-redux": "^5.0.3",
