@@ -34,7 +34,9 @@ body {
   color: #0000EE;
 }
 
-
+.sec {
+  text-align: center;
+}
 .vertImg {
   vertical-align: middle;
 }
