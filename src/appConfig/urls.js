@@ -7,6 +7,7 @@ export class Urls  {
   static base = 'https://openciti.ca/dsto/'
 
   static api = 'https://dinesafe.herokuapp.com'
+
   static addresses = `${Urls.api}/addresses/`
   static inspections = `${Urls.api}/inspections/`
   static venues = `${Urls.api}/venues/`
