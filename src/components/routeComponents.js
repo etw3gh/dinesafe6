@@ -13,7 +13,7 @@ export class rts {
   static Help = () => <StaticHelp />
   static About = () => <div><h2>About</h2></div>
   static Soup = () => <Pho />
-  static Source = () => <Pho /> //<SourceCode />
+  static Source = () => <SourceCode />
   static TwitterBot = () => <TwitterTL />
 
   static Licence = () => (<InfoCard link='https://www.gnu.org/licenses/gpl-3.0.en.html'

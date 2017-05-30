@@ -10,7 +10,7 @@ import { routes } from '../appConfig/routes'
 import { reducer } from '../classes/reducer'
 import { Geo } from '../classes/geo'
 import { initialState } from '../appConfig/initstate'
-import { RenderToolBar, RenderSpeedDial, RenderHamburger } from './renderMenus'
+import { RenderToolBar, RenderHamburger } from './renderMenus'
 import { rts } from './routeComponents'
 
 export const store = createStore(reducer, initialState)
@@ -74,8 +74,9 @@ class App2 extends Component {
                 <Route path={routes.MAP} component={rts.VenueMap} />
                 <Route path={routes.SEARCH} component={rts.VenueSearch} />
                 <Route path={routes.LIST} component={rts.VenueList} />
-                <RenderSpeedDial />
+
               </section>
+
             </Page>
           </SplitterContent>
         </Splitter>

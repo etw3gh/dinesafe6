@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
-import { Link as RteLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { actions } from '../appConfig/actions'
 import { Geo } from '../classes/geo'
 import { IconOrImage } from './ioi'
 /*
-Returns Wraps an icon and optional extra span in a Link tag if there is a route,
+Returns an icon and optional extra span in a Link tag if there is a route,
 or returns an icon with an onClick method depending on props sent (see menus.js)
 */
 export class LinkOrAction extends Component {
 
-  /*
-  <Link to={item.route}>
-    <IconOrImage icon={item.icon} img={item.img} />
-  </Link>
-  */
   doAction = (action) => {
+    console.log('action triggered: ' + action)
     if (action === actions.SHOWGEO) {
       Geo.showGeo()
     }
@@ -24,20 +20,18 @@ export class LinkOrAction extends Component {
     else {
       console.log('${action} is not a recognized action')
     }
-
   }
-
   render () {
     const P = this.props
     const I = P.item
 
-    const extraSpan = !P.hasExtra ? '' : <span className='alignMenuItems'>{I.label}</span>
+    const extraSpan = <span className='alignMenuItems'>{I.label}</span>
 
     if (I.action !== null) {
-      return <span onClick={ () => {this.doAction(I.action)} }><IconOrImage icon={I.icon} img={I.img} />{extraSpan}</span>
+      return <span onClick={  () => {this.doAction(I.action)} }><IconOrImage icon={I.icon} img={I.img} />{extraSpan}</span>
     }
     else {
-      return <RteLink to={I.route}><IconOrImage icon={I.icon} img={I.img} col={I.col} />{extraSpan}</RteLink>
+      return <Link to={I.route}><IconOrImage icon={I.icon} img={I.img} col={I.col} />{extraSpan}</Link>
     }
   }
 }
