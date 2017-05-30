@@ -60,8 +60,8 @@ export class MapWrap extends Component {
         <section className='sec'>
           <Gmaps width='100%' height={h} lat={lat} lng={lng} zoom={z} loadingMessage={l} params={params} onMapCreated={this.onMapCreated}>
             <Marker lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
-            <InfoWindow lat={lat} lng={lng} content={c} onCloseClick={this.onCloseClick} />
-            <Circle lat={lat} lng={lng} radius={500}  onClick={this.onClick} />
+
+
           </Gmaps>
         </section>
 
