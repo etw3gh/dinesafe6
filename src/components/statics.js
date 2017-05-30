@@ -6,10 +6,10 @@ export class StaticHome extends Component {
       <div>
         <h2>Welcome</h2>
         <p>
-          Click the Fork and Knife at the bottom of the page to begin
+          Dinesafe Inspections....
         </p>
         <br />
-        <input type='text' />
+
       </div>
     )
   }

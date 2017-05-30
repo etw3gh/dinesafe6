@@ -29,6 +29,9 @@ body {
 }
 .imgIcon {
   padding-right: 4px;
+  width: 17px;
+  height: 17px;
+  color: #0000EE;
 }
 
 
@@ -38,9 +41,4 @@ body {
 .cn {
   height: 25%;
   width: 25%;
-}
-.navStyle {
-  a:link, a:visited {
-    text-decoration: none;
-  }
 }
