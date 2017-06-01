@@ -18,6 +18,11 @@ let reducer = (state, action) => {
     localState.app.phoVenues = action.venues
     return localState
   }
+  else if (action.type === actions.NEAR) {
+    let localState = Object.assign({}, state)
+    localState.app.nearVenues = action.venues
+    return localState
+  }
   else if (action.type === actions.INITSCREEN) {
     let localState = Object.assign({}, state)
     localState.screen.initW = action.w

@@ -21,13 +21,19 @@ export class LinkOrAction extends Component {
       console.log('${action} is not a recognized action')
     }
   }
+  handleClick = () => {
+    console.log('click')
+    this.props.HideMenuClick()
+  }
   render () {
     const P = this.props
     const I = P.item
 
     const extraSpan = <span className='alignMenuItems'>{I.label}</span>
-
-    if (I.action !== null) {
+    if (I.action === actions.CLOSEMENU) {
+      return <span onClick={this.handleClick}><IconOrImage size='large' icon={I.icon} img={I.img} />{extraSpan}</span>
+    }
+    else if (I.action !== null) {
       return <span onClick={  () => {this.doAction(I.action)} }><IconOrImage icon={I.icon} img={I.img} />{extraSpan}</span>
     }
     else {

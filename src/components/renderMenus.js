@@ -22,12 +22,15 @@ export class RenderToolBar extends Component {
 }
 
 export class RenderHamburger extends Component {
-
+  handleClick = () => {
+    console.log('hide click')
+    this.props.HideMenuClick()
+  }
   render() {
     const hm = hamburgerMenu.items.map( (item) => {
       return (
         <ListItem key={item.label} tappable>
-           <LinkOrAction item={item} />
+           <LinkOrAction HideMenuClick={this.handleClick} item={item} />
         </ListItem>
       )
     })

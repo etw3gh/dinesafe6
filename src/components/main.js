@@ -56,13 +56,13 @@ class App2 extends Component {
             onClose={this.hideMenu}
             onOpen={this.showMenu} >
             <Page>
-              <List><RenderHamburger /></List>
+              <List><RenderHamburger HideMenuClick={this.hideMenu} /></List>
             </Page>
           </SplitterSide>
           <SplitterContent>
             <Page renderToolbar={toolbar}>
               <section style={{textAlign: 'center', margin: '16px'}}>
-                <Route exact path={routes.HOME} component={rts.Home} />
+                <Route exact path={routes.MAP} component={rts.VenueMap} />
                 <Route path={routes.INFO} component={rts.About} />
                 <Route path={routes.HELP} component={rts.Help} />
                 <Route path={routes.PHO} component={rts.Soup} />
@@ -71,7 +71,6 @@ class App2 extends Component {
                 <Route path={routes.SOURCE} component={rts.Source} />
                 <Route path={routes.TWITTERBOT} component={rts.TwitterBot} />
                 <Route path={routes.TWITTERHELP} component={rts.TwitterHelp} />
-                <Route path={routes.MAP} component={rts.VenueMap} />
                 <Route path={routes.SEARCH} component={rts.VenueSearch} />
                 <Route path={routes.LIST} component={rts.VenueList} />
 

@@ -10,7 +10,8 @@ export const initialState = {
     doRefreshGeo: false,
     doShowGeo: false,
     phoVenues: [],
-    nearbyVenues: []
+    nearbyVenues: [],   // nearby with search term
+    nearVenues: []      // nearby without search term
   },
   screen: {
     initH: null,
