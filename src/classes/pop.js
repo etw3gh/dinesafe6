@@ -33,6 +33,7 @@ export class Pop {
       toastr['success'](tart)
     }
     static ERR = (tart) => {
+      console.error(tart)
       toastr.options = Pop.toaster
       toastr['error'](tart)
     }

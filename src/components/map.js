@@ -20,7 +20,6 @@ export class MapWrap extends Component {
     z: sliders.map.zoom.val
   }
 
-
   componentDidMount = () => {
     // get the max number of venues
     // show only v venues
@@ -30,7 +29,7 @@ export class MapWrap extends Component {
     this.getNearVenues(LIMIT)
   }
 
-  getNearVenues = (limit) => {
+  getNearVenues = limit => {
     const geo = store.getState().app.geo;
     console.log(geo)
     const url = Urls.nearUrlGen(geo.lat, geo.lng, limit)
@@ -45,29 +44,32 @@ export class MapWrap extends Component {
 
     }).catch( e => Pop.ERR(e) )
   }
-  getSlice = (n) => {
-    return this.getState().app.nearVenues.slice(0, n)
 
+  getSlice = n => {
+    return store.getState().app.nearVenues.slice(0, n)
   }
-  onMapCreated = map => {map.setOptions( { disableDefaultUI: true } )}
 
-  onDragEnd = e => {console.log('onDragEnd', e)}
+  onMapCreated = (map) => {
+    map.setOptions( { disableDefaultUI: true } )
+  }
 
-  onCloseClick = () => {console.log('onCloseClick')}
+  onDragEnd = e => { console.log('onDragEnd', e) }
 
-  onClick = e => { console.log('onClick', e)}
+  onCloseClick = () => { console.log('onCloseClick') }
+
+  onClick = e => { console.log('onClick', e) }
 
   zoom = e => {
     const zint = parseInt(e.target.value)
     this.setState( { z: zint } )
   }
 
-  height = (e) => {
+  height = e=> {
     const hint = parseInt(e.target.value)
     this.setState( { h: hint } )
   }
 
-  venues = (e) => {
+  venues = e => {
     const vint = parseInt(e.target.value)
     this.setState( { v: vint } )
     const vslice = store.getState().app.nearVenues.slice(0, vint)
