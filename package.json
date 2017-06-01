@@ -90,6 +90,7 @@
     "react-gmaps": "^1.6.0",
     "react-onsenui": "^1.2.0",
     "react-redux": "^5.0.3",
+    "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-selectize": "^2.1.0",
     "react-twitter-widgets": "^1.2.0",
