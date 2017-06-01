@@ -5,94 +5,96 @@ import { store } from './main'
 import { actions } from '../appConfig/actions'
 import { Pop } from '../classes/pop'
 import { Urls } from '../appConfig/urls'
+import { sliders, LIMIT } from '../appConfig/controls'
+
 let axios = require('axios')
 
 const params = {v: '3.exp', key: 'AIzaSyCdinz1pQt3FnKYLmU1E14lkMGmSOcqUek'}
 
 export class MapWrap extends Component {
 
-  state = {venues:[], vlim:20, vmin:1, vmax:500, wmin:100, wmax:900, wval:400, hmin:200, hmax:620, hval:300, zmin:10, zmax:21, z:15, l: 'Loading...'}
+  state = {
+    venues: [],
+    v: sliders.venues.val,
+    h: sliders.map.height.val,
+    z: sliders.map.zoom.val
+  }
 
 
   componentDidMount = () => {
-   this.getNearVenues(this.state.vlim)
+    // get the max number of venues
+    // show only v venues
+    // the user can adjust the slider betwen max and min
+    // this will not trigger an ajax call
+    // a slice is displayed to the user
+    this.getNearVenues(LIMIT)
   }
 
   getNearVenues = (limit) => {
     const geo = store.getState().app.geo;
+    console.log(geo)
     const url = Urls.nearUrlGen(geo.lat, geo.lng, limit)
     axios.get(url).then( (res) => {
+      // store the entire response in redux store
       store.dispatch( { type: actions.NEAR, venues: res.data } )
-      this.setState( { venues: res.data } )
-      console.log(this.state.venues)
-    }).catch( (e) => Pop.ERR(e) )
-  }
 
+      // grab a slice and set in state
+      // only the slice is visible to the user
+      const vslice = this.getSlice(this.state.v)
+      this.setState( { venues: vslice } )
 
-  onMapCreated = (map) => {
-    map.setOptions({
-      disableDefaultUI: true
-    })
+    }).catch( e => Pop.ERR(e) )
   }
+  getSlice = (n) => {
+    return this.getState().app.nearVenues.slice(0, n)
 
-  onDragEnd = (e) => {
-    console.log('onDragEnd', e)
   }
+  onMapCreated = map => {map.setOptions( { disableDefaultUI: true } )}
 
-  onCloseClick = () => {
-    console.log('onCloseClick')
-  }
+  onDragEnd = e => {console.log('onDragEnd', e)}
 
-  onClick = (e) => {
-    console.log('onClick', e)
-  }
-  zoom = (e) => {
+  onCloseClick = () => {console.log('onCloseClick')}
+
+  onClick = e => { console.log('onClick', e)}
+
+  zoom = e => {
     const zint = parseInt(e.target.value)
     this.setState( { z: zint } )
   }
+
   height = (e) => {
     const hint = parseInt(e.target.value)
-    this.setState( { hval: hint } )
+    this.setState( { h: hint } )
   }
+
   venues = (e) => {
     const vint = parseInt(e.target.value)
-
-    const prevVint = this.state.vlim
-
-    this.setState( { vlim: vint } )
-
-    // only call the server if we need more venues, not less
-    // TODO optimize this to reduce ajax calls for back and forth
-    if (vint < prevVint) {
-      const vslice = this.getState().app.nearVenues.slice(0, vint)
-      this.setState( { venues: vslice } )
-      console.log('slice'); console.log(this.state.venues)
-    }
-    else {
-      console.log('getnear....')
-      this.getNearVenues(this.state.vlim)
-
-    }
+    this.setState( { v: vint } )
+    const vslice = store.getState().app.nearVenues.slice(0, vint)
+    this.setState( { venues: vslice } )
+    console.log(this.state.venues)
   }
+
   render() {
     const lat = store.getState().app.geo.lat
     const lng = store.getState().app.geo.lng
 
-    const h = `${this.state.hval}px`
-    const hmin = this.state.hmin
-    const hmax = this.state.hmax
+    const h = `${this.state.h}px`
+    const hmin = sliders.map.height.min
+    const hmax = sliders.map.height.max
 
     const z = this.state.z
-    const zmin = this.state.zmin
-    const zmax = this.state.zmax
+    const zmin = sliders.map.zoom.min
+    const zmax = sliders.map.zoom.max
 
-    const l = this.state.l
+    const l = 'Loading...'
 
-    const vlim = this.state.vlim
-    const vmin = this.state.vmin
-    const vmax = this.state.vmax
+    const v = this.state.v
+    const vmin = sliders.venues.min
+    const vmax = sliders.venues.max
 
-    const hrstyle = {width: '80%'}
+    const hr = sliders.styles.hr
+    const sw = sliders.styles.sliderW
 
     return (
       <div>
@@ -105,47 +107,31 @@ export class MapWrap extends Component {
 
           </Gmaps>
         </section>
-
-        <hr style={hrstyle} />
-
+        <br /><br />
         <section className='sec'>
           <p>
-            <span>{vmin}</span>
-            <Range onChange={this.venues} min={vmin} max={vmax} value={vlim} />
-            <span>{vmax}</span>
-          </p>
-          <p>
-            Venues: {vlim}
+            <span>Venues: [{v}] </span>
+            <Range style={sw} onChange={this.venues} min={vmin} max={vmax} value={v} />
           </p>
         </section>
 
-        <hr style={hrstyle} />
+        <br /><br />
 
         <section className='sec'>
           <p>
-            <span>{hmin}</span>
-            <Range onChange={this.height} min={hmin} max={hmax} value={this.state.hval} />
-            <span>{hmax}</span>
-          </p>
-          <p>
-            Height: {this.state.hval}
+            <span>Height: [{this.state.h}] </span>
+            <Range style={sw} onChange={this.height} min={hmin} max={hmax} value={this.state.h} />
           </p>
         </section>
 
-        <hr style={hrstyle} />
+        <br /><br />
 
         <section className='sec'>
           <p>
-            <span>{zmin}</span>
-            <Range onChange={this.zoom} min={zmin} max={zmax} value={z} />
-            <span>{zmax}</span>
-          </p>
-          <p>
-            Zoom: {this.state.z}
+            <span>Zoom: [{this.state.z}] </span>
+            <Range style={sw} onChange={this.zoom} min={zmin} max={zmax} value={z} />
           </p>
         </section>
-
-        <hr style={hrstyle} />
 
       </div>
     )
