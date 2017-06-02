@@ -39,7 +39,6 @@ export class Geo {
     }
 
     static badGeo = () => {
-      console.err(Geo.badGeoNav)
       Pop.ERR(Geo.badGeoNav)
     }
     static showGeo = () => {

@@ -13,12 +13,7 @@ const params = {v: '3.exp', key: 'AIzaSyCdinz1pQt3FnKYLmU1E14lkMGmSOcqUek'}
 
 export class MapWrap extends Component {
 
-  state = {
-    venues: [],
-    v: sliders.venues.val,
-    h: sliders.map.height.val,
-    z: sliders.map.zoom.val
-  }
+  state = { venues: [], v: sliders.venues.val, h: sliders.map.height.val, z: sliders.map.zoom.val }
 
   componentDidMount = () => {
     // get the max number of venues
@@ -31,12 +26,12 @@ export class MapWrap extends Component {
 
   getNearVenues = limit => {
     const geo = store.getState().app.geo;
-    console.log(geo)
     const url = Urls.nearUrlGen(geo.lat, geo.lng, limit)
     axios.get(url).then( (res) => {
       // store the entire response in redux store
       store.dispatch( { type: actions.NEAR, venues: res.data } )
 
+      Pop.INFO(`found ${res.data.length} nearby venues`)
       // grab a slice and set in state
       // only the slice is visible to the user
       const vslice = this.getSlice(this.state.v)
@@ -49,7 +44,7 @@ export class MapWrap extends Component {
     return store.getState().app.nearVenues.slice(0, n)
   }
 
-  onMapCreated = (map) => {
+  onMapCreated = map => {
     map.setOptions( { disableDefaultUI: true } )
   }
 
@@ -64,7 +59,7 @@ export class MapWrap extends Component {
     this.setState( { z: zint } )
   }
 
-  height = e=> {
+  height = e => {
     const hint = parseInt(e.target.value)
     this.setState( { h: hint } )
   }
@@ -74,13 +69,13 @@ export class MapWrap extends Component {
     this.setState( { v: vint } )
     const vslice = store.getState().app.nearVenues.slice(0, vint)
     this.setState( { venues: vslice } )
-    console.log(this.state.venues)
   }
-
+  clk = (e) => {
+    console.log('click home')
+  }
   render() {
     const lat = store.getState().app.geo.lat
     const lng = store.getState().app.geo.lng
-
     const h = `${this.state.h}px`
     const hmin = sliders.map.height.min
     const hmax = sliders.map.height.max
@@ -95,18 +90,22 @@ export class MapWrap extends Component {
     const vmin = sliders.venues.min
     const vmax = sliders.venues.max
 
-    const hr = sliders.styles.hr
     const sw = sliders.styles.sliderW
+
+    const markers = this.state.venues.map( (venue) => {
+      let key = `marker_${venue.eid}`
+      return <Marker key={key} lat={venue.lat} lng={venue.lng} draggable={false}  />
+    })
+    const homeMarker =
+      <Marker title='HOME' click={this.clk} lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
 
     return (
       <div>
 
         <section className='sec'>
           <Gmaps width='100%' height={h} lat={lat} lng={lng} zoom={z} loadingMessage={l} params={params} onMapCreated={this.onMapCreated}>
-            <Marker lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
-            <Marker lat={lat+.001} lng={lng+.001} draggable={true} onDragEnd={this.onDragEnd} />
-            <Marker lat={lat+.002} lng={lng+.002} draggable={true} onDragEnd={this.onDragEnd} />
-
+            {homeMarker}
+            {markers}
           </Gmaps>
         </section>
         <br /><br />
