@@ -62,7 +62,8 @@ class App2 extends Component {
           <SplitterContent>
             <Page renderToolbar={toolbar}>
               <section style={{textAlign: 'center', margin: '16px'}}>
-                <Route exact path={routes.MAP} component={rts.VenueMap} />
+                <Route exact path={routes.HOME} component={rts.Home} />
+                <Route path={routes.MAP} component={rts.VenueMap} />
                 <Route path={routes.INFO} component={rts.About} />
                 <Route path={routes.HELP} component={rts.Help} />
                 <Route path={routes.PHO} component={rts.Soup} />

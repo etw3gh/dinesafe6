@@ -1,0 +1,20 @@
+.img-circle {
+  border-radius: 50%!important;
+}
+.matchHuge {
+  width: 58px;
+  height: 68px;
+}
+.listStyle {
+  width: 50%;
+  text-align: center!important;
+  margin: auto!important;
+}
+.infoStyle {
+  width: 100%;
+  text-align: center!important;
+  margin: auto!important;
+}
+.cardStyle {
+  width: 80%;
+}

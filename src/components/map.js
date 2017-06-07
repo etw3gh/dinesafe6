@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Range } from 'react-onsenui'
-import { Gmaps, Marker } from 'react-gmaps'
+import { Gmaps, InfoWindow, Marker } from 'react-gmaps'
 import { store } from './main'
 import { actions } from '../appConfig/actions'
 import { Pop } from '../classes/pop'
 import { Urls } from '../appConfig/urls'
 import { sliders, LIMIT } from '../appConfig/controls'
+import { Header, Table } from 'semantic-ui-react'
+
 
 let axios = require('axios')
 
@@ -21,11 +23,15 @@ export class MapWrap extends Component {
     // the user can adjust the slider betwen max and min
     // this will not trigger an ajax call
     // a slice is displayed to the user
+
     this.getNearVenues(LIMIT)
   }
 
   getNearVenues = limit => {
-    const geo = store.getState().app.geo;
+    const A = store.getState().app
+    const geo = A.geo
+    console.log(A.geo)
+    console.log(A.geo.lat, A.geo['lng'])
     const url = Urls.nearUrlGen(geo.lat, geo.lng, limit)
     axios.get(url).then( (res) => {
       // store the entire response in redux store
@@ -81,8 +87,6 @@ export class MapWrap extends Component {
     const hmax = sliders.map.height.max
 
     const z = this.state.z
-    const zmin = sliders.map.zoom.min
-    const zmax = sliders.map.zoom.max
 
     const l = 'Loading...'
 
@@ -92,12 +96,28 @@ export class MapWrap extends Component {
 
     const sw = sliders.styles.sliderW
 
-    const markers = this.state.venues.map( (venue) => {
-      let key = `marker_${venue.eid}`
-      return <Marker key={key} lat={venue.lat} lng={venue.lng} draggable={false}  />
+    const markers = this.state.venues.map( (v) => {
+      let key = `marker_${v.eid}`
+      return <Marker key={key} lat={v.lat} lng={v.lng} draggable={false}  />
     })
+    const venueTableRows = this.state.venues.map( (v) => {
+      let key = `venue_${v.eid}`
+      return (
+        <Table.Row key={key}>
+          <Table.Cell><Header as='h3' textAlign='center'>{v.name}</Header>
+          </Table.Cell>
+          <Table.Cell singleLine>{v.lat}, {v.lng}</Table.Cell>
+          <Table.Cell textAlign='right'>{v.address}</Table.Cell>
+          <Table.Cell>{v.distance.toFixed(2)}</Table.Cell>
+        </Table.Row>
+      )
+    })
+
     const homeMarker =
       <Marker title='HOME' click={this.clk} lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
+
+    const homeInfoWindow =
+      <InfoWindow lat={lat} lng={lng} content={'Current Location'} />
 
     return (
       <div>
@@ -105,10 +125,13 @@ export class MapWrap extends Component {
         <section className='sec'>
           <Gmaps width='100%' height={h} lat={lat} lng={lng} zoom={z} loadingMessage={l} params={params} onMapCreated={this.onMapCreated}>
             {homeMarker}
+            {homeInfoWindow}
             {markers}
           </Gmaps>
         </section>
-        <br /><br />
+        <br />
+        <h3>({lat}, {lng})</h3>
+        <br />
         <section className='sec'>
           <p>
             <span>Venues: [{v}] </span>
@@ -125,15 +148,21 @@ export class MapWrap extends Component {
           </p>
         </section>
 
-        <br /><br />
+        <Table celled padded>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell singleLine>Name</Table.HeaderCell>
+              <Table.HeaderCell>Map</Table.HeaderCell>
+              <Table.HeaderCell>Address</Table.HeaderCell>
+              <Table.HeaderCell>Distance KM</Table.HeaderCell>
+              <Table.HeaderCell>Comments</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
 
-        <section className='sec'>
-          <p>
-            <span>Zoom: [{this.state.z}] </span>
-            <Range style={sw} onChange={this.zoom} min={zmin} max={zmax} value={z} />
-          </p>
-        </section>
-
+          <Table.Body>
+            {venueTableRows}
+          </Table.Body>
+        </Table>
       </div>
     )
   }

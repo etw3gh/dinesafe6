@@ -4,21 +4,23 @@ export const LIMIT = 500
 
 const sliderMin = 1
 
+const hmax = window.innerHeight * 0.85
+
 export const sliders = {
   styles: {
     hr: { width: '25%' },
     sliderW: { width: '70%' }
   },
   venues: {
-    val: 20,
+    val: LIMIT,
     min: sliderMin,
     max: LIMIT
   },
   map: {
     height: {
-      val: 300,
+      val: hmax,
       min: 200,
-      max: window.innerHeight / 2
+      max: hmax
     },
     zoom: {
       val: 15,
