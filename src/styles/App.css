@@ -27,6 +27,10 @@ body {
   color: black!important;
   padding: 10px;
 }
+.insideHamburger {
+  color: black!important;
+  left: -15px;
+}
 .imgIcon {
   padding-right: 4px;
   width: 17px;

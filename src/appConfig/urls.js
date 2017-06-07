@@ -43,9 +43,9 @@ export class Urls  {
     return `${Urls.heroku.venues.pho}/${lat}/${lng}/${limit}`;
   }
   static nearUrlGen = (lat, lng, limit) => {
-    return `${Urls.heroku.venues.pho}/${lat}/${lng}/${limit}`;
+    return `${Urls.heroku.venues.near}/${lat}/${lng}/${limit}`;
   }
   static nearbyUrlGen = (lat, lng, limit, search) => {
-    return `${Urls.heroku.venues.pho}/${lat}/${lng}/${limit}/${search}`;
+    return `${Urls.heroku.venues.nearby}/${lat}/${lng}/${limit}/${search}`;
   }
 }

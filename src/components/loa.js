@@ -31,7 +31,7 @@ export class LinkOrAction extends Component {
 
     const extraSpan = <span className='alignMenuItems'>{I.label}</span>
     if (I.action === actions.CLOSEMENU) {
-      return <span onClick={this.handleClick}><IconOrImage size='large' icon={I.icon} img={I.img} />{extraSpan}</span>
+      return <span onClick={this.handleClick}><IconOrImage className='insideHamburger' size='large' icon={I.icon} img={I.img} />{extraSpan}</span>
     }
     else if (I.action !== null) {
       return <span onClick={  () => {this.doAction(I.action)} }><IconOrImage icon={I.icon} img={I.img} />{extraSpan}</span>
