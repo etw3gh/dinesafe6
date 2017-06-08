@@ -4,6 +4,7 @@ An enumeration for reducer actions
 export const actions = {
   CLOSEMENU: 'CLOSEMENU',
   GEO: 'GEO',
+  SETINSPECTIONS: 'SETINSPECTIONS',
   REGEO: 'REGEO',
   COMMITS: 'COMMITS',
   SHOWGEO: 'SHOWGEO',

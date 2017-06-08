@@ -9,6 +9,12 @@ let reducer = (state, action) => {
     localState.geoLoaded = true
     return localState
   }
+
+  else if (action.type === actions.SETINSPECTIONS) {
+    let localState = Object.assign({}, state)
+    localState.app.inspections = action.inspections
+    return localState
+  }
   else if (action.type === actions.SETVIEW) {
     let localState = Object.assign({}, state)
     localState.app.view = action.view

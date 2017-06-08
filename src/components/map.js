@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Range } from 'react-onsenui'
 import { Gmaps, InfoWindow, Marker } from 'react-gmaps'
 import { store } from './main'
 import { actions } from '../appConfig/actions'
+import { routes } from '../appConfig/routes'
 import { Pop } from '../classes/pop'
 import { Geo } from '../classes/geo'
 import { Urls } from '../appConfig/urls'
@@ -80,12 +82,6 @@ export class MapWrap extends Component {
     const vslice = store.getState().app.nearVenues.slice(0, vint)
     this.setState( { venues: vslice } )
   }
-  clk = () => {
-    console.log('click home')
-  }
-  inspectionModal = (vid) => {
-    Pop.INFO(vid)
-  }
 
   render() {
     const lat = store.getState().app.geo.lat
@@ -116,7 +112,11 @@ export class MapWrap extends Component {
           <Table.Cell><Icon title={`(${v.lat}, ${v.lng})`} name='map' /></Table.Cell>
           <Table.Cell>{cap(v.address)}</Table.Cell>
           <Table.Cell>{v.distance.toFixed(2)}</Table.Cell>
-          <Table.Cell title={v.id} onClick={ () => this.inspectionModal(v.id) }><Icon name='info' /></Table.Cell>
+          <Table.Cell title={v.id}>
+            <Link to={`${routes.INSPECTIONS}?vid=${v.id}&name=${v.name}&address=${v.address}`} >
+              <Icon name='info' />
+            </Link>
+          </Table.Cell>
         </Table.Row>
       )
     })

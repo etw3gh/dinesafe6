@@ -6,6 +6,7 @@ import { SourceCode } from './sourcecode'
 import { InfoCard } from './infocard'
 import { TwitterTL } from './twitter'
 import { MapWrap } from './map'
+import { Inspections } from './inspections'
 
 export class rts {
   static Home = () => <HomeIsTheSix />
@@ -17,6 +18,7 @@ export class rts {
   static Soup = () => <Pho />
   static Source = () => <SourceCode />
   static TwitterBot = () => <TwitterTL />
+  static DinesafeInspections = () => <Inspections />
 
   static Licence = () => (<InfoCard link='https://www.gnu.org/licenses/gpl-3.0.en.html'
                            icon=''

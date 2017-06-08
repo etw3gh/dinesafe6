@@ -5,6 +5,7 @@ export const routes = {
   HOME: '/',
   LIST: '/list',
   MAP: '/map',
+  INSPECTIONS: '/inspections',
   PHO: '/pho',
   SEARCH: '/search',
   OPENDATA: '/opendata',

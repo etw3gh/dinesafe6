@@ -74,7 +74,7 @@ class App2 extends Component {
                 <Route path={routes.TWITTERHELP} component={rts.TwitterHelp} />
                 <Route path={routes.SEARCH} component={rts.VenueSearch} />
                 <Route path={routes.LIST} component={rts.VenueList} />
-
+                <Route path={routes.INSPECTIONS} component={rts.DinesafeInspections} />
               </section>
 
             </Page>

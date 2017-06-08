@@ -7,6 +7,9 @@ export const initialState = {
   geoLoaded: false,
   app: {
     view: views.HOME,
+    vid: null,
+    currentVenue: null,
+    inspections: [],
     geo: { lat: -1, lng: -1},
     doRefreshGeo: false,
     doShowGeo: false,
