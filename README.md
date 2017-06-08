@@ -8,19 +8,19 @@ ReactJS front end for Dinesafe inspections in the Six (Toronto)
 
 ## App Layout
 
-route | description | dev status | TODO
---- | ---
-/ | Intro blurb & recent github commits table | temporary | --
-/map | Map and listing of local venues with link to inspections | geoloc on mobile browsers not always working
-/inspections | Table of inspections for a given venue | add map / directions
-/pho | List of nearby Pho soup houses | Temp View... | model after map view
-/search | Search venues by various terms | TODO | --
+Route | Description | Completion | TODO
+--- | --- | --- | ---
+/ | Intro blurb & recent github commits table | 95% | --
+/map | Map and listing of local venues with link to inspections | 90% | geoloc on mobile browsers not always working
+/inspections | Table of inspections for a given venue | 80% | add map / directions
+/pho | List of nearby Pho soup houses | 30% | model after map view
+/search | Search venues by various terms | 0 | --
 /opendata | City of Toronto Open Data Licence | DONE | Merge with Licence / Source / GithubCommits
 /licence | GPL v3.0 GNU General Public Licence | DONE | Merge with Licence / Source / GithubCommits
 /source | GitHub links | DONE | Merge with Licence / Source / GithubCommits
 /twitterbot | Twitter feed for interactive twitter bot | DONE | AWS Lambda Bot
 /twitterhelp | Desc of twitterbot | DONE | Merge with twitterbot view
-/help | How to use the site | TODO | ---
+/help | How to use the site | 0 | ---
 
 ## Project Structure --TODO ADD DESC BESIDE EACH FILE--
 
@@ -97,6 +97,9 @@ route | description | dev status | TODO
         ├── modal.css
         └── pagecontent.css
 
+
+-----
+
 ## Screenshots
 
 ### Venue Map
@@ -106,14 +109,14 @@ route | description | dev status | TODO
 
 ### Inspections
 
-![vesuvios](https://raw.githubusercontent.com/openciti/dinesafe6/master/src/images/screenshots/.vesuvio.png)
+#### Vesuvio's Pizza
+![vesuvios](https://raw.githubusercontent.com/openciti/dinesafe6/master/src/images/screenshots/vesuvio.png)
 
+
+#### Random Sample
 ![sample](https://raw.githubusercontent.com/openciti/dinesafe6/master/src/images/screenshots/sample.png)
 
-
-### PhoNet
-
-![screenshot](https://raw.githubusercontent.com/openciti/dinesafe6/master/src/images/screenshots/screenshot_00.png)
+-----
 
 ## Backend
 
