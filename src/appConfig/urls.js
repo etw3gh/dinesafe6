@@ -12,7 +12,7 @@ export class Urls  {
   static inspections = `${Urls.api}/inspections/`
   static venues = `${Urls.api}/venues/`
 
-  static github = 'https://api.github.com/repos/openciti/dinesafe6/commits'
+  static github = 'https://api.github.com/repos/openciti/dinesafe6/commits?per_page=25&page=1'
 
   static maps = {
     static: 'https://maps.googleapis.com/maps/api/staticmap?zoom=19&size=600x600&maptype=roadmap&markers=color:blue%7C'

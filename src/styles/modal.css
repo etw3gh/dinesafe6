@@ -1,0 +1,26 @@
+.modal-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+.modal-item {
+  align-self: center;
+}
+
+.glyphicon {
+  font-size: 30px;
+  padding: 30px;
+  color: white;
+  cursor: pointer;
+  margin: auto;
+}
+
+.btn {
+  margin: 10px;
+}

@@ -7,7 +7,7 @@ import { Pop } from '../classes/pop'
 import { Geo } from '../classes/geo'
 import { Urls } from '../appConfig/urls'
 import { sliders, LIMIT } from '../appConfig/controls'
-import { Header, Icon, Modal, Table } from 'semantic-ui-react'
+import { Header, Icon, Table } from 'semantic-ui-react'
 import { cap } from '../classes/strings'
 
 let axios = require('axios')
@@ -32,6 +32,10 @@ export class MapWrap extends Component {
       }
   }
 
+  getSlice = (n) => {
+    return store.getState().app.nearVenues.slice(0, n)
+  }
+
   getNearVenues = limit => {
     const A = store.getState().app
     const geo = A.geo
@@ -45,15 +49,15 @@ export class MapWrap extends Component {
       Pop.INFO(`found ${res.data.length} nearby venues`)
       // grab a slice and set in state
       // only the slice is visible to the user
+      console.log(this.state.v)
       const vslice = this.getSlice(this.state.v)
+      console.log(vslice)
       this.setState( { venues: vslice } )
 
     }).catch( e => Pop.ERR(e) )
   }
 
-  getSlice = n => {
-    return store.getState().app.nearVenues.slice(0, n)
-  }
+
 
   onMapCreated = map => {
     map.setOptions( { disableDefaultUI: true } )
@@ -81,7 +85,7 @@ export class MapWrap extends Component {
     const vslice = store.getState().app.nearVenues.slice(0, vint)
     this.setState( { venues: vslice } )
   }
-  clk = (e) => {
+  clk = () => {
     console.log('click home')
   }
   inspectionModal = (vid) => {
@@ -161,7 +165,7 @@ export class MapWrap extends Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell singleLine>Name</Table.HeaderCell>
-              <Table.HeaderCell width='20px'>Map</Table.HeaderCell>
+              <Table.HeaderCell>Map</Table.HeaderCell>
               <Table.HeaderCell>Address</Table.HeaderCell>
               <Table.HeaderCell>Distance KM</Table.HeaderCell>
               <Table.HeaderCell>Inspections</Table.HeaderCell>

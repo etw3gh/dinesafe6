@@ -1,5 +1,6 @@
 import React from 'react'
-import { StaticHome, StaticHelp } from './statics'
+import { StaticHelp } from './statics'
+import { HomeIsTheSix } from './home'
 import { Pho } from './pho'
 import { SourceCode } from './sourcecode'
 import { InfoCard } from './infocard'
@@ -7,9 +8,9 @@ import { TwitterTL } from './twitter'
 import { MapWrap } from './map'
 
 export class rts {
-  static Home = () => <StaticHome />
+  static Home = () => <HomeIsTheSix />
   static VenueList = () => <StaticHome />
-  static VenueMap = () => <MapWrap />
+  static VenueMap = () => <MapWrap isPho={false}/>
   static VenueSearch = () => <div>venue search</div>
   static Help = () => <StaticHelp />
   static About = () => <div><h2>About</h2></div>
