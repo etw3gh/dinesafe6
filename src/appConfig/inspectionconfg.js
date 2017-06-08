@@ -17,7 +17,7 @@ export const statusConfig = {
   NODATA: OK,
   'PASS': OK,
   'CONDPASS': WARN,
-  'CLOSED': DANGER,
+  'CLOSED': DANGER
 }
 
 

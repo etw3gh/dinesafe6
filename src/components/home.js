@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { GithubCommits } from './githubcommits'
-import { Button, Icon } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { routes } from '../appConfig/routes'
 
