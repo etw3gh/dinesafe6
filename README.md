@@ -10,7 +10,7 @@ ReactJS front end for Dinesafe inspections in the Six (Toronto)
 
 Route | Description | Completion | TODO
 --- | --- | --- | ---
-/ | Intro blurb & recent github commits table | 95% | --
+/ | Intro blurb & recent github commits table | 95% | This is a temp view. Will become the search view.
 /map | Map and listing of local venues with link to inspections | 90% | geoloc on mobile browsers not always working
 /inspections | Table of inspections for a given venue | 80% | add map / directions
 /pho | List of nearby Pho soup houses | 30% | model after map view
