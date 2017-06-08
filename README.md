@@ -66,11 +66,6 @@ Route | Description | Completion | TODO
     │   ├── statuslabel.js        - Wrapper for semantic-ui Label
     │   └── twitter.js            - Twitter Time Line view for twitter bot
     ├── config                    - Webpack stuff
-    │   ├── base.js
-    │   ├── dev.js
-    │   ├── dist.js
-    │   ├── README.md
-    │   └── test.js
     ├── favicon.ico               - Fork and Knife favicon
     ├── images                    - content
     ├── index.html                - INDEX HTML
