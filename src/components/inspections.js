@@ -17,7 +17,6 @@ export class Inspections extends Component {
     this.setState( { vid: vid, address: address, name: name } )
 
     const url = Urls.inspectionsByVidUrlGen(vid)
-    console.log(url)
 
     axios.get(url).then( (res) => {
       store.dispatch( { type: actions.SETINSPECTIONS, inspections: res.data } )
