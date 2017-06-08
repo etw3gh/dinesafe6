@@ -161,7 +161,7 @@ export class MapWrap extends Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell singleLine>Name</Table.HeaderCell>
-              <Table.HeaderCell>Map</Table.HeaderCell>
+              <Table.HeaderCell width='20px'>Map</Table.HeaderCell>
               <Table.HeaderCell>Address</Table.HeaderCell>
               <Table.HeaderCell>Distance KM</Table.HeaderCell>
               <Table.HeaderCell>Inspections</Table.HeaderCell>
