@@ -1,16 +1,17 @@
 export const cap = (s) => {
-  return s.replace(/\b\w/g, l => l.toUpperCase()).replace(/'S/g, '\'s')
+  return s === null ? '' : s.replace(/\b\w/g, l => l.toUpperCase()).replace(/'S/g, '\'s')
 }
 export const niceDate = (d) => {
-  return d.replace('T', ' ').replace('Z', '')
+  return d === null ? '' : d.replace('T', ' ').replace('Z', '')
 }
 export const stripSingles = (s) => {
-  return s.replace(/'/g, '')
+  return s === null ? '' : s.replace(/'/g, '')
 }
 export const idify = (s) => {
-  return s.replace(/-/g, '_').replace(/\:/g, '_').replace(/\./g, '_') .replace(/ /g, '_')
+  return s === null ? '' : s.replace(/-/g, '_').replace(/\:/g, '_').replace(/\./g, '_') .replace(/ /g, '_')
 }
 export const nodata = (s) => {
+  if (s === null) return '';
   const strim = s.trim()
   return strim === '' ? '-----' : strim
 }
