@@ -85,7 +85,7 @@ export class MapWrap extends Component {
     console.log('click home')
   }
   inspectionModal = (vid) => {
-
+    Pop.INFO(vid)
   }
 
   render() {

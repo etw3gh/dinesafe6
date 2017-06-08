@@ -5,6 +5,7 @@ export const actions = {
   CLOSEMENU: 'CLOSEMENU',
   GEO: 'GEO',
   REGEO: 'REGEO',
+  COMMITS: 'COMMITS',
   SHOWGEO: 'SHOWGEO',
   NEARBY: 'NEARBY',
   NEAR: 'NEAR',

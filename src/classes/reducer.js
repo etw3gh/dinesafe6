@@ -19,6 +19,11 @@ let reducer = (state, action) => {
     localState.app.phoVenues = action.venues
     return localState
   }
+  else if (action.type === actions.COMMITS) {
+    let localState = Object.assign({}, state)
+    localState.app.commits = action.commits
+    return localState
+  }
   else if (action.type === actions.NEAR) {
     let localState = Object.assign({}, state)
     localState.app.nearVenues = action.venues
