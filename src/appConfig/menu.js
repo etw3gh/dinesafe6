@@ -7,6 +7,7 @@ const HAM_COL = 'black'
 // hamburger menu for admin stuff
 const menuItems = [
   { icon: 'sidebar', label: '', route: null, action: actions.CLOSEMENU, color: HAM_COL },
+  { icon: 'home', label: 'Home', route: routes.HOME, action: null, color: FAB_COL },
   { icon: 'map', label: 'Map', route: routes.MAP, action: null, color: FAB_COL },
   { icon: null, img: 'images/phoicon.png', label: ' Pho', route: routes.PHO, action: null, color: FAB_COL },
   { icon: 'search', label: 'Search', route: routes.SEARCH, action: null, color: FAB_COL },

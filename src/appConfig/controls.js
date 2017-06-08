@@ -18,7 +18,7 @@ export const sliders = {
   },
   map: {
     height: {
-      val: hmax,
+      val: hmax * 0.7,
       min: 200,
       max: hmax
     },

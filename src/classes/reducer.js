@@ -6,6 +6,7 @@ let reducer = (state, action) => {
     let localState = Object.assign({}, state)
     localState.app.geo.lat = action.lat
     localState.app.geo.lng = action.lng
+    localState.geoLoaded = true
     return localState
   }
   else if (action.type === actions.SETVIEW) {

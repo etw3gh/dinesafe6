@@ -12,6 +12,8 @@ export class Urls  {
   static inspections = `${Urls.api}/inspections/`
   static venues = `${Urls.api}/venues/`
 
+  static github = 'https://api.github.com/repos/openciti/dinesafe6/commits'
+
   static maps = {
     static: 'https://maps.googleapis.com/maps/api/staticmap?zoom=19&size=600x600&maptype=roadmap&markers=color:blue%7C'
   }
@@ -34,18 +36,27 @@ export class Urls  {
         near: `${Urls.inspections}near`,
         nearsearch: `${Urls.inspections}nearsearch`,
         byaddress: `${Urls.inspections}byaddress`,
-        get: `${Urls.inspections}get`,
+        get: `${Urls.inspections}get`,   //get 'get/:vid/:status' => :get
+        byvid: `${Urls.inspections}get`, //get 'get/:vid' => :byvid
         statuses: `${Urls.inspections}status`,
         byaddr: `${Urls.inspections}byaddr`
       }
   }
+
+  static inspectionsByVidUrlGen = vid => {
+    return `${Urls.heroku.inspections.byvid}/${vid}`
+  }
+
   static phoUrlGen = (lat, lng, limit) => {
-    return `${Urls.heroku.venues.pho}/${lat}/${lng}/${limit}`;
+    return `${Urls.heroku.venues.pho}/${lat}/${lng}/${limit}`
   }
+
   static nearUrlGen = (lat, lng, limit) => {
-    return `${Urls.heroku.venues.near}/${lat}/${lng}/${limit}`;
+    return `${Urls.heroku.venues.near}/${lat}/${lng}/${limit}`
   }
+
   static nearbyUrlGen = (lat, lng, limit, search) => {
-    return `${Urls.heroku.venues.nearby}/${lat}/${lng}/${limit}/${search}`;
+    return `${Urls.heroku.venues.nearby}/${lat}/${lng}/${limit}/${search}`
   }
+
 }

@@ -4,6 +4,7 @@ import { views } from './views'
 Initial state for the reducer
 */
 export const initialState = {
+  geoLoaded: false,
   app: {
     view: views.HOME,
     geo: { lat: -1, lng: -1},

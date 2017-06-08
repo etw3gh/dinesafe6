@@ -38,6 +38,9 @@ body {
   color: #0000EE;
 }
 
+.cap {
+  text-transform: capitalize!important;
+}
 .sec {
   text-align: center;
 }
@@ -47,4 +50,7 @@ body {
 .cn {
   height: 25%;
   width: 25%;
+}
+.dataTable {
+  width: 95%;
 }

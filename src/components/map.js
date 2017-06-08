@@ -4,10 +4,11 @@ import { Gmaps, InfoWindow, Marker } from 'react-gmaps'
 import { store } from './main'
 import { actions } from '../appConfig/actions'
 import { Pop } from '../classes/pop'
+import { Geo } from '../classes/geo'
 import { Urls } from '../appConfig/urls'
 import { sliders, LIMIT } from '../appConfig/controls'
-import { Header, Table } from 'semantic-ui-react'
-
+import { Header, Icon, Modal, Table } from 'semantic-ui-react'
+import { cap } from '../classes/strings'
 
 let axios = require('axios')
 
@@ -18,13 +19,17 @@ export class MapWrap extends Component {
   state = { venues: [], v: sliders.venues.val, h: sliders.map.height.val, z: sliders.map.zoom.val }
 
   componentDidMount = () => {
-    // get the max number of venues
-    // show only v venues
-    // the user can adjust the slider betwen max and min
-    // this will not trigger an ajax call
-    // a slice is displayed to the user
-
-    this.getNearVenues(LIMIT)
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition( (pos) => {
+          var lat = pos.coords.latitude
+          var lng = pos.coords.longitude
+          store.dispatch( { type: actions.GEO, lat: lat, lng: lng } )
+          this.getNearVenues(LIMIT)
+        }, () => Geo.badGeo())
+      }
+      else {
+        Geo.badGeo()
+      }
   }
 
   getNearVenues = limit => {
@@ -79,6 +84,10 @@ export class MapWrap extends Component {
   clk = (e) => {
     console.log('click home')
   }
+  inspectionModal = (vid) => {
+
+  }
+
   render() {
     const lat = store.getState().app.geo.lat
     const lng = store.getState().app.geo.lng
@@ -104,11 +113,11 @@ export class MapWrap extends Component {
       let key = `venue_${v.eid}`
       return (
         <Table.Row key={key}>
-          <Table.Cell><Header as='h3' textAlign='center'>{v.name}</Header>
-          </Table.Cell>
-          <Table.Cell singleLine>{v.lat}, {v.lng}</Table.Cell>
-          <Table.Cell textAlign='right'>{v.address}</Table.Cell>
+          <Table.Cell><Header as='h3' textAlign='center'>{cap(v.name)}</Header></Table.Cell>
+          <Table.Cell><Icon title={`(${v.lat}, ${v.lng})`} name='map' /></Table.Cell>
+          <Table.Cell>{cap(v.address)}</Table.Cell>
           <Table.Cell>{v.distance.toFixed(2)}</Table.Cell>
+          <Table.Cell title={v.id} onClick={ () => this.inspectionModal(v.id) }><Icon name='info' /></Table.Cell>
         </Table.Row>
       )
     })
@@ -134,7 +143,7 @@ export class MapWrap extends Component {
         <br />
         <section className='sec'>
           <p>
-            <span>Venues: [{v}] </span>
+            <span>Venues: [{parseInt(v)}] </span>
             <Range style={sw} onChange={this.venues} min={vmin} max={vmax} value={v} />
           </p>
         </section>
@@ -143,19 +152,19 @@ export class MapWrap extends Component {
 
         <section className='sec'>
           <p>
-            <span>Height: [{this.state.h}] </span>
+            <span>Height: [{parseInt(this.state.h)}] </span>
             <Range style={sw} onChange={this.height} min={hmin} max={hmax} value={this.state.h} />
           </p>
         </section>
 
-        <Table celled padded>
+        <Table className='dataTable' celled padded>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell singleLine>Name</Table.HeaderCell>
               <Table.HeaderCell>Map</Table.HeaderCell>
               <Table.HeaderCell>Address</Table.HeaderCell>
               <Table.HeaderCell>Distance KM</Table.HeaderCell>
-              <Table.HeaderCell>Comments</Table.HeaderCell>
+              <Table.HeaderCell>Inspections</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
