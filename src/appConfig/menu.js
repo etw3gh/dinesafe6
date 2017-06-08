@@ -18,7 +18,6 @@ const menuItems = [
   { icon: 'twitter', label: 'Twitter Bot', route: routes.TWITTERBOT, action: null, color: HAM_COL },
   { icon: 'twitter square', label: 'Twitter Bot Help', route: routes.TWITTERHELP, action: null, color: HAM_COL },
   { icon: 'help circle', label: 'Help', route: routes.HELP, action: null, color: HAM_COL },
-  { icon: 'info', label: 'Info', route: routes.INFO, action: null, color: HAM_COL },
   { icon: 'location arrow', label: 'Reset Location', route: null, action: actions.REGEO, color: HAM_COL },
   { icon: 'marker', label: 'Show Location', route: null, action: actions.SHOWGEO, color: HAM_COL }
 ]

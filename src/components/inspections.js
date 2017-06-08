@@ -35,7 +35,7 @@ export class Inspections extends Component {
       const severityText = cap(nodata(i.severity.trim()))
       const severityFirstChar = severityText[0]
       const severityCfg = severityConfig[severityFirstChar]
-      const severityFinalText = lastWord(severityText).replace(NODATA, 'OK')
+      const severityFinalText = severityFirstChar === 'N' ? 'NA' : lastWord(severityText).replace(NODATA, 'OK')
 
       const statusText = i.status.toUpperCase().trim()
       const statusCfg = statusConfig[statusText]

@@ -13,6 +13,5 @@ export const routes = {
   SOURCE: '/source',
   TWITTERBOT: '/twitterbot',
   TWITTERHELP: '/twitterhelp',
-  HELP: '/help',
-  INFO: '/info'
+  HELP: '/help'
 }

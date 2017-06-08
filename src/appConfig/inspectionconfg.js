@@ -9,6 +9,8 @@ const OK = { color: 'green', icon: 'checkmark'}
 
 const WARN = { color: 'yellow', icon: 'flag'}
 
+const SIG = { color: 'orange', icon: 'flag'}
+const NA = { color: 'grey', icon: 'minus'}
 const DANGER = { color: 'red', icon: 'warning sign'}
 
 const MINOR = { color: 'blue', icon: 'sticky note outline'}
@@ -40,7 +42,7 @@ export const severityConfig = {
   '-': OK,
   '': OK,
   'M': MINOR,
-  'S': DANGER,
+  'S': SIG,
   'C': WARN,
-  'N': OK
+  'N': NA
 }

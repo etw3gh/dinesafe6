@@ -14,7 +14,6 @@ export class rts {
   static VenueMap = () => <MapWrap isPho={false}/>
   static VenueSearch = () => <div>venue search</div>
   static Help = () => <StaticHelp />
-  static About = () => <div><h2>About</h2></div>
   static Soup = () => <Pho />
   static Source = () => <SourceCode />
   static TwitterBot = () => <TwitterTL />
