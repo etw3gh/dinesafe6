@@ -11,7 +11,6 @@ export const actions = {
   NEARBY: 'NEARBY',
   NEAR: 'NEAR',
   PHO: 'PHO',
-  SETVIEW: 'SETVIEW',
   INITSCREEN: 'INITSCREEN',
   SAVESCREEN: 'SAVESCREEN'
 }

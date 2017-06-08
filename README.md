@@ -27,81 +27,55 @@ Route | Description | Completion | TODO
 /twitterhelp | Desc of twitterbot | DONE | Merge with twitterbot view
 /help | How to use the site | 0 | ---
 
-## Project Structure --TODO ADD DESC BESIDE EACH FILE--
+## Project Structure
 
 <!-- language: lang-none -->
 
     src
     ├── appConfig
-    │   ├── actions.js
-    │   ├── controls.js
-    │   ├── initstate.js
-    │   ├── inspectionconfg.js
-    │   ├── menu.js
-    │   ├── README.md
-    │   ├── routes.js
-    │   ├── urls.js
-    │   └── views.js
+    │   ├── actions.js            - Enum for reducer actions
+    │   ├── controls.js           - Config for sliders
+    │   ├── initstate.js          - Initial state for the reducer store
+    │   ├── inspectionconfg.js    - Config for inspection labels
+    │   ├── menu.js               - Menu config and ordering
+    │   ├── routes.js             - Enum for routes
+    │   ├── urls.js               - Class encapsulating API URLs and methods to form them
     ├── classes
-    │   ├── geo.js
-    │   ├── pop.js
-    │   ├── protocol.js
-    │   ├── reducer.js
-    │   └── strings.js
+    │   ├── geo.js                - Geolocation helper
+    │   ├── pop.js                - Encapsulates toastr.js in a Poptart metaphor
+    │   ├── protocol.js           - Forces HTTPS unless localhost
+    │   ├── reducer.js            - Redux reducer
+    │   └── strings.js            - String manipulation helpers
     ├── components
-    │   ├── card.js
-    │   ├── githubcommits.js
-    │   ├── home.js
-    │   ├── infocard.js
-    │   ├── inspections.js
-    │   ├── ioi.js
-    │   ├── loa.js
-    │   ├── main.js
-    │   ├── map.js
-    │   ├── pho.js
-    │   ├── README.md
-    │   ├── renderMenus.js
-    │   ├── routeComponents.js
-    │   ├── simplemodal.js
-    │   ├── sourcecode.js
-    │   ├── statics.js
-    │   ├── statuslabel.js
-    │   └── twitter.js
-    ├── config
+    │   ├── card.js               - Experimentation with semantic-ui Card
+    │   ├── githubcommits.js      - Calls the github API puts last 25 commits in a Table
+    │   ├── home.js               - Into blurb and github commits... TEMPORARY
+    │   ├── infocard.js           - Experimentation with semantic-ui Card
+    │   ├── inspections.js        - Dinesafe Inspections for a given Venue
+    │   ├── ioi.js                - Returns an Icon or an Image depending on props
+    │   ├── loa.js                - Returns a Link or Action Trigger depending on props
+    │   ├── main.js               - Main React App
+    │   ├── map.js                - Map and Table of nearby venues
+    │   ├── pho.js                - TODO model after map.js
+    │   ├── README.md             - Thank You!
+    │   ├── renderMenus.js        - Toolbar and Sidebar Menus
+    │   ├── routeComponents.js    - Helper functions for Router
+    │   ├── simplemodal.js        - Simple modal grabbed from CodePen (The Semantic Modal was too heavy)
+    │   ├── sourcecode.js         - InfoCard with github details
+    │   ├── statics.js            - Static views
+    │   ├── statuslabel.js        - Wrapper for semantic-ui Label
+    │   └── twitter.js            - Twitter Time Line view for twitter bot
+    ├── config                    - Webpack stuff
     │   ├── base.js
     │   ├── dev.js
     │   ├── dist.js
     │   ├── README.md
     │   └── test.js
-    ├── favicon.ico
-    ├── images
-    │   ├── citylogo.svg
-    │   ├── cn.png
-    │   ├── gnu_black_30x26.png
-    │   ├── gplv3-127x51.png
-    │   ├── home-512.png
-    │   ├── pho
-    │   │   ├── 10211713.png
-    │   │   ├── 9393597.png
-    │   │   └── 9413238.png
-    │   ├── phoicon.png
-    │   ├── phoicon_white_34x34.png
-    │   ├── pho.png
-    │   ├── screenshots
-    │   │   ├── map.png
-    │   │   ├── sample.png
-    │   │   ├── screenshot_00.png
-    │   │   └── vesuvio.png
-    │   ├── skyline.jpg
-    │   ├── to.png
-    │   └── yeoman.png
-    ├── index.html
-    ├── index.js
-    └── styles
-        ├── App.css
-        ├── modal.css
-        └── pagecontent.css
-
+    ├── favicon.ico               - Fork and Knife favicon
+    ├── images                    - content
+    ├── index.html                - INDEX HTML
+    ├── index.js                  - REACT ENTRY POINT
+    └── styles                    - CSS
 
 -----
 

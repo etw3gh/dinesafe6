@@ -1,12 +1,8 @@
-import { views } from './views'
+//Initial state for the reducer
 
-/*
-Initial state for the reducer
-*/
 export const initialState = {
   geoLoaded: false,
   app: {
-    view: views.HOME,
     vid: null,
     currentVenue: null,
     inspections: [],

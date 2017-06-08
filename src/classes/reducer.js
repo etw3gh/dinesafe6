@@ -15,11 +15,6 @@ let reducer = (state, action) => {
     localState.app.inspections = action.inspections
     return localState
   }
-  else if (action.type === actions.SETVIEW) {
-    let localState = Object.assign({}, state)
-    localState.app.view = action.view
-    return localState
-  }
   else if (action.type === actions.PHO) {
     let localState = Object.assign({}, state)
     localState.app.phoVenues = action.venues
