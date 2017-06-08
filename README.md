@@ -118,13 +118,10 @@ Route | Description | Completion | TODO
 
 -----
 
-## Backend
+## Ruby on Rails Backend
 
-[rails](https://github.com/openciti/dinesafeheroku) Backend
+[github repo for rails app](https://github.com/openciti/dinesafeheroku) [Deployed to Heroku]
 
-### Backend Helper
-
-[Python](https://github.com/openciti/dinesafemicroservices) Linux and web services that keeps unzipped copies of the dinesafe & geographic archives available for the heroku backend. See backend README for more details.
 
 ## copyright
 
