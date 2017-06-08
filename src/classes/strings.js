@@ -1,3 +1,5 @@
+import { NODATA } from '../appConfig/inspectionconfg'
+
 export const cap = (s) => {
   return s === null ? '' : s.replace(/\b\w/g, l => l.toUpperCase()).replace(/'S/g, '\'s')
 }
@@ -13,7 +15,7 @@ export const idify = (s) => {
 export const nodata = (s) => {
   if (s === null) return '';
   const strim = s.trim()
-  return strim === '' ? '-----' : strim
+  return strim === '' ? NODATA : strim
 }
 
 // https://stackoverflow.com/a/901144/6826791
@@ -27,4 +29,7 @@ export const getParameterByName = p => {
     if (!results[2]) return ''
     let param = decodeURIComponent(results[2].replace(/\+/g, " "))
     return param
+}
+export const lastWord = (s) => {
+  return s.split(' ').slice(-1)[0]
 }

@@ -4,7 +4,9 @@ import { actions } from '../appConfig/actions'
 import { Urls } from '../appConfig/urls'
 import { Header, Icon, Table } from 'semantic-ui-react'
 import { Pop } from '../classes/pop'
-import { cap, idify, nodata, getParameterByName } from '../classes/strings'
+import { cap, idify, nodata, getParameterByName, lastWord } from '../classes/strings'
+import { StatusLabel } from './statuslabel'
+import { NODATA, statusConfig, severityConfig } from '../appConfig/inspectionconfg'
 
 let axios = require('axios')
 
@@ -29,13 +31,22 @@ export class Inspections extends Component {
     const inspections = store.getState().app.inspections
     const rows = inspections.map( (i) => {
       const key = `inspection_${i.iid}_${idify(i.created_at)}`
+
+      const severityText = cap(nodata(i.severity.trim()))
+      const severityFirstChar = severityText[0]
+      const severityCfg = severityConfig[severityFirstChar]
+      const severityFinalText = lastWord(severityText).replace(NODATA, 'OK')
+
+      const statusText = i.status.toUpperCase().trim()
+      const statusCfg = statusConfig[statusText]
+
       return (
         <Table.Row key={key}>
-          <Table.Cell>{i.status.toUpperCase()}</Table.Cell>
+          <Table.Cell><StatusLabel text={statusText} config={statusCfg} /></Table.Cell>
           <Table.Cell singleLine>{i.date}</Table.Cell>
-          <Table.Cell>{cap(nodata(i.severity))}</Table.Cell>
+          <Table.Cell singleLine><StatusLabel text={severityFinalText} config={severityCfg} /></Table.Cell>
           <Table.Cell>{cap(nodata(i.action))}</Table.Cell>
-          <Table.Cell>{nodata(i.details)}</Table.Cell>
+          <Table.Cell>{cap(nodata(i.details))}</Table.Cell>
           <Table.Cell>{cap(nodata(i.outcome))}</Table.Cell>
         </Table.Row>
       )
@@ -49,10 +60,10 @@ export class Inspections extends Component {
             <Table.Row>
               <Table.HeaderCell>Status</Table.HeaderCell>
               <Table.HeaderCell singleLine>Date</Table.HeaderCell>
-              <Table.HeaderCell>Severity</Table.HeaderCell>
+              <Table.HeaderCell singleLine>Severity</Table.HeaderCell>
               <Table.HeaderCell>Action</Table.HeaderCell>
-              <Table.HeaderCell>Outcome</Table.HeaderCell>
               <Table.HeaderCell>Details</Table.HeaderCell>
+              <Table.HeaderCell>Outcome</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
