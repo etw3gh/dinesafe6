@@ -10,7 +10,7 @@ import { Inspections } from './inspections'
 
 export class rts {
   static Home = () => <HomeIsTheSix />
-  static VenueList = () => <StaticHome />
+  static VenueList = () => <div>coming soon...</div>
   static VenueMap = () => <MapWrap isPho={false}/>
   static VenueSearch = () => <div>venue search</div>
   static Help = () => <StaticHelp />
