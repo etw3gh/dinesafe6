@@ -4,9 +4,12 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 export class SimpleCard extends Component {
   render() {
     const P = this.props.cardData
+
+    const i = (window.innerHeight < 525) ? '' : <Image src={P.img} />
+    
     return (
       <Card>
-        <Image src={P.img} />
+        {i}
         <Card.Content>
           <Card.Header>
             {P.header}
