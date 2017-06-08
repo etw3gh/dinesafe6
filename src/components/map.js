@@ -39,19 +39,14 @@ export class MapWrap extends Component {
   getNearVenues = limit => {
     const A = store.getState().app
     const geo = A.geo
-    console.log(A.geo)
-    console.log(A.geo.lat, A.geo['lng'])
     const url = Urls.nearUrlGen(geo.lat, geo.lng, limit)
     axios.get(url).then( (res) => {
-      // store the entire response in redux store
       store.dispatch( { type: actions.NEAR, venues: res.data } )
 
       Pop.INFO(`found ${res.data.length} nearby venues`)
-      // grab a slice and set in state
-      // only the slice is visible to the user
-      console.log(this.state.v)
+
       const vslice = this.getSlice(this.state.v)
-      console.log(vslice)
+
       this.setState( { venues: vslice } )
 
     }).catch( e => Pop.ERR(e) )
