@@ -8,7 +8,7 @@ import { List, Page, Splitter, SplitterContent, SplitterSide } from 'react-onsen
 import { createStore } from 'redux'
 import { routes } from '../appConfig/routes'
 import { reducer } from '../classes/reducer'
-//import { Geo } from '../classes/geo'
+import { cap } from '../classes/strings'
 import { initialState } from '../appConfig/initstate'
 import { RenderToolBar, RenderHamburger } from './renderMenus'
 import { rts } from './routeComponents'
@@ -38,7 +38,12 @@ class App2 extends Component {
 
   render() {
     const toolbar =  () => {
-      return <RenderToolBar ShowMenuClick={this.showMenu} />
+
+      // We want the title to be 'Dinesafe 6 | VIEW' or just 'Dinesafe 6' for the home view
+      const v = cap(window.location.pathname.replace(/\//, '')).trim()
+      const view = v === '' ? '' : ` | ${v}`
+
+      return <RenderToolBar ShowMenuClick={this.showMenu} view={view} />
     }
 
     const splitterStyle = 'boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'

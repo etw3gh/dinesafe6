@@ -19,7 +19,7 @@ export class RenderToolBar extends Component {
         <div className='left'>
           <Icon onClick={this.handleClick} size='large' className={menuIcon} name='sidebar'/>
         </div>
-        <div className='center'>Dinesafe 6</div>
+        <div className='center'>Dinesafe 6 {this.props.view}</div>
       </Toolbar>
     )
   }
