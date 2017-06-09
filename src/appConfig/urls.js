@@ -38,11 +38,14 @@ export class Urls  {
         byaddress: `${Urls.inspections}byaddress`,
         get: `${Urls.inspections}get`,   //get 'get/:vid/:status' => :get
         byvid: `${Urls.inspections}get`, //get 'get/:vid' => :byvid
+        byvidlatest: `${Urls.inspections}getlatest`, //get 'getlatest/:vid' => :byvidlatest
         statuses: `${Urls.inspections}status`,
         byaddr: `${Urls.inspections}byaddr`
       }
   }
-
+  static inspectionsByVidLatestVersionUrlGen = vid => {
+    return `${Urls.heroku.inspections.byvidlatest}/${vid}`
+  }
   static inspectionsByVidUrlGen = vid => {
     return `${Urls.heroku.inspections.byvid}/${vid}`
   }

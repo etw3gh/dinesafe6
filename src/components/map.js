@@ -116,8 +116,14 @@ export class MapWrap extends Component {
           <Table.Cell>{cap(v.address)}</Table.Cell>
           <Table.Cell>{v.distance.toFixed(2)}</Table.Cell>
           <Table.Cell title={v.id}>
+            all:
             <Link to={`${routes.INSPECTIONS}?vid=${v.id}&name=${v.name}&address=${v.address}`} >
-              <Icon name='info' />
+              <Icon title='all verions' name='info' />
+            </Link>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            latest:
+            <Link to={`${routes.INSPECTIONS}?vid=${v.id}&name=${v.name}&address=${v.address}&latest=true`} >
+              <Icon title='latest version only' name='arrow up' />
             </Link>
           </Table.Cell>
         </Table.Row>
