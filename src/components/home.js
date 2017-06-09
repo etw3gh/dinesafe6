@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { GithubCommits } from './githubcommits'
-import { Button, Icon, Message } from 'semantic-ui-react'
+import { Button, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { routes } from '../appConfig/routes'
 
@@ -19,6 +19,8 @@ export class HomeIsTheSix extends Component {
         <Message error header='Issues'
                  list={[
                    'Geolocation on chrome for android not consistently working',
+                   'Map markers not interactive',
+                   'TODO: If Geolocation fails, allow user to drop home marker',
                    'Server: may need to renew letsencrypt certificate for google maps api...',
                    'Firefox for android is more reliable',
                    'Modals not mobile friendly',
