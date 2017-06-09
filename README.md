@@ -16,9 +16,9 @@ Based on this [starter](https://github.com/react-webpack-generators/react-webpac
 Route | Description | Completion | TODO
 --- | --- | --- | ---
 / | Intro blurb & recent github commits table | 95% | This is a temp view. Will become the search view.
-/map | Map and listing of local venues with link to inspections | 90% | geoloc on mobile browsers not always working
+/map | Map and listing of local venues with link to inspections | 90% | geoloc on mobile chrome not always working
+/pho | List of nearby Pho soup houses | 90% | same as map but with isPho=true
 /inspections | Table of inspections for a given venue | 80% | add map / directions
-/pho | List of nearby Pho soup houses | 30% | model after map view
 /search | Search venues by various terms | 0 | --
 /opendata | City of Toronto Open Data Licence | DONE | Merge with Licence / Source / GithubCommits
 /licence | GPL v3.0 GNU General Public Licence | DONE | Merge with Licence / Source / GithubCommits
@@ -55,8 +55,7 @@ Route | Description | Completion | TODO
     │   ├── ioi.js                - Returns an Icon or an Image depending on props
     │   ├── loa.js                - Returns a Link or Action Trigger depending on props
     │   ├── main.js               - Main React App
-    │   ├── map.js                - Map and Table of nearby venues
-    │   ├── pho.js                - TODO model after map.js
+    │   ├── map.js                - Map and Table of nearby venues. Can be called with isPho to show only Pho houses
     │   ├── README.md             - Thank You!
     │   ├── renderMenus.js        - Toolbar and Sidebar Menus
     │   ├── routeComponents.js    - Helper functions for Router
@@ -86,9 +85,11 @@ Route | Description | Completion | TODO
 #### Vesuvio's Pizza
 ![vesuvios](https://raw.githubusercontent.com/openciti/dinesafe6/master/src/images/screenshots/vesuvio.png)
 
-
 #### Random Sample
 ![sample](https://raw.githubusercontent.com/openciti/dinesafe6/master/src/images/screenshots/sample.png)
+
+#### Pho Net
+![sample](https://raw.githubusercontent.com/openciti/dinesafe6/master/src/images/screenshots/pho.png)
 
 -----
 

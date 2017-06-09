@@ -6,7 +6,6 @@ import { store } from './main'
 import { actions } from '../appConfig/actions'
 import { routes } from '../appConfig/routes'
 import { Pop } from '../classes/pop'
-import { Geo } from '../classes/geo'
 import { Urls } from '../appConfig/urls'
 import { sliders, LIMIT } from '../appConfig/controls'
 import { Header, Icon, Table } from 'semantic-ui-react'
@@ -27,10 +26,10 @@ export class MapWrap extends Component {
           var lng = pos.coords.longitude
           store.dispatch( { type: actions.GEO, lat: lat, lng: lng } )
           this.getNearVenues(LIMIT)
-        }, () => Geo.badGeo())
+        }, (e) => Pop.ERR(`map geoloc error: ${e}`) )
       }
       else {
-        Geo.badGeo()
+        Pop.ERR('Geolocation not enabled or blocked')
       }
   }
 
@@ -41,7 +40,11 @@ export class MapWrap extends Component {
   getNearVenues = limit => {
     const A = store.getState().app
     const geo = A.geo
-    const url = Urls.nearUrlGen(geo.lat, geo.lng, limit)
+    const lat = geo.lat
+    const lng = geo.lng
+
+    const url = this.props.isPho ? Urls.phoUrlGen(lat, lng, limit) : Urls.nearUrlGen(lat, lng, limit)
+
     axios.get(url).then( (res) => {
       store.dispatch( { type: actions.NEAR, venues: res.data } )
 
@@ -138,7 +141,7 @@ export class MapWrap extends Component {
           </Gmaps>
         </section>
         <br />
-        <h3>({lat}, {lng})</h3>
+        <h3>({lat.toFixed(5)}, {lng.toFixed(5)})</h3>
         <br />
         <section className='sec'>
           <p>

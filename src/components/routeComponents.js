@@ -1,7 +1,6 @@
 import React from 'react'
 import { StaticHelp } from './statics'
 import { HomeIsTheSix } from './home'
-import { Pho } from './pho'
 import { SourceCode } from './sourcecode'
 import { InfoCard } from './infocard'
 import { TwitterTL } from './twitter'
@@ -14,7 +13,7 @@ export class rts {
   static VenueMap = () => <MapWrap isPho={false}/>
   static VenueSearch = () => <div>venue search</div>
   static Help = () => <StaticHelp />
-  static Soup = () => <Pho />
+  static Pho = () => <MapWrap isPho={true}/>
   static Source = () => <SourceCode />
   static TwitterBot = () => <TwitterTL />
   static DinesafeInspections = () => <Inspections />

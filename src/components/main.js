@@ -8,7 +8,7 @@ import { List, Page, Splitter, SplitterContent, SplitterSide } from 'react-onsen
 import { createStore } from 'redux'
 import { routes } from '../appConfig/routes'
 import { reducer } from '../classes/reducer'
-import { Geo } from '../classes/geo'
+//import { Geo } from '../classes/geo'
 import { initialState } from '../appConfig/initstate'
 import { RenderToolBar, RenderHamburger } from './renderMenus'
 import { rts } from './routeComponents'
@@ -22,7 +22,7 @@ class App2 extends Component {
   componentDidMount = () => {
     Protocol.forceProtocol()
     store.subscribe( () => this.forceUpdate() )
-    Geo.getLocation(Geo.INIT)
+    //Geo.getLocation(Geo.INIT)
     window.addEventListener('resize', this.closeFab)
   }
 
@@ -66,7 +66,7 @@ class App2 extends Component {
                 <Route path={routes.MAP} component={rts.VenueMap} />
                 <Route path={routes.INFO} component={rts.About} />
                 <Route path={routes.HELP} component={rts.Help} />
-                <Route path={routes.PHO} component={rts.Soup} />
+                <Route path={routes.PHO} component={rts.Pho} />
                 <Route path={routes.OPENDATA} component={rts.OpenData} />
                 <Route path={routes.LICENCE} component={rts.Licence} />
                 <Route path={routes.SOURCE} component={rts.Source} />
