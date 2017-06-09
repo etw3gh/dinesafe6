@@ -32,7 +32,6 @@ export class Inspections extends Component {
 
 
     Pop.INFO('> Tap chevrons to show full inspection details')
-
   }
 
   /*
@@ -45,13 +44,11 @@ export class Inspections extends Component {
       readMore = this.state.readMore.filter( (element) => {
         return element !== id
       } )
-    this.setState( { readMore: readMore } )
     }
     else {
       readMore.push(id)
-      this.setState( { readMore: readMore } )
     }
-    console.log(this.state.readMore)
+    this.setState( { readMore: readMore } )
   }
 
   colapseAll = () => {
