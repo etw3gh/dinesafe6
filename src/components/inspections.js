@@ -26,6 +26,8 @@ export class Inspections extends Component {
     }).catch( e => Pop.ERR(e) )
 
 
+    Pop.INFO('Tap chevron to show full inspection details')
+
   }
 
   /*
@@ -108,7 +110,7 @@ export class Inspections extends Component {
         <Table className='dataTable' celled padded selectable>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell rowSpan='2'>Inspection ID <br /> Tap <Icon name='chevron right' /> to expand for full Details </Table.HeaderCell>
+              <Table.HeaderCell rowSpan='2'>Inspection ID</Table.HeaderCell>
               <Table.HeaderCell>Version</Table.HeaderCell>
               <Table.HeaderCell>Status</Table.HeaderCell>
               <Table.HeaderCell singleLine>Date</Table.HeaderCell>
