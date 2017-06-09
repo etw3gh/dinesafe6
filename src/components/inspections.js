@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Table } from 'semantic-ui-react'
+import { Button, Icon, Table } from 'semantic-ui-react'
 import { store } from './main'
 import { actions } from '../appConfig/actions'
 import { NODATA, statusConfig, severityConfig } from '../appConfig/inspectionconfg'
@@ -11,7 +11,7 @@ import { StatusLabel } from './statuslabel'
 let axios = require('axios')
 
 export class Inspections extends Component {
-  state = { latest: null, vid: null, address: null, name: null, fullDetails: '', modalOpen: false, readMore: [] }
+  state = { latest: null, vid: null, address: null, name: null, fullDetails: '', modalOpen: false, readMore: [], allIds: [] }
   componentDidMount = () => {
     const vid = getParameterByName('vid')
     const address = getParameterByName('address')
@@ -23,10 +23,15 @@ export class Inspections extends Component {
 
     axios.get(url).then( (res) => {
       store.dispatch( { type: actions.SETINSPECTIONS, inspections: res.data } )
+      const allIds = []
+      res.data.forEach( (i) => {
+        allIds.push(i.id)
+      })
+      this.setState( { allIds: allIds } )
     }).catch( e => Pop.ERR(e) )
 
 
-    Pop.INFO('Tap chevron to show full inspection details')
+    Pop.INFO('> Tap chevrons to show full inspection details')
 
   }
 
@@ -47,6 +52,14 @@ export class Inspections extends Component {
       this.setState( { readMore: readMore } )
     }
     console.log(this.state.readMore)
+  }
+
+  colapseAll = () => {
+    this.setState( { readMore: [] } )
+  }
+  expandAll = () => {
+    const allIds = this.state.allIds
+    this.setState( { readMore: allIds } )
   }
 
 
@@ -90,6 +103,10 @@ export class Inspections extends Component {
 
       const iidData = readMore.includes(i.id) ? this.renderReadMore(i) : i.iid
       const chevron = readMore.includes(i.id) ? 'chevron left' : 'chevron right'
+
+
+
+
       return (
         <Table.Row key={key}>
           <Table.Cell onClick={ () => this.toggleReadMore(i.id) }><Icon name={chevron} />{iidData}</Table.Cell>
@@ -103,6 +120,9 @@ export class Inspections extends Component {
         </Table.Row>
       )
     })
+    const collapseBtn = this.state.readMore.length > 0
+                      ? <Button onClick={this.colapseAll} icon='chevron left' content='Collapse All' />
+                      : <Button onClick={this.expandAll} icon='chevron right' content='Expand All' />
     return (
       <div>
         <h3>{cap(this.state.name)}</h3>
@@ -110,7 +130,7 @@ export class Inspections extends Component {
         <Table className='dataTable' celled padded selectable>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell rowSpan='2'>Inspection ID</Table.HeaderCell>
+              <Table.HeaderCell rowSpan='2'>Inspection ID<br /><br />{collapseBtn}</Table.HeaderCell>
               <Table.HeaderCell>Version</Table.HeaderCell>
               <Table.HeaderCell>Status</Table.HeaderCell>
               <Table.HeaderCell singleLine>Date</Table.HeaderCell>
