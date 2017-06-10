@@ -14,7 +14,7 @@ require('semantic-ui/dist/semantic.min.css')
 require('../styles/modal.css')
 
 export class GithubCommits extends Component {
-  state = {commitModalOpen: false, githubUserModalOpen: false, cardData: {}}
+  state = {commitModalOpen: false, githubUserModalOpen: false, cardData: {}, allRows: []}
   componentDidMount = () => {
     const url = Urls.github
     axios.get(url).then( (res) => {

@@ -1,3 +1,5 @@
+require('semantic-ui/dist/semantic.min.css')
+
 import React, { Component } from 'react'
 import { GithubCommits } from './githubcommits'
 import { Button, Message } from 'semantic-ui-react'
@@ -9,22 +11,24 @@ export class HomeIsTheSix extends Component {
     return (
       <div>
         <h3></h3>
-        <Message color='blue' header='Welcome To dinesafe6'
-                 list={['This is a work in progress','All venues are in Toronto for now']}>
+        <Message color='blue'>
           <Message.Content>
             <Link to={routes.MAP}><Button primary content='Map view' icon='map' /></Link>
           </Message.Content>
         </Message>
         <br />
+        <Message color='green' header='TODOs'
+                 list={[
+                   'Make map markers ot interactive',
+                   'If Geolocation fails, allow user to drop home marker',
+                   'Server: may need to renew letsencrypt certificate for google maps api',
+                   'Convert Modal views to readmore views as in the inspections table'
+                 ]} />
+        <br />
         <Message error header='Issues'
                  list={[
                    'Geolocation on chrome for android not consistently working',
-                   'Map markers not interactive',
-                   'TODO: If Geolocation fails, allow user to drop home marker',
-                   'Server: may need to renew letsencrypt certificate for google maps api...',
-                   'Firefox for android is more reliable',
-                   'Modals not mobile friendly',
-                   'Backend: assumption that row_id would remain the same across xml releases was incorrect resulting in duplicate rows'
+                   'Server: may need to renew letsencrypt certificate for google maps api'
                  ]} />
         <br />
         <h3>You can check out the last 25 commits in the table below</h3>

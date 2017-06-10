@@ -107,7 +107,6 @@ export class Inspections extends Component {
       return (
         <Table.Row key={key}>
           <Table.Cell onClick={ () => this.toggleReadMore(i.id) }><Icon name={chevron} />{iidData}</Table.Cell>
-          <Table.Cell>{i.version}</Table.Cell>
           <Table.Cell><StatusLabel text={statusText} config={statusCfg} /></Table.Cell>
           <Table.Cell singleLine>{i.date}</Table.Cell>
           <Table.Cell singleLine><StatusLabel text={severityFinalText} config={severityCfg} /></Table.Cell>
@@ -128,7 +127,6 @@ export class Inspections extends Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell rowSpan='2'>Inspection ID<br /><br />{collapseBtn}</Table.HeaderCell>
-              <Table.HeaderCell>Version</Table.HeaderCell>
               <Table.HeaderCell>Status</Table.HeaderCell>
               <Table.HeaderCell singleLine>Date</Table.HeaderCell>
               <Table.HeaderCell singleLine>Severity</Table.HeaderCell>

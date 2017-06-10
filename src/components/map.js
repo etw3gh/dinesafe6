@@ -112,7 +112,7 @@ export class MapWrap extends Component {
       return (
         <Table.Row key={key}>
           <Table.Cell><Header as='h3' textAlign='center'>{cap(v.name)}</Header></Table.Cell>
-          <Table.Cell><Icon title={`(${v.lat}, ${v.lng})`} name='map' /></Table.Cell>
+          <Table.Cell><Icon title={`(${v.lat}, ${v.lng})`} name='camera' /></Table.Cell>
           <Table.Cell>{cap(v.address)}</Table.Cell>
           <Table.Cell>{v.distance.toFixed(2)}</Table.Cell>
           <Table.Cell title={v.id}>
@@ -169,7 +169,7 @@ export class MapWrap extends Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell singleLine>Name</Table.HeaderCell>
-              <Table.HeaderCell>Map</Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell>Address</Table.HeaderCell>
               <Table.HeaderCell>Distance KM</Table.HeaderCell>
               <Table.HeaderCell>Inspections</Table.HeaderCell>
