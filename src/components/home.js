@@ -23,7 +23,7 @@ export class HomeIsTheSix extends Component {
         <br />
         <Message color='green' header='TODOs'
                  list={[
-                   'Make map markers ot interactive',
+                   'Make map markers interactive',
                    'If Geolocation fails, allow user to drop home marker',
                    'Server: may need to renew letsencrypt certificate for google maps api',
                    'Wire up mongodb to allow user image upload, and admin features',
