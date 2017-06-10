@@ -4,9 +4,7 @@ import { niceDate, stripSingles } from '../classes/strings'
 import { actions } from '../appConfig/actions'
 import { Urls } from '../appConfig/urls'
 import { store } from './main'
-import { SimpleModal } from './simplemodal'
-import { Icon, Table } from 'semantic-ui-react'
-import { SimpleCard } from './card'
+import { Icon, Image, Table } from 'semantic-ui-react'
 
 let axios = require('axios')
 
@@ -14,40 +12,63 @@ require('semantic-ui/dist/semantic.min.css')
 require('../styles/modal.css')
 
 export class GithubCommits extends Component {
-  state = {commitModalOpen: false, githubUserModalOpen: false, cardData: {}, allRows: []}
+  state = {commitModalOpen: false, githubUserModalOpen: false, cardData: {}, readMore: [], allRows: []}
   componentDidMount = () => {
     const url = Urls.github
+    let allRows = []
     axios.get(url).then( (res) => {
       store.dispatch( { type: actions.COMMITS, commits: res.data } )
+      res.data.forEach( (commit) => {
+        allRows.push(commit.sha)
+      })
+      this.setState( { allRows: allRows } )
     }).catch( e => Pop.ERR(e) )
   }
-
-  openCommitModal = (c) => {
-    const cardData = {
-      img: c.author.avatar_url,
-      header: c.author.login,
-      link: c.html_url,
-      linkText: c.sha.substr(0, 7),
-      desc: stripSingles(c.commit.message),
-      extraIcon: 'calendar',
-      extraText: niceDate(c.commit.author.date)
+  toggleReadMore = (sha) => {
+    let readMore = this.state.readMore
+    if (readMore.includes(sha)) {
+      readMore = this.state.readMore.filter( (element) => {
+        return element !== sha
+      } )
     }
-    this.setState( { commitModalOpen: true, cardData: cardData } )
+    else {
+      readMore.push(sha)
+    }
+    this.setState( { readMore: readMore } )
   }
-  openGithubUserModal = () => {
-    this.setState( { githubUserModalOpen: true } )
+
+  colapseAll = () => {
+    this.setState( { readMore: [] } )
   }
-  closeModals = () => {
-    this.setState( { githubUserModalOpen: false, commitModalOpen: false } )
+  expandAll = () => {
+    const allRows = this.state.allRows
+    this.setState( { readMore: allRows } )
+  }
+
+  renderReadMore = (c) => {
+
+    return (
+      <ul style={{listStyleType: 'none'}}>
+        <li><Image width='80px' height='80px' src={c.author.avatar_url} /></li>
+        <li><a href={`${c.author.html_url}?tab=repositories`} target='_blank'></a>{c.author.login}</li>
+        <li>full sha: <a href={c.html_url}>{c.sha}</a></li>
+        <li>commit message: {stripSingles(c.commit.message)}</li>
+        <li>{niceDate(c.commit.author.date)}</li>
+      </ul>
+    )
   }
 
   render() {
     const commits = store.getState().app.commits
     const rows = commits.map( (c) => {
 
+      const readMore = this.state.readMore
+      const commitData = readMore.includes(c.sha) ? this.renderReadMore(c) : c.sha.substr(0, 7)
+      const chevron = readMore.includes(c.sha) ? 'chevron left' : 'chevron right'
+
       return (
         <Table.Row key={`commit_sha_${c.sha}`}>
-         <Table.Cell onClick={ () => this.openCommitModal(c) } ><Icon name='github' /></Table.Cell>
+         <Table.Cell onClick={ () => this.toggleReadMore(c.sha) }><Icon name={chevron} />{commitData}</Table.Cell>
           <Table.Cell>{stripSingles(c.commit.message)}</Table.Cell>
           <Table.Cell>{niceDate(c.commit.author.date)}</Table.Cell>
           <Table.Cell><a href={`${c.author.html_url}?tab=repositories`} target='_blank'>{c.author.login}</a></Table.Cell>
@@ -56,9 +77,6 @@ export class GithubCommits extends Component {
     })
     return (
         <div>
-        <SimpleModal bg='#222' show={ this.state.commitModalOpen } onClose={ this.closeModals }>
-          <SimpleCard cardData={this.state.cardData} />
-        </SimpleModal>
         <Table className='dataTable' celled padded>
           <Table.Header>
             <Table.Row>
