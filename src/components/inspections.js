@@ -65,7 +65,6 @@ export class Inspections extends Component {
       <ul>
         <li>(db) id: {i.id}</li>
         <li>iid: {i.iid}</li>
-        <li>rid: {i.rid}</li>
         <li>eid: {i.eid}</li>
         <li>status: {i.status}</li>
         <li>details: {i.details}</li>
@@ -105,7 +104,7 @@ export class Inspections extends Component {
 
 
       return (
-        <Table.Row key={key}>
+        <Table.Row sortable={true} key={key}>
           <Table.Cell onClick={ () => this.toggleReadMore(i.id) }><Icon name={chevron} />{iidData}</Table.Cell>
           <Table.Cell><StatusLabel text={statusText} config={statusCfg} /></Table.Cell>
           <Table.Cell singleLine>{i.date}</Table.Cell>

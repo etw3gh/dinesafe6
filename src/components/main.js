@@ -24,6 +24,11 @@ class App2 extends Component {
     store.subscribe( () => this.forceUpdate() )
     //Geo.getLocation(Geo.INIT)
     window.addEventListener('resize', this.closeFab)
+
+    // help distinguish browser tabs when in development
+    if (window.location.href.indexOf('localhost') > -1) {
+      document.title = 'local'
+    }
   }
 
   hideMenu = () => {
