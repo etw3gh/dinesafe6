@@ -2,9 +2,10 @@ require('semantic-ui/dist/semantic.min.css')
 
 import React, { Component } from 'react'
 import { GithubCommits } from './githubcommits'
-import { Icon, Label, Message } from 'semantic-ui-react'
+import { Button, Icon, Label, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { routes } from '../appConfig/routes'
+import { Urls } from '../appConfig/urls'
 
 export class HomeIsTheSix extends Component {
   render() {
@@ -38,6 +39,16 @@ export class HomeIsTheSix extends Component {
                    'Geolocation on chrome for android not consistently working' ]} />
         <br />
         <h3>You can check out the last 25 commits in the table below</h3>
+        <h4>
+          <a href={Urls.github.issues} target='_blank'>
+            <Button color='red' icon='exclamation circle' size='large' label={{basic:true, color: 'red', pointing: 'left', content: 'Raise An Issue'}} />
+          </a>
+        </h4>
+        <h4>
+          <a href={Urls.github.pulls} target='_blank'>
+            <Button color='green' icon='graduation' size='large' label={{basic:true, color: 'green', pointing: 'left', content: 'Pull Request'}} />
+          </a>
+        </h4>
         <GithubCommits />
       </div>
     )

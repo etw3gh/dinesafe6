@@ -14,7 +14,7 @@ require('../styles/modal.css')
 export class GithubCommits extends Component {
   state = {commitModalOpen: false, githubUserModalOpen: false, cardData: {}, readMore: [], allRows: []}
   componentDidMount = () => {
-    const url = Urls.github
+    const url = Urls.github.commits
     let allRows = []
     axios.get(url).then( (res) => {
       store.dispatch( { type: actions.COMMITS, commits: res.data } )
