@@ -11,7 +11,7 @@ import { sliders, LIMIT } from '../appConfig/controls'
 import { Header, Icon, Table } from 'semantic-ui-react'
 import { cap } from '../classes/strings'
 import { Geo } from '../classes/geo'
-import CopyToClipboard from 'react-copy-to-clipboard';
+import { Clip } from './clip'
 
 let axios = require('axios')
 
@@ -156,10 +156,7 @@ export class MapWrap extends Component {
       <ul>
         <li>venue name: {v.name}</li>
         <li>lat, lng: {v.lat}, {v.lng}&nbsp;
-          <CopyToClipboard text={`${v.lat}, ${v.lng}`}
-            onCopy={() => this.setState({copied: true})}>
-            <span><Icon name='copy' /></span>
-          </CopyToClipboard>
+          <Clip text={`${v.lat}, ${v.lng}`} />
         </li>
         <li>address_id: {v.address_id}</li>
         <li>address: {v.address}</li>
