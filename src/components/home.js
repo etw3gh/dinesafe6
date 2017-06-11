@@ -25,18 +25,18 @@ export class HomeIsTheSix extends Component {
                  list={[
                    'Make map markers interactive',
                    'If Geolocation fails, allow user to drop home marker',
-                   'Server: may need to renew letsencrypt certificate for google maps api',
+                   'Renew letsencrypt certificate for google maps api',
+                   'Dont reload remote data if location does not change significantly',
                    'Wire up mongodb to allow user image upload, and admin features',
                    'Sortable columns',
                    'Filterable columns',
-                   'Sort View',
-                   'From inspections, nearby inspections' ]} />
+                   'Search View',
+                   'Show nearby venues when inspection view for a venue' ]} />
         <br />
         <Message error header='Issues'
                  list={[
                    'nav css. icon colors for image icons',
-                   'Geolocation on chrome for android not consistently working',
-                   'Server: may need to renew letsencrypt certificate for google maps api' ]} />
+                   'Geolocation on chrome for android not consistently working' ]} />
         <br />
         <h3>You can check out the last 25 commits in the table below</h3>
         <GithubCommits />

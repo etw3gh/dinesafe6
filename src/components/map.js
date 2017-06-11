@@ -172,10 +172,18 @@ export class MapWrap extends Component {
               <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell>Address</Table.HeaderCell>
               <Table.HeaderCell>Distance KM</Table.HeaderCell>
-              <Table.HeaderCell>Inspections</Table.HeaderCell>
+              <Table.HeaderCell singleLine>Inspections</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell>{venueTableRows.length} venues</Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
+              <Table.HeaderCell singleLine></Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
           <Table.Body>
             {venueTableRows}
           </Table.Body>
