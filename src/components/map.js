@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Range } from 'react-onsenui'
-import { Gmaps, InfoWindow, Marker } from 'react-gmaps'
+import { Gmaps, Marker } from 'react-gmaps'
 import { store } from './main'
 import { actions } from '../appConfig/actions'
 import { routes } from '../appConfig/routes'
 import { Pop } from '../classes/pop'
 import { Urls } from '../appConfig/urls'
 import { sliders, LIMIT } from '../appConfig/controls'
-import { Header, Icon, Table } from 'semantic-ui-react'
+import { Header, Icon, Image, Table } from 'semantic-ui-react'
 import { cap } from '../classes/strings'
 import { Geo } from '../classes/geo'
+import { ImagePaths } from '../appConfig/images'
 import { Clip, ClipLink } from './clip'
 import { YelpStars } from './yelpstars'
+
 let axios = require('axios')
 
 const params = {v: '3.exp', key: 'AIzaSyCdinz1pQt3FnKYLmU1E14lkMGmSOcqUek'}
@@ -128,7 +130,18 @@ export class MapWrap extends Component {
   }
 
   onDragEnd = e => {
-    console.log('onDragEnd', e.latLng.lat(), e.latLng.lng())
+    const lat = e.latLng.lat()
+    const lng = e.latLng.lng()
+    //console.log('onDragEnd', lat, lng)
+    const moved = Geo.hasChanged(lat, lng)
+    const noVenues = store.getState().app.nearVenues.length == 0
+    if ( moved || noVenues) {
+      console.log(moved)
+
+      console.log('updating position and venues')
+      store.dispatch( { type: actions.GEO, lat: lat, lng: lng } )
+      this.getNearVenues(LIMIT)
+    }
   }
 
   onCloseClick = () => { console.log('onCloseClick') }
@@ -226,12 +239,12 @@ export class MapWrap extends Component {
 
 
 
-    const homeMarker = <Marker title='HOME' icon='images/home_icon_32x32.png' click={this.clk} lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
+    const homeMarker = <Marker title='HOME' animation='DROP' icon={ImagePaths.currentLocIcon} click={this.clk} lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
 
-    const homeInfoWindow =
-      <InfoWindow lat={lat} lng={lng} content={'Current Location'} />
+    //const homeInfoWindow = <InfoWindow lat={lat} lng={lng} content={'Current Location'} />
     const noloc = (Math.abs(lat) === 1 || Math.abs(lng) === 1)
-    const positionHeader = noloc ? <h3>Location loading <Icon loading name='spinner' color='green' /></h3> : <h3>({lat.toFixed(5)}, {lng.toFixed(5)})</h3>
+    const positionHeader = noloc ? <h3>Location loading <Icon loading name='spinner' color='green' /></h3> :
+                                   <h3>({lat.toFixed(5)}, {lng.toFixed(5)})<br />Drag the location icon to update results</h3>
 
     const gmaps = this.state.venues.length > 0 ? (<Gmaps width='100%'
                                                          height={h}
@@ -242,7 +255,6 @@ export class MapWrap extends Component {
                                                          params={params}
                                                          onMapCreated={this.onMapCreated} >
                                                          {homeMarker}
-                                                         {homeInfoWindow}
                                                          {markers}> </Gmaps>)
                                                : <h2>Map Loading: <Icon loading name='spinner' color='green' size='huge' /></h2>
 
