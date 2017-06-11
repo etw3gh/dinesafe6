@@ -25,6 +25,8 @@ export class HomeIsTheSix extends Component {
                  list={[
                    'Make map markers interactive',
                    'Allow user to drop home marker if geoloc fails or is inaccurate',
+                   'Read More view for address details',
+                   'If not in mongodb, grab yelp info for venue & stash in mongodb',
                    'Wire up mongodb to allow user image upload, and admin features',
                    'Sortable columns',
                    'Filterable columns',
