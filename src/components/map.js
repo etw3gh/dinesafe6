@@ -10,6 +10,7 @@ import { Urls } from '../appConfig/urls'
 import { sliders, LIMIT } from '../appConfig/controls'
 import { Header, Icon, Table } from 'semantic-ui-react'
 import { cap } from '../classes/strings'
+import { Geo } from '../classes/geo'
 
 let axios = require('axios')
 
@@ -20,12 +21,24 @@ export class MapWrap extends Component {
   state = { venues: [], v: sliders.venues.val, h: sliders.map.height.val, z: sliders.map.zoom.val }
 
   componentDidMount = () => {
+
+
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition( (pos) => {
           var lat = pos.coords.latitude
           var lng = pos.coords.longitude
           store.dispatch( { type: actions.GEO, lat: lat, lng: lng } )
-          this.getNearVenues(LIMIT)
+
+          const moved = Geo.hasChanged(lat, lng)
+          const noVenues = store.getState().app.nearVenues.length == 0
+          if ( moved || noVenues) {
+            this.getNearVenues(LIMIT)
+          }
+          else {
+            console.log('no change to location')
+            const vslice = this.getSlice(this.state.v)
+            this.setState( { venues: vslice } )
+          }
         }, (e) => Pop.ERR(`map geoloc error: ${e}`) )
       }
       else {
@@ -63,7 +76,9 @@ export class MapWrap extends Component {
     map.setOptions( { disableDefaultUI: true } )
   }
 
-  onDragEnd = e => { console.log('onDragEnd', e) }
+  onDragEnd = e => {
+    console.log('onDragEnd', e.latLng.lat(), e.latLng.lng())
+  }
 
   onCloseClick = () => { console.log('onCloseClick') }
 

@@ -12,6 +12,24 @@ export class Geo {
     static INIT = false
     static REFRESH = true
 
+    static LOCATION_ACCURACY = 3
+
+    // method to determine if a location has changed significantly
+    static hasChanged = (lat, lng) => {
+
+      const L = Geo.LOCATION_ACCURACY
+
+      const storedLoc = store.getState().app.geo
+
+      // round lat lng to 3 decimal places
+      const storedLat = storedLoc.lat.toFixed(L)
+      const storedLng = storedLoc.lng.toFixed(L)
+      if (storedLat !== lat.toFixed(L) || storedLng !== lng.toFixed(L)) {
+        return true
+      }
+      return false
+    }
+
     static locSet = (lat, lng) => {
       return `<h3>Location Set</h3>(${lat}, ${lng})`
     }

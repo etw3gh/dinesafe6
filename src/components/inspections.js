@@ -104,7 +104,7 @@ export class Inspections extends Component {
 
 
       return (
-        <Table.Row sortable={true} key={key}>
+        <Table.Row key={key}>
           <Table.Cell onClick={ () => this.toggleReadMore(i.id) }><Icon name={chevron} />{iidData}</Table.Cell>
           <Table.Cell><StatusLabel text={statusText} config={statusCfg} /></Table.Cell>
           <Table.Cell singleLine>{i.date}</Table.Cell>
@@ -122,7 +122,7 @@ export class Inspections extends Component {
       <div>
         <h3>{cap(this.state.name)}</h3>
         <h4>{cap(this.state.address)}</h4>
-        <Table className='dataTable' celled padded selectable>
+        <Table className='dataTable' sortable={true} celled padded selectable>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell rowSpan='2'>Inspection ID<br /><br />{collapseBtn}</Table.HeaderCell>
