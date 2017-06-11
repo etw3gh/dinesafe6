@@ -48,6 +48,7 @@ Route | Description | Completion | TODO
     │   └── strings.js            - String manipulation helpers
     ├── components
     │   ├── card.js               - Experimentation with semantic-ui Card
+    │   ├── clip.js               - Wrapper for CopyToClipboard. Reduces repeated markup
     │   ├── githubcommits.js      - Calls the github API puts last 25 commits in a Table
     │   ├── home.js               - Into blurb and github commits... TEMPORARY
     │   ├── infocard.js           - Experimentation with semantic-ui Card
