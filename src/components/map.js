@@ -12,7 +12,7 @@ import { Header, Icon, Table } from 'semantic-ui-react'
 import { cap } from '../classes/strings'
 import { Geo } from '../classes/geo'
 import { Clip, ClipLink } from './clip'
-
+import { YelpStars } from './yelpstars'
 let axios = require('axios')
 
 const params = {v: '3.exp', key: 'AIzaSyCdinz1pQt3FnKYLmU1E14lkMGmSOcqUek'}
@@ -211,6 +211,7 @@ export class MapWrap extends Component {
           <Table.Cell><Icon title={`(${v.lat}, ${v.lng})`} name='camera' /></Table.Cell>
           <Table.Cell><Icon onClick={ () => this.toggleReadMore(v.eid) } name={chevron} />{addressData}</Table.Cell>
           <Table.Cell>{v.distance.toFixed(2)}</Table.Cell>
+          <Table.Cell><YelpStars stars={3.5} /></Table.Cell>
           <Table.Cell title={v.id}>
             <Link to={inpsectionsLocal} >
               <Icon title='all verions' size='large' name='info' />
@@ -267,6 +268,7 @@ export class MapWrap extends Component {
               <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell>Address</Table.HeaderCell>
               <Table.HeaderCell>Distance KM</Table.HeaderCell>
+              <Table.HeaderCell>Yelp</Table.HeaderCell>
               <Table.HeaderCell>Inspections</Table.HeaderCell>
               <Table.HeaderCell>Copy Link</Table.HeaderCell>
             </Table.Row>
@@ -274,6 +276,7 @@ export class MapWrap extends Component {
           <Table.Footer>
             <Table.Row>
               <Table.HeaderCell>{venueTableRows.length} venues</Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell></Table.HeaderCell>
