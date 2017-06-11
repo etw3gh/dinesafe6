@@ -4,9 +4,11 @@ as well as methods to form them
 */
 export class Urls  {
 
-  static base = 'https://openciti.ca/dsto/'
+  static base = 'https://openciti.ca'
 
   static api = 'https://dinesafe.herokuapp.com'
+
+  static linkToInspections = `${Urls.base}/inspections`
 
   static addresses = `${Urls.api}/addresses/`
   static inspections = `${Urls.api}/inspections/`

@@ -11,7 +11,7 @@ import { sliders, LIMIT } from '../appConfig/controls'
 import { Header, Icon, Table } from 'semantic-ui-react'
 import { cap } from '../classes/strings'
 import { Geo } from '../classes/geo'
-import { Clip } from './clip'
+import { Clip, ClipLink } from './clip'
 
 let axios = require('axios')
 
@@ -202,6 +202,9 @@ export class MapWrap extends Component {
       const addressData = readMore.includes(v.eid) ? this.renderReadMore(v) : cap(v.address)
       const chevron = readMore.includes(v.eid) ? 'chevron left' : 'chevron right'
 
+      const inspectionsParams = `?vid=${v.id}&name=${v.name}&address=${v.address}`
+      const inpsectionsLocal = `${routes.INSPECTIONS}${inspectionsParams}`
+      const inspectionsUrl = `${Urls.linkToInspections}${inspectionsParams}`
       return (
         <Table.Row key={key}>
           <Table.Cell><Header as='h3' textAlign='center'>{cap(v.name)}</Header></Table.Cell>
@@ -209,15 +212,12 @@ export class MapWrap extends Component {
           <Table.Cell><Icon onClick={ () => this.toggleReadMore(v.eid) } name={chevron} />{addressData}</Table.Cell>
           <Table.Cell>{v.distance.toFixed(2)}</Table.Cell>
           <Table.Cell title={v.id}>
-            all:
-            <Link to={`${routes.INSPECTIONS}?vid=${v.id}&name=${v.name}&address=${v.address}`} >
-              <Icon title='all verions' name='info' />
+            <Link to={inpsectionsLocal} >
+              <Icon title='all verions' size='large' name='info' />
             </Link>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            latest:
-            <Link to={`${routes.INSPECTIONS}?vid=${v.id}&name=${v.name}&address=${v.address}&latest=true`} >
-              <Icon title='latest version only' name='arrow up' />
-            </Link>
+          </Table.Cell>
+          <Table.Cell>
+            <ClipLink pop={true} text={inspectionsUrl} />
           </Table.Cell>
         </Table.Row>
       )
@@ -267,7 +267,8 @@ export class MapWrap extends Component {
               <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell>Address</Table.HeaderCell>
               <Table.HeaderCell>Distance KM</Table.HeaderCell>
-              <Table.HeaderCell singleLine>Inspections</Table.HeaderCell>
+              <Table.HeaderCell>Inspections</Table.HeaderCell>
+              <Table.HeaderCell>Copy Link</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Footer>
@@ -276,7 +277,8 @@ export class MapWrap extends Component {
               <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell></Table.HeaderCell>
-              <Table.HeaderCell singleLine></Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
             </Table.Row>
           </Table.Footer>
           <Table.Body>
