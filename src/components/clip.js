@@ -13,3 +13,15 @@ export class Clip extends Component {
     )
   }
 }
+export class ClipLink extends Component {
+  render() {
+    return (
+      <CopyToClipboard text={this.props.text}>
+        <Icon.Group size='large' title='copy to clipboard'>
+        <Icon name='linkify' color='blue' />
+        <Icon name='copy' corner color='blue' />
+        </Icon.Group>
+      </CopyToClipboard>
+    )
+  }
+}
