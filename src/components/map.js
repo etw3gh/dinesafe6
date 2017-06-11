@@ -210,7 +210,7 @@ export class MapWrap extends Component {
           <Table.Cell><Header as='h3' textAlign='center'>{cap(v.name)}</Header></Table.Cell>
           <Table.Cell><Icon title={`(${v.lat}, ${v.lng})`} name='camera' /></Table.Cell>
           <Table.Cell><Icon onClick={ () => this.toggleReadMore(v.eid) } name={chevron} />{addressData}</Table.Cell>
-          <Table.Cell>{v.distance.toFixed(2)}</Table.Cell>
+          <Table.Cell>{v.distance.toFixed(2)} KM</Table.Cell>
           <Table.Cell><YelpStars stars={3.5} /></Table.Cell>
           <Table.Cell title={v.id}>
             <Link to={inpsectionsLocal} >
@@ -233,18 +233,18 @@ export class MapWrap extends Component {
     const noloc = (Math.abs(lat) === 1 || Math.abs(lng) === 1)
     const positionHeader = noloc ? <h3>Location loading <Icon loading name='spinner' color='green' /></h3> : <h3>({lat.toFixed(5)}, {lng.toFixed(5)})</h3>
 
-  const gmaps = this.state.venues.length > 0 ? (<Gmaps width='100%'
-                                                       height={h}
-                                                       lat={lat}
-                                                       lng={lng}
-                                                       zoom={z}
-                                                       loadingMessage={l}
-                                                       params={params}
-                                                       onMapCreated={this.onMapCreated}>
-                                                       {homeMarker}
-                                                       {homeInfoWindow}
-                                                       {markers}> </Gmaps>)
-                                             : <h2>Map Loading: <Icon loading name='spinner' color='green' size='huge' /></h2>
+    const gmaps = this.state.venues.length > 0 ? (<Gmaps width='100%'
+                                                         height={h}
+                                                         lat={lat}
+                                                         lng={lng}
+                                                         zoom={z}
+                                                         loadingMessage={l}
+                                                         params={params}
+                                                         onMapCreated={this.onMapCreated} >
+                                                         {homeMarker}
+                                                         {homeInfoWindow}
+                                                         {markers}> </Gmaps>)
+                                               : <h2>Map Loading: <Icon loading name='spinner' color='green' size='huge' /></h2>
 
     return (
       <div>
@@ -275,7 +275,7 @@ export class MapWrap extends Component {
               <Table.HeaderCell singleLine>Name</Table.HeaderCell>
               <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell>Address</Table.HeaderCell>
-              <Table.HeaderCell>Distance KM</Table.HeaderCell>
+              <Table.HeaderCell>Distance</Table.HeaderCell>
               <Table.HeaderCell>Yelp</Table.HeaderCell>
               <Table.HeaderCell>Inspections</Table.HeaderCell>
               <Table.HeaderCell>Copy Link</Table.HeaderCell>

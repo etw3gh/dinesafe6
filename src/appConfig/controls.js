@@ -12,7 +12,7 @@ export const sliders = {
     sliderW: { width: '70%' }
   },
   venues: {
-    val: LIMIT,
+    val: LIMIT / 5,
     min: sliderMin,
     max: LIMIT
   },
