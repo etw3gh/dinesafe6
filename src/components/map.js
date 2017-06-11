@@ -231,7 +231,7 @@ export class MapWrap extends Component {
 
     const homeInfoWindow =
       <InfoWindow lat={lat} lng={lng} content={'Current Location'} />
-    const noloc = (lat < 0 || lng < 0)
+    const noloc = (Math.abs(lat) === 1 || Math.abs(lng) === 1)
     const positionHeader = noloc ? <h3>Location loading <Icon loading name='spinner' /></h3> : <h3>({lat.toFixed(5)}, {lng.toFixed(5)})</h3>
 
     return (
