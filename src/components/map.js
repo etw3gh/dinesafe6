@@ -226,24 +226,30 @@ export class MapWrap extends Component {
 
 
 
-    const homeMarker =
-      <Marker title='HOME' click={this.clk} lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
+    const homeMarker = <Marker title='HOME' click={this.clk} lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
 
     const homeInfoWindow =
       <InfoWindow lat={lat} lng={lng} content={'Current Location'} />
     const noloc = (Math.abs(lat) === 1 || Math.abs(lng) === 1)
-    const positionHeader = noloc ? <h3>Location loading <Icon loading name='spinner' /></h3> : <h3>({lat.toFixed(5)}, {lng.toFixed(5)})</h3>
+    const positionHeader = noloc ? <h3>Location loading <Icon loading name='spinner' color='green' /></h3> : <h3>({lat.toFixed(5)}, {lng.toFixed(5)})</h3>
+
+  const gmaps = this.state.venues.length > 0 ? (<Gmaps width='100%'
+                                                       height={h}
+                                                       lat={lat}
+                                                       lng={lng}
+                                                       zoom={z}
+                                                       loadingMessage={l}
+                                                       params={params}
+                                                       onMapCreated={this.onMapCreated}>
+                                                       {homeMarker}
+                                                       {homeInfoWindow}
+                                                       {markers}> </Gmaps>)
+                                             : <h2>Map Loading: <Icon loading name='spinner' color='green' size='huge' /></h2>
 
     return (
       <div>
 
-        <section className='sec'>
-          <Gmaps width='100%' height={h} lat={lat} lng={lng} zoom={z} loadingMessage={l} params={params} onMapCreated={this.onMapCreated}>
-            {homeMarker}
-            {homeInfoWindow}
-            {markers}
-          </Gmaps>
-        </section>
+        <section className='sec'>{gmaps}</section>
         <br />
         {positionHeader}
         <br />
