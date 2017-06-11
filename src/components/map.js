@@ -11,14 +11,35 @@ import { sliders, LIMIT } from '../appConfig/controls'
 import { Header, Icon, Table } from 'semantic-ui-react'
 import { cap } from '../classes/strings'
 import { Geo } from '../classes/geo'
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 let axios = require('axios')
 
 const params = {v: '3.exp', key: 'AIzaSyCdinz1pQt3FnKYLmU1E14lkMGmSOcqUek'}
 
+
+/*
+a_created_at: "2017-06-10 04:23:41.176953"
+a_updated_at: "2017-06-10 04:23:41.176953"
+a_version:1491231264
+address:"4130 dundas st w"
+distance:0.335627657898741
+eid:10475219
+hi:0
+hisuf:""
+id:9409
+lat:43.6619476221
+lng:-79.5077841262
+lo:4130
+locname:""
+losuf:""
+mun:"Etobicoke"
+name:"patricia's cake creations"
+num:"4130"
+*/
 export class MapWrap extends Component {
 
-  state = { venues: [], v: sliders.venues.val, h: sliders.map.height.val, z: sliders.map.zoom.val }
+  state = { copied: false, venues: [], v: sliders.venues.val, h: sliders.map.height.val, z: sliders.map.zoom.val, readMore: [], allIds: []  }
 
   componentDidMount = () => {
 
@@ -39,11 +60,39 @@ export class MapWrap extends Component {
             const vslice = this.getSlice(this.state.v)
             this.setState( { venues: vslice } )
           }
+
         }, (e) => Pop.ERR(`map geoloc error: ${e}`) )
       }
       else {
         Pop.ERR('Geolocation not enabled or blocked')
       }
+  }
+  toggleReadMore = (id) => {
+    let readMore = this.state.readMore
+    if (readMore.includes(id)) {
+      readMore = this.state.readMore.filter( (element) => {
+        return element !== id
+      } )
+    }
+    else {
+      readMore.push(id)
+    }
+    this.setState( { readMore: readMore } )
+  }
+
+  colapseAll = () => {
+    this.setState( { readMore: [] } )
+  }
+  expandAll = () => {
+    const allIds = this.state.allIds
+    this.setState( { readMore: allIds } )
+  }
+  populateAllIds = (objs) => {
+    let allIds = []
+    objs.forEach( (o) => {
+      allIds.push(o.eid)
+    })
+    this.setState( { allIds: allIds } )
   }
 
   getSlice = (n) => {
@@ -66,6 +115,8 @@ export class MapWrap extends Component {
       const vslice = this.getSlice(this.state.v)
 
       this.setState( { venues: vslice } )
+
+      this.populateAllIds(this.state.venues)
 
     }).catch( e => Pop.ERR(e) )
   }
@@ -100,7 +151,31 @@ export class MapWrap extends Component {
     const vslice = store.getState().app.nearVenues.slice(0, vint)
     this.setState( { venues: vslice } )
   }
-
+  renderReadMore = (v) => {
+    return (
+      <ul>
+        <li>venue name: {v.name}</li>
+        <li>lat, lng: {v.lat}, {v.lng}&nbsp;
+          <CopyToClipboard text={`${v.lat}, ${v.lng}`}
+            onCopy={() => this.setState({copied: true})}>
+            <span><Icon name='copy' /></span>
+          </CopyToClipboard>
+        </li>
+        <li>address_id: {v.address_id}</li>
+        <li>address: {v.address}</li>
+        <li>eid: {v.eid}</li>
+        <li>distance: {v.distance}</li>
+        <li>hi: {v.hi}</li>
+        <li>hisuf: {v.hisuf}</li>
+        <li>lo: {v.lo}</li>
+        <li>losuf: {v.losuf}</li>
+        <li>locname: {v.locname}</li>
+        <li>a_version: {v.a_version}</li>
+        <li>a_created_at: {v.a_created_at}</li>
+        <li>a_updated_at: {v.a_updated_at}</li>
+      </ul>
+    )
+  }
   render() {
     const lat = store.getState().app.geo.lat
     const lng = store.getState().app.geo.lng
@@ -117,18 +192,24 @@ export class MapWrap extends Component {
     const vmax = sliders.venues.max
 
     const sw = sliders.styles.sliderW
-
+    //console.log(this.state.venues)
     const markers = this.state.venues.map( (v) => {
       let key = `marker_${v.eid}`
       return <Marker key={key} lat={v.lat} lng={v.lng} draggable={false}  />
     })
     const venueTableRows = this.state.venues.map( (v) => {
       let key = `venue_${v.eid}`
+
+      const readMore = this.state.readMore
+
+      const addressData = readMore.includes(v.eid) ? this.renderReadMore(v) : cap(v.address)
+      const chevron = readMore.includes(v.eid) ? 'chevron left' : 'chevron right'
+
       return (
         <Table.Row key={key}>
           <Table.Cell><Header as='h3' textAlign='center'>{cap(v.name)}</Header></Table.Cell>
           <Table.Cell><Icon title={`(${v.lat}, ${v.lng})`} name='camera' /></Table.Cell>
-          <Table.Cell>{cap(v.address)}</Table.Cell>
+          <Table.Cell><Icon onClick={ () => this.toggleReadMore(v.eid) } name={chevron} />{addressData}</Table.Cell>
           <Table.Cell>{v.distance.toFixed(2)}</Table.Cell>
           <Table.Cell title={v.id}>
             all:
@@ -144,6 +225,8 @@ export class MapWrap extends Component {
         </Table.Row>
       )
     })
+
+
 
     const homeMarker =
       <Marker title='HOME' click={this.clk} lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />

@@ -68,7 +68,7 @@ export class GithubCommits extends Component {
 
       return (
         <Table.Row key={`commit_sha_${c.sha}`}>
-         <Table.Cell singleLine onClick={ () => this.toggleReadMore(c.sha) }><Icon name={chevron} />{commitData}</Table.Cell>
+         <Table.Cell singleLine><Icon onClick={ () => this.toggleReadMore(c.sha) } name={chevron} />{commitData}</Table.Cell>
           <Table.Cell>{stripSingles(c.commit.message)}</Table.Cell>
           <Table.Cell>{niceDate(c.commit.author.date)}</Table.Cell>
           <Table.Cell><a href={`${c.author.html_url}?tab=repositories`} target='_blank'>{c.author.login}</a></Table.Cell>
