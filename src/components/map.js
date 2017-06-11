@@ -231,6 +231,8 @@ export class MapWrap extends Component {
 
     const homeInfoWindow =
       <InfoWindow lat={lat} lng={lng} content={'Current Location'} />
+    const noloc = (lat == -1 || lng == -1)
+    const positionHeader = noloc ? <h3>Location loading <Icon loading name='spinner' /></h3> : <h3>({lat.toFixed(5)}, {lng.toFixed(5)})</h3>
 
     return (
       <div>
@@ -243,7 +245,7 @@ export class MapWrap extends Component {
           </Gmaps>
         </section>
         <br />
-        <h3>({lat.toFixed(5)}, {lng.toFixed(5)})</h3>
+        {positionHeader}
         <br />
         <section className='sec'>
           <p>

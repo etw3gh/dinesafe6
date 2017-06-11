@@ -11,10 +11,8 @@ import React, { Component } from 'react'
     - extracts only the small directory (modify to suit)
     - deletes zip and unzipped archive (comment out to suit)
 */
+
 export class YelpStars extends Component {
-
-
-
   /*
   size: small [optionally: regular, large, extra_large]
   stars: 0, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5
@@ -44,10 +42,6 @@ export class YelpStars extends Component {
   }
 
   render() {
-    // for other sizes, modify the download script (yelp.sh) by uncommenting lines 16-18 as req'd
-
-    // for multple sizes send in as a prop instead of defining it here:
-    const YELP_SIZE_DEFAULT = 'small'
     const path = this.imagePath(this.props.stars) // add scale and size if req'd
     return (
        <img src={path} />
