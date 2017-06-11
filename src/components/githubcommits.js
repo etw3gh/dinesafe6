@@ -80,9 +80,9 @@ export class GithubCommits extends Component {
         <Table className='dataTable' celled padded>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Commit</Table.HeaderCell>
+              <Table.HeaderCell singleLine>Commit</Table.HeaderCell>
               <Table.HeaderCell>Comment</Table.HeaderCell>
-              <Table.HeaderCell>Date</Table.HeaderCell>
+              <Table.HeaderCell singleLine>Date</Table.HeaderCell>
               <Table.HeaderCell>User</Table.HeaderCell>
             </Table.Row>
           </Table.Header>

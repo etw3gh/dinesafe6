@@ -24,9 +24,7 @@ export class HomeIsTheSix extends Component {
         <Message color='green' header='TODOs'
                  list={[
                    'Make map markers interactive',
-                   'If Geolocation fails, allow user to drop home marker',
-                   'Renew letsencrypt certificate for google maps api',
-                   'Dont reload remote data if location does not change significantly',
+                   'Allow user to drop home marker if geoloc fails or is inaccurate',
                    'Wire up mongodb to allow user image upload, and admin features',
                    'Sortable columns',
                    'Filterable columns',
