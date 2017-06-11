@@ -226,7 +226,7 @@ export class MapWrap extends Component {
 
 
 
-    const homeMarker = <Marker title='HOME' click={this.clk} lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
+    const homeMarker = <Marker title='HOME' icon='images/home_icon_32x32.png' click={this.clk} lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
 
     const homeInfoWindow =
       <InfoWindow lat={lat} lng={lng} content={'Current Location'} />
