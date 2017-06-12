@@ -30,8 +30,15 @@ Route | Description | Completion | TODO
 ## Project Structure
 
 <!-- language: lang-none -->
-
-    src
+    .babelrc                      - es6 to es6 config
+    package.json                  - nodejs dependencies and scripts
+    node_modules                  - nodejs modules
+    README.md                     - Thank You!
+    server.js                     - local dev server
+    webpack.config.js             - webpack config
+    yelp.sh                       - yelp star rating image download handler
+    dist                          - PROJECT DISTRIBUTION
+    src                           - PROJECT SOURCE
     ├── appConfig
     │   ├── actions.js            - Enum for reducer actions
     │   ├── controls.js           - Config for sliders
@@ -57,21 +64,23 @@ Route | Description | Completion | TODO
     │   ├── loa.js                - Returns a Link or Action Trigger depending on props
     │   ├── main.js               - Main React App
     │   ├── map.js                - Map and Table of nearby venues. Can be called with isPho to show only Pho houses
-    │   ├── README.md             - Thank You!
     │   ├── renderMenus.js        - Toolbar and Sidebar Menus
     │   ├── routeComponents.js    - Helper functions for Router
     │   ├── simplemodal.js        - Simple modal grabbed from CodePen (The Semantic Modal was too heavy)
     │   ├── sourcecode.js         - InfoCard with github details
     │   ├── statics.js            - Static views
     │   ├── statuslabel.js        - Wrapper for semantic-ui Label
-    │   └── twitter.js            - Twitter Time Line view for twitter bot
+    │   ├── twitter.js            - Twitter Time Line view for twitter bot
+    │   └── yelpstars.js          - Takes rating & optional size and scale as props, returns the correct image
     ├── config                    - Webpack stuff
     ├── favicon.ico               - Fork and Knife favicon
     ├── images                    - content
     ├── index.html                - INDEX HTML
     ├── index.js                  - REACT ENTRY POINT
     └── styles                    - CSS
-
+    LICENCE                       - https://www.explainxkcd.com/wiki/index.php/521:_2008_Christmas_Special
+                                    : - Person X:   'Great. Bill Gates kills Santa'
+                                    : - Bill Gates: 'I thought it was Richard Stallman with a dyed beard.'
 -----
 
 ## Screenshots
