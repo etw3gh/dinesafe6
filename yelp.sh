@@ -6,7 +6,7 @@ wget https://s3-media1.fl.yelpcdn.com/assets/srv0/developer_pages/0811cbc33dff/a
 # unzip
 unzip yelp_stars.zip
 
-# create path in images for extraction, maintinging archive containing dir name
+# create path in images for extraction, maintaing containing dir
 mkdir -p src/images/yelp_stars
 
 # copy just the small images
