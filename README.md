@@ -81,6 +81,10 @@ Route | Description | Completion | TODO
 ![screenshot](https://raw.githubusercontent.com/openciti/dinesafe6/master/src/images/screenshots/map.png)
 
 
+# Christie Pits. Shout out to NishDish
+![christie pits](https://raw.githubusercontent.com/openciti/dinesafe6/master/src/images/screenshots/christiepits.png)
+
+
 ### Inspections
 
 #### Vesuvio's Pizza
