@@ -4,7 +4,7 @@ ReactJS front end for Dinesafe inspections in the Six (Toronto)
 
 ### React Starter Credit
 
-Based on this [starter](https://github.com/react-webpack-generators/react-webpack-template)
+Seeded from this [starter](https://github.com/react-webpack-generators/react-webpack-template)
 
 
 ## Demo
