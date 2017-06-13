@@ -89,6 +89,7 @@
     "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.0.0",
     "react-gmaps": "^1.6.0",
+    "react-iframe": "^1.0.7",
     "react-onsenui": "^1.2.0",
     "react-redux": "^5.0.3",
     "react-router": "^4.1.1",
@@ -98,6 +99,7 @@
     "redux": "^3.6.0",
     "semantic-ui": "^2.2.9",
     "semantic-ui-react": "^0.67.0",
-    "toastr": "^2.1.2"
+    "toastr": "^2.1.2",
+    "uuid": "^3.0.1"
   }
 }

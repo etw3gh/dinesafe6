@@ -1,4 +1,5 @@
 //Initial state for the reducer
+import { sliders } from './controls'
 
 export const initialState = {
   geoLoaded: false,
@@ -12,6 +13,9 @@ export const initialState = {
     phoVenues: [],
     commits: [],
     nearVenues: []      // nearby without search term
+  },
+  map: {
+    zoom: sliders.map.zoom.val
   },
   screen: {
     initH: null,

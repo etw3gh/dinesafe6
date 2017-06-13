@@ -25,16 +25,20 @@ export class HomeIsTheSix extends Component {
         <Message color='green' header='TODOs'
                  list={[
                    'Make map markers interactive',
+                   'Allow mobile users to turn on/off map',
                    'Allow user to drop home marker if geoloc fails or is inaccurate',
-                   'If not in mongodb, grab yelp info for venue & stash in mongodb',
+                   'User assisted yelp search. stash images and yelp_id in mongo',
+                   'User assisted twitter search. stash avatar images, handle and twitter_id in mongo',
                    'Wire up mongodb to allow user image upload, and admin features',
-                   'Sortable columns',
-                   'Filterable columns',
+                   'Sortable & filterable columns',
                    'Search View',
-                   'Show nearby venues when inspection view for a venue' ]} />
+                   'Status / Severity legend',
+                   'Show nearby venues when in the inspection view of a venue' ]} />
         <br />
         <Message error header='Issues'
                  list={[
+                   'separate venue types in reducer: pho/regular/other....',
+                   'isolate map from menu swipe events (mobile)',
                    'nav css. icon colors for image icons',
                    'Geolocation on chrome for android not consistently working' ]} />
         <br />

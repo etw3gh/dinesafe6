@@ -7,6 +7,8 @@ import { Urls } from '../appConfig/urls'
 import { Pop } from '../classes/pop'
 import { cap, idify, nodata, getParameterByName, lastWord } from '../classes/strings'
 import { StatusLabel } from './statuslabel'
+import { TableF } from './tfooter'
+
 
 let axios = require('axios')
 
@@ -100,9 +102,6 @@ export class Inspections extends Component {
       const iidData = readMore.includes(i.id) ? this.renderReadMore(i) : i.iid
       const chevron = readMore.includes(i.id) ? 'chevron left' : 'chevron right'
 
-
-
-
       return (
         <Table.Row key={key}>
           <Table.Cell><Icon onClick={ () => this.toggleReadMore(i.id) } name={chevron} />{iidData}</Table.Cell>
@@ -138,17 +137,7 @@ export class Inspections extends Component {
           <Table.Body>
             {rows}
           </Table.Body>
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell>{rows.length} inspections</Table.HeaderCell>
-              <Table.HeaderCell></Table.HeaderCell>
-              <Table.HeaderCell></Table.HeaderCell>
-              <Table.HeaderCell></Table.HeaderCell>
-              <Table.HeaderCell></Table.HeaderCell>
-              <Table.HeaderCell></Table.HeaderCell>
-              <Table.HeaderCell></Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
+          <TableF cellData={[`${rows.length} inspections`]} padding={6} />
         </Table>
       </div>
     )

@@ -20,6 +20,12 @@ class App2 extends Component {
   state = { isOpen: false }
 
   componentDidMount = () => {
+    if(window.orientation === undefined) {
+      console.log('desktop')
+    }
+    else {
+      Pop.INFO('Mobile Detected')
+    }
     Protocol.forceProtocol()
     store.subscribe( () => this.forceUpdate() )
     //Geo.getLocation(Geo.INIT)
