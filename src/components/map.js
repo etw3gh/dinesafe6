@@ -8,14 +8,13 @@ import { routes } from '../appConfig/routes'
 import { Pop } from '../classes/pop'
 import { Urls } from '../appConfig/urls'
 import { sliders, LIMIT } from '../appConfig/controls'
-import { Header, Icon, Image, Table } from 'semantic-ui-react'
+import { Header, Icon, Table } from 'semantic-ui-react'
 import { cap } from '../classes/strings'
 import { Geo } from '../classes/geo'
 import { ImagePaths } from '../appConfig/images'
 import { Clip, ClipLink } from './clip'
 import { YelpStars } from './yelpstars'
 import { TableF } from './tfooter'
-import Iframe from 'react-iframe'
 
 let axios = require('axios')
 
@@ -43,7 +42,7 @@ num:"4130"
 */
 export class MapWrap extends Component {
 
-  state = { i: -1, showIframe: false, copied: false, venues: [], v: sliders.venues.val, h: sliders.map.height.val, z: sliders.map.zoom.val, readMore: [], allIds: []  }
+  state = { copied: false, venues: [], v: sliders.venues.val, h: sliders.map.height.val, z: sliders.map.zoom.val, readMore: [], allIds: []  }
 
   componentDidMount = () => {
 
@@ -188,14 +187,7 @@ export class MapWrap extends Component {
       </ul>
     )
   }
-  toggleIframe = (i) => {
-    let iframestate = !this.state.showIframe
-    this.setState( { showIframe: iframestate, i: i } )
-  }
-  renderIFrame = (url) => {
-    const istyle = {align: 'middle', width: '80%', height: '60%'}
-    return <Iframe url={url} style={istyle} display="initial" position="relative" allowFullScreen />
-  }
+
   render() {
     const lat = store.getState().app.geo.lat
     const lng = store.getState().app.geo.lng
@@ -217,8 +209,7 @@ export class MapWrap extends Component {
       let key = `marker_${v.eid}`
       return <Marker key={key} lat={v.lat} lng={v.lng} draggable={false}  />
     })
-    let iframeContent;
-    const venueTableRows = this.state.venues.map( (v, i) => {
+    const venueTableRows = this.state.venues.map( (v) => {
       let key = `venue_${v.eid}`
 
       const readMore = this.state.readMore
@@ -229,7 +220,6 @@ export class MapWrap extends Component {
       const inspectionsParams = `?vid=${v.id}&name=${v.name}&address=${v.address}`
       const inpsectionsLocal = `${routes.INSPECTIONS}${inspectionsParams}`
       const inspectionsUrl = `${Urls.linkToInspections}${inspectionsParams}`
-      iframeContent = this.state.showIframe ? this.renderIFrame(inpsectionsLocal) : ''
 
 
       return (
@@ -240,7 +230,9 @@ export class MapWrap extends Component {
           <Table.Cell>{v.distance.toFixed(2)} KM</Table.Cell>
           <Table.Cell><YelpStars stars={3.5} /></Table.Cell>
           <Table.Cell title={v.id}>
-            <Icon onClick={ () => this.toggleIframe(i) } title='all verions' size='large' name='info' />
+            <Link to={inpsectionsLocal} >
+              <Icon title='all verions' size='large' name='info' />
+            </Link>
           </Table.Cell>
           <Table.Cell>
             <ClipLink pop={true} text={inspectionsUrl} />
@@ -248,11 +240,6 @@ export class MapWrap extends Component {
         </Table.Row>
       )
     })
-/*
-            <Link to={inpsectionsLocal} >
-              <Icon title='all verions' size='large' name='info' />
-            </Link>
-*/
     const homeMarker = <Marker title='HOME' animation='DROP' icon={ImagePaths.currentLocIcon} click={this.clk} lat={lat} lng={lng} draggable={true} onDragEnd={this.onDragEnd} />
 
     //const homeInfoWindow = <InfoWindow lat={lat} lng={lng} content={'Current Location'} />
@@ -274,7 +261,6 @@ export class MapWrap extends Component {
 
     return (
       <div>
-        {iframeContent}
         <section className='sec'>{gmaps}</section>
         <br />
         {positionHeader}

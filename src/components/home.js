@@ -24,6 +24,7 @@ export class HomeIsTheSix extends Component {
         <br />
         <Message color='green' header='TODOs'
                  list={[
+                   'Download or email inspection data for a venue (csv/pdf)',
                    'Make map markers interactive',
                    'Allow mobile users to turn on/off map',
                    'Allow user to drop home marker if geoloc fails or is inaccurate',
@@ -37,7 +38,7 @@ export class HomeIsTheSix extends Component {
         <br />
         <Message error header='Issues'
                  list={[
-                   'separate venue types in reducer: pho/regular/other....',
+                   'separate venue types in reducer: pho/regular/beer/coffee/other....',
                    'isolate map from menu swipe events (mobile)',
                    'nav css. icon colors for image icons',
                    'Geolocation on chrome for android not consistently working' ]} />

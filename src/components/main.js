@@ -12,6 +12,7 @@ import { cap } from '../classes/strings'
 import { initialState } from '../appConfig/initstate'
 import { RenderToolBar, RenderHamburger } from './renderMenus'
 import { rts } from './routeComponents'
+import { Pop } from '../classes/pop'
 
 export const store = createStore(reducer, initialState)
 
