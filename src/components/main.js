@@ -12,7 +12,6 @@ import { cap } from '../classes/strings'
 import { initialState } from '../appConfig/initstate'
 import { RenderToolBar, RenderHamburger } from './renderMenus'
 import { rts } from './routeComponents'
-import { Pop } from '../classes/pop'
 
 export const store = createStore(reducer, initialState)
 
@@ -21,15 +20,8 @@ class App2 extends Component {
   state = { isOpen: false }
 
   componentDidMount = () => {
-    if(window.orientation === undefined) {
-      console.log('desktop')
-    }
-    else {
-      Pop.INFO('Mobile Detected')
-    }
     Protocol.forceProtocol()
     store.subscribe( () => this.forceUpdate() )
-    //Geo.getLocation(Geo.INIT)
     window.addEventListener('resize', this.closeFab)
 
     // help distinguish browser tabs when in development
@@ -42,7 +34,6 @@ class App2 extends Component {
     this.setState( { isOpen: false } )
   }
   closeFab = () => {
-    console.log('TODO: close FAB')
   }
   showMenu = () => {
     this.setState( { isOpen: true } )

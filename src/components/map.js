@@ -42,10 +42,16 @@ num:"4130"
 */
 export class MapWrap extends Component {
 
-  state = { copied: false, venues: [], v: sliders.venues.val, h: sliders.map.height.val, z: sliders.map.zoom.val, readMore: [], allIds: []  }
+  state = { isPho: false, copied: false, venues: [], v: sliders.venues.val, h: sliders.map.height.val, z: sliders.map.zoom.val, readMore: [], allIds: []  }
 
   componentDidMount = () => {
+      const priorState = store.getState().app.isPho
+      store.dispatch( { type: actions.ISPHO, isPho: this.props.isPho } )
 
+      if (priorState !== this.props.isPho) {
+        Pop.INFO('Switched')
+        this.getNearVenues(LIMIT)
+      }
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition( (pos) => {

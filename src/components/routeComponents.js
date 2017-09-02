@@ -1,5 +1,4 @@
 import React from 'react'
-import { StaticHelp } from './statics'
 import { HomeIsTheSix } from './home'
 import { SourceCode } from './sourcecode'
 import { InfoCard } from './infocard'

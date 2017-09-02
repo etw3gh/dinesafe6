@@ -11,6 +11,7 @@ export const initialState = {
     doRefreshGeo: false,
     doShowGeo: false,
     phoVenues: [],
+    isPho: false,
     commits: [],
     nearVenues: []      // nearby without search term
   },
