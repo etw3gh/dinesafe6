@@ -8,11 +8,11 @@ import { MapWrap } from './map'
 import { Inspections } from './inspections'
 
 export class rts {
-  static Home = () => <HomeIsTheSix />
+  static Home = () => <MapWrap isPho={false}/>
   static VenueList = () => <div>coming soon...</div>
   static VenueMap = () => <MapWrap isPho={false}/>
   static VenueSearch = () => <div>venue search</div>
-  static Help = () => <StaticHelp />
+  static Help = () => <HomeIsTheSix />
   static Pho = () => <MapWrap isPho={true}/>
   static Source = () => <SourceCode />
   static TwitterBot = () => <TwitterTL />
