@@ -49,7 +49,6 @@ export class MapWrap extends Component {
       store.dispatch( { type: actions.ISPHO, isPho: this.props.isPho } )
 
       if (priorState !== this.props.isPho) {
-        Pop.INFO('Switched')
         this.getNearVenues(LIMIT)
       }
 
