@@ -62,8 +62,7 @@ export class MapWrap extends Component {
   failgeo = () => {
     Pop.WARN('Using Default Location...')
     store.dispatch( { type: actions.GEO, lat: 43.6500416063, lng: -79.6035400499 } )
-    const vslice = this.getSlice(this.state.v)
-    this.setState( { venues: vslice } )
+    this.getNearVenues(LIMIT)
   }
 
   toggleReadMore = id => {
