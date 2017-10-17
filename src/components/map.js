@@ -51,7 +51,7 @@ export class MapWrap extends Component {
         }, (e) => Pop.ERR(`map geoloc error: ${e}`) )
       }
       else {
-        Pop.ERR('Geolocation not enabled or blocked')
+        Pop.ERR('For better results please use Chrome, or allow Geolocation in your browser')
       }
   }
   toggleReadMore = (id) => {
