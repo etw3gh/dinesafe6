@@ -20,26 +20,6 @@ let axios = require('axios')
 
 const params = {v: '3.exp', key: 'AIzaSyCdinz1pQt3FnKYLmU1E14lkMGmSOcqUek'}
 
-
-/*
-a_created_at: "2017-06-10 04:23:41.176953"
-a_updated_at: "2017-06-10 04:23:41.176953"
-a_version:1491231264
-address:"4130 dundas st w"
-distance:0.335627657898741
-eid:10475219
-hi:0
-hisuf:""
-id:9409
-lat:43.6619476221
-lng:-79.5077841262
-lo:4130
-locname:""
-losuf:""
-mun:"Etobicoke"
-name:"patricia's cake creations"
-num:"4130"
-*/
 export class MapWrap extends Component {
 
   state = { isPho: false, copied: false, venues: [], v: sliders.venues.val, h: sliders.map.height.val, z: sliders.map.zoom.val, readMore: [], allIds: []  }
@@ -64,7 +44,6 @@ export class MapWrap extends Component {
             this.getNearVenues(LIMIT)
           }
           else {
-            console.log('no change to location')
             const vslice = this.getSlice(this.state.v)
             this.setState( { venues: vslice } )
           }
@@ -142,17 +121,14 @@ export class MapWrap extends Component {
     const moved = Geo.hasChanged(lat, lng)
     const noVenues = store.getState().app.nearVenues.length == 0
     if ( moved || noVenues) {
-      console.log(moved)
-
-      console.log('updating position and venues')
       store.dispatch( { type: actions.GEO, lat: lat, lng: lng } )
       this.getNearVenues(LIMIT)
     }
   }
 
-  onCloseClick = () => { console.log('onCloseClick') }
+  onCloseClick = () => { }
 
-  onClick = e => { console.log('onClick', e) }
+  onClick = e => { }
 
   zoom = e => {
     const zint = parseInt(e.target.value)
