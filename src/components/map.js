@@ -100,6 +100,9 @@ export class MapWrap extends Component {
       Pop.INFO(`found ${res.data.length} nearby venues`)
 
       const vslice = this.getSlice(this.state.v)
+      const nlat = vslice[0].lat
+      const nlng = vslice[0].lng
+      store.dispatch( { type: actions.NGEO, nlat: nlat, nlng: nlng } )
 
       this.setState( { venues: vslice } )
 
@@ -170,8 +173,8 @@ export class MapWrap extends Component {
   }
 
   render() {
-    const lat = store.getState().app.geo.lat
-    const lng = store.getState().app.geo.lng
+    const lat = store.getState().app.geo.nlat
+    const lng = store.getState().app.geo.nlng
     const h = `${this.state.h}px`
     const hmin = sliders.map.height.min
     const hmax = sliders.map.height.max

@@ -9,7 +9,12 @@ let reducer = (state, action) => {
     localState.geoLoaded = true
     return localState
   }
-
+  else if (action.type === actions.NGEO) {
+    let localState = Object.assign({}, state)
+    localState.app.geo.nlat = action.nlat
+    localState.app.geo.nlng = action.nlng
+    return localState
+  }
   else if (action.type === actions.SETINSPECTIONS) {
     let localState = Object.assign({}, state)
     localState.app.inspections = action.inspections

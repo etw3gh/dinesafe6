@@ -7,7 +7,7 @@ export const initialState = {
     vid: null,
     currentVenue: null,
     inspections: [],
-    geo: { lat: -1, lng: -1},
+    geo: { lat: -1, lng: -1, nlat: -1, nlng: -1},
     doRefreshGeo: false,
     doShowGeo: false,
     phoVenues: [],
