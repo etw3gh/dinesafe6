@@ -48,7 +48,7 @@ export class MapWrap extends Component {
             this.setState( { venues: vslice } )
           }
 
-        }, (e) => Pop.ERR(`map geoloc error: ${e}`) )
+        }, (e) => Pop.ERR(`For better results please use Chrome, or allow Geolocation in your browser. Map geoloc error: ${e.message}`) )
       }
       else {
         Pop.ERR('For better results please use Chrome, or allow Geolocation in your browser')
