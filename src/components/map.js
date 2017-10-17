@@ -50,16 +50,22 @@ export class MapWrap extends Component {
 
         }, e => {
           Pop.ERR(`For better results please use Chrome, or allow Geolocation in your browser. Map geoloc error: ${e.message}`)
-          Pop.WARN('Using Default Location...')
-          store.dispatch( { type: actions.GEO, lat: 43.6500416063, lng: -79.6035400499 } )
+          this.failgeo()
         })
       }
       else {
         Pop.ERR('For better results please use Chrome, or allow Geolocation in your browser')
-          Pop.WARN('Using Default Location...')
-          store.dispatch( { type: actions.GEO, lat: 43.6500416063, lng: -79.6035400499 } )
+        this.failgeo()
       }
   }
+
+  failgeo = () => {
+    Pop.WARN('Using Default Location...')
+    store.dispatch( { type: actions.GEO, lat: 43.6500416063, lng: -79.6035400499 } )
+    const vslice = this.getSlice(this.state.v)
+    this.setState( { venues: vslice } )
+  }
+
   toggleReadMore = id => {
     let readMore = this.state.readMore
     if (readMore.includes(id)) {
