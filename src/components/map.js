@@ -49,18 +49,16 @@ export class MapWrap extends Component {
           }
 
         }, e => {
-          Pop.ERR(`For better results please use Chrome, or allow Geolocation in your browser. Map geoloc error: ${e.message}`)
           this.failgeo()
         })
       }
       else {
-        Pop.ERR('For better results please use Chrome, or allow Geolocation in your browser')
         this.failgeo()
       }
   }
 
   failgeo = () => {
-    Pop.WARN('Using Default Location...')
+    Pop.WARN('Geolocation failed. Using Default Location...')
     store.dispatch( { type: actions.GEO, lat: 43.6500416063, lng: -79.6035400499 } )
     this.getNearVenues(LIMIT)
   }
