@@ -48,11 +48,11 @@ export class MapWrap extends Component {
             this.setState( { venues: vslice } )
           }
 
-        }, (e) => {
-          Pop.ERR(`For better results please use Chrome, or allow Geolocation in your browser. Map geoloc error: ${e.message}`) )
+        }, e => {
+          Pop.ERR(`For better results please use Chrome, or allow Geolocation in your browser. Map geoloc error: ${e.message}`)
           Pop.WARN('Using Default Location...')
           store.dispatch( { type: actions.GEO, lat: 43.6500416063, lng: -79.6035400499 } )
-        }
+        })
       }
       else {
         Pop.ERR('For better results please use Chrome, or allow Geolocation in your browser')
@@ -60,7 +60,7 @@ export class MapWrap extends Component {
           store.dispatch( { type: actions.GEO, lat: 43.6500416063, lng: -79.6035400499 } )
       }
   }
-  toggleReadMore = (id) => {
+  toggleReadMore = id => {
     let readMore = this.state.readMore
     if (readMore.includes(id)) {
       readMore = this.state.readMore.filter( (element) => {
@@ -80,7 +80,7 @@ export class MapWrap extends Component {
     const allIds = this.state.allIds
     this.setState( { readMore: allIds } )
   }
-  populateAllIds = (objs) => {
+  populateAllIds = objs => {
     let allIds = []
     objs.forEach( (o) => {
       allIds.push(o.eid)
@@ -88,7 +88,7 @@ export class MapWrap extends Component {
     this.setState( { allIds: allIds } )
   }
 
-  getSlice = (n) => {
+  getSlice = n => {
     return store.getState().app.nearVenues.slice(0, n)
   }
 
@@ -135,10 +135,6 @@ export class MapWrap extends Component {
     }
   }
 
-  onCloseClick = () => { }
-
-  onClick = e => { }
-
   zoom = e => {
     const zint = parseInt(e.target.value)
     this.setState( { z: zint } )
@@ -155,7 +151,7 @@ export class MapWrap extends Component {
     const vslice = store.getState().app.nearVenues.slice(0, vint)
     this.setState( { venues: vslice } )
   }
-  renderReadMore = (v) => {
+  renderReadMore = v => {
     return (
       <ul>
         <li>venue name: {v.name}</li>
