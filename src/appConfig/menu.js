@@ -1,4 +1,4 @@
-import { routes } from './routes'
+import routes from './routes'
 import actions from './actions'
 import { ImagePaths } from '../appConfig/images'
 
