@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, Label } from 'semantic-ui-react'
 
-export class StatusLabel extends Component {
+export default class StatusLabel extends Component {
   render() {
     const P = this.props
     const C = P.config

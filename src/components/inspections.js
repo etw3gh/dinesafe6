@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import { Button, Icon, Table } from 'semantic-ui-react'
 import { store } from './main'
 import { actions } from '../appConfig/actions'
@@ -6,13 +7,10 @@ import { NODATA, statusConfig, severityConfig } from '../appConfig/inspectioncon
 import { Urls } from '../appConfig/urls'
 import { Pop } from '../classes/pop'
 import { cap, idify, nodata, getParameterByName, lastWord } from '../classes/strings'
-import { StatusLabel } from './statuslabel'
-import { TableF } from './tfooter'
+import StatusLabel from './statuslabel'
+import TableF from './tfooter'
 
-
-let axios = require('axios')
-
-export class Inspections extends Component {
+export default class Inspections extends Component {
   state = { latest: null, vid: null, address: null, name: null, fullDetails: '', modalOpen: false, readMore: [], allIds: [] }
   componentDidMount = () => {
     const vid = getParameterByName('vid')

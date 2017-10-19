@@ -1,8 +1,7 @@
-
 import React, { Component } from 'react'
 import { Timeline } from 'react-twitter-widgets'
 
-export class TwitterTL extends Component {
+export default class TwitterTL extends Component {
   render() {
     const timelineHeight = window.innerHeight * 0.85
     return (

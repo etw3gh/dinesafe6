@@ -5,10 +5,7 @@ import React, { Component } from 'react'
 import { Icon } from 'semantic-ui-react'
 import { List, ListHeader, ListItem } from 'react-onsenui'
 
-
-// TODO generalize this to make an InfoList Component
-
-export class SourceCode extends Component {
+export default class SourceCode extends Component {
   render() {
     const ds6url = 'https://github.com/openciti/dinesafe6/blob/master/README.md';
     const ocavatar = 'https://avatars2.githubusercontent.com/u/4270738?v=3&s=460';

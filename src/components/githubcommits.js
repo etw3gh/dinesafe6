@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import { Pop } from '../classes/pop'
 import { niceDate, stripSingles } from '../classes/strings'
 import { actions } from '../appConfig/actions'
@@ -6,12 +7,10 @@ import { Urls } from '../appConfig/urls'
 import { store } from './main'
 import { Icon, Image, Table } from 'semantic-ui-react'
 
-let axios = require('axios')
-
 require('semantic-ui/dist/semantic.min.css')
 require('../styles/modal.css')
 
-export class GithubCommits extends Component {
+export default class GithubCommits extends Component {
   state = {commitModalOpen: false, githubUserModalOpen: false, cardData: {}, readMore: [], allRows: []}
   componentDidMount = () => {
     const url = Urls.github.commits

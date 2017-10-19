@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { Card } from 'semantic-ui-react'
 import { IconOrImage } from './ioi'
 
-export class InfoCard extends Component {
+export default class InfoCard extends Component {
   render() {
     const P = this.props
     const picon = P.icon === '' ? null : P.icon

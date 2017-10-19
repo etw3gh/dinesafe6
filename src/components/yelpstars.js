@@ -12,7 +12,7 @@ import React, { Component } from 'react'
     - deletes zip and unzipped archive (comment out to suit)
 */
 
-export class YelpStars extends Component {
+export default class YelpStars extends Component {
   /*
   size: small [optionally: regular, large, extra_large]
   stars: 0, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5

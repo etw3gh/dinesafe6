@@ -1,12 +1,12 @@
 import React from 'react'
-import { HomeIsTheSix } from './home'
-import { SourceCode } from './sourcecode'
-import { InfoCard } from './infocard'
-import { TwitterTL } from './twitter'
-import { MapWrap } from './map'
-import { Inspections } from './inspections'
+import HomeIsTheSix from './home'
+import SourceCode from './sourcecode'
+import InfoCard from './infocard'
+import TwitterTL from './twitter'
+import MapWrap from './map'
+import Inspections from './inspections'
 
-export class rts {
+export default class rts {
   static Home = () => <MapWrap isPho={false}/>
   static VenueList = () => <div>coming soon...</div>
   static VenueMap = () => <MapWrap isPho={false}/>

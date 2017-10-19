@@ -11,7 +11,7 @@ import { reducer } from '../classes/reducer'
 import { cap } from '../classes/strings'
 import { initialState } from '../appConfig/initstate'
 import { RenderToolBar, RenderHamburger } from './renderMenus'
-import { rts } from './routeComponents'
+import rts from './routeComponents'
 
 export const store = createStore(reducer, initialState)
 
@@ -64,7 +64,10 @@ class App2 extends Component {
             onClose={this.hideMenu}
             onOpen={this.showMenu} >
             <Page>
-              <List><RenderHamburger HideMenuClick={this.hideMenu} /></List>
+              <List>
+                <RenderHamburger
+                 HideMenuClick={this.hideMenu} />
+              </List>
             </Page>
           </SplitterSide>
           <SplitterContent>
