@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Icon } from 'semantic-ui-react'
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { Pop } from '../classes/pop'
+import Pop from '../classes/pop'
 
 export default class ClipLink extends Component {
   handleClick = () => {

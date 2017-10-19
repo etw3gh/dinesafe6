@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Pop } from '../classes/pop'
+import Pop from '../classes/pop'
 import { niceDate, stripSingles } from '../classes/strings'
-import { actions } from '../appConfig/actions'
-import { Urls } from '../appConfig/urls'
+import actions from '../appConfig/actions'
+import Urls from '../appConfig/urls'
 import { store } from './main'
 import { Icon, Image, Table } from 'semantic-ui-react'
 

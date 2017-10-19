@@ -8,7 +8,7 @@ let toastr = require('toastr/build/toastr.min.js')
 /*
 Wrap jquery toastr in a Poptart metaphor
 */
-export class Pop {
+export default class Pop {
 
     static toaster = {
       'closeButton': false,

@@ -1,11 +1,11 @@
 import { store } from '../components/main'
-import { Pop } from './pop'
-import { actions } from '../appConfig/actions'
+import Pop from './pop'
+import actions from '../appConfig/actions'
 
 /*
 Config and helpers for geolocation
 */
-export class Geo {
+export default class Geo {
 
     // Determines if a toastr (Pop / pop.js) message will be shown
     // upon successful aquisition of geoloaction data

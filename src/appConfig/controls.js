@@ -6,7 +6,7 @@ const sliderMin = 1
 
 const hmax = window.innerHeight * 0.85
 
-export const sliders = {
+const sliders = {
   styles: {
     hr: { width: '25%' },
     sliderW: { width: '70%' }
@@ -29,3 +29,4 @@ export const sliders = {
     }
   }
 }
+export default sliders

@@ -1,7 +1,7 @@
 //Initial state for the reducer
 import { sliders } from './controls'
 
-export const initialState = {
+const initialState = {
   geoLoaded: false,
   app: {
     vid: null,
@@ -25,3 +25,4 @@ export const initialState = {
     lastW: -1
   }
 }
+export default initialState

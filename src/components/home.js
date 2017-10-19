@@ -4,8 +4,8 @@ import React, { Component } from 'react'
 import GithubCommits from './githubcommits'
 import { Button, Icon, Label, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { routes } from '../appConfig/routes'
-import { Urls } from '../appConfig/urls'
+import routes from '../appConfig/routes'
+import Urls from '../appConfig/urls'
 
 export default class HomeIsTheSix extends Component {
   render() {

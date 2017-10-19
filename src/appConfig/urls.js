@@ -2,7 +2,7 @@
 Static class that encapsulates web service urls
 as well as methods to form them
 */
-export class Urls  {
+export default class Urls  {
 
   static base = 'https://openciti.ca'
 

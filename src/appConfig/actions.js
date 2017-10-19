@@ -1,7 +1,7 @@
 /*
 An enumeration for reducer actions
 */
-export const actions = {
+const actions = {
   CLOSEMENU: 'CLOSEMENU',
   GEO: 'GEO',
   NGEO: 'NGEO',
@@ -16,3 +16,4 @@ export const actions = {
   INITSCREEN: 'INITSCREEN',
   SAVESCREEN: 'SAVESCREEN'
 }
+export default actions

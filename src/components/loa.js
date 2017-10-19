@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { actions } from '../appConfig/actions'
-import { Geo } from '../classes/geo'
+import actions from '../appConfig/actions'
+import Geo from '../classes/geo'
 import { IconOrImage } from './ioi'
 /*
 Returns an icon and optional extra span in a Link tag if there is a route,

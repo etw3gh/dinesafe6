@@ -1,7 +1,7 @@
 /*
-An enumeration for routes. replaces views.js
+An enumeration for routes
 */
-export const routes = {
+const routes = {
   HOME: '/',
   LIST: '/list',
   MAP: '/map',
@@ -15,3 +15,4 @@ export const routes = {
   TWITTERHELP: '/twitterhelp',
   HELP: '/help'
 }
+export default routes
