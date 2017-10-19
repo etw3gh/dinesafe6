@@ -1,5 +1,5 @@
 //Initial state for the reducer
-import { sliders } from './controls'
+import sliders from './controls'
 
 const initialState = {
   geoLoaded: false,
