@@ -155,6 +155,12 @@ export default class MapWrap extends Component {
     this.setState( { venues: vslice } )
   }
 
+  clickMarker = v => {
+    const iParams = `?vid=${v.id}&name=${v.name}&address=${v.address}`
+    const iUrl = `${Urls.linkToInspections}${iParams}`
+    window.open(iUrl, '_blank')
+  }
+
   render() {
     const lat = store.getState().app.geo.nlat
     const lng = store.getState().app.geo.nlng
@@ -168,10 +174,13 @@ export default class MapWrap extends Component {
     const vmax = sliders.venues.max
     const sw = sliders.styles.sliderW
     const venues = this.state.venues
+
     const markers = venues.map( v => {
       let key = `marker_${v.eid}`
       return (
         <Marker
+         title={v.name}
+         onClick={() => this.clickMarker(v)}
          key={key}
          lat={v.lat}
          lng={v.lng}
@@ -183,17 +192,17 @@ export default class MapWrap extends Component {
       const hasVid = readMore.includes(v.eid)
       const addressData = hasVid ? <VenueReadMore venue={v} /> : cap(v.address)
       const chevron = hasVid ? 'chevron left' : 'chevron right'
-      const inspectionsParams = `?vid=${v.id}&name=${v.name}&address=${v.address}`
-      const inpsectionsLocal = `${routes.INSPECTIONS}${inspectionsParams}`
-      const inspectionsUrl = `${Urls.linkToInspections}${inspectionsParams}`
+      const iParams = `?vid=${v.id}&name=${v.name}&address=${v.address}`
+      const iLocal = `${routes.INSPECTIONS}${iParams}`
+      const iUrl = `${Urls.linkToInspections}${iParams}`
 
       return <TableR
         key={key}
         venue={v}
         chevron={chevron}
         addressData={addressData}
-        iLoc={inpsectionsLocal}
-        iUrl={inspectionsUrl}
+        iLoc={iLocal}
+        iUrl={iUrl}
         toggleReadMore={this.toggleReadMore}/>
     })
     const homeMarker =(<Marker
@@ -218,11 +227,15 @@ export default class MapWrap extends Component {
       </h3> )
 
     const hasLocHeader = (
-      <h3>
-       ({lat.toFixed(5)}, {lng.toFixed(5)})
-       <br />
-       Drag the location icon to update results
-      </h3> )
+      <div>
+        <h4>
+         ({lat.toFixed(5)}, {lng.toFixed(5)})
+         <br />
+         Drag the location icon to update results
+         <br />
+         Click a marker to open inspections in a new tab
+        </h4>
+      </div> )
 
     const positionHeader = noloc ? noLocHeader : hasLocHeader
 
