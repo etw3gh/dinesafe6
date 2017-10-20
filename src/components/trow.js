@@ -19,11 +19,6 @@ export default class TableR extends Component {
         </Table.Cell>
         <Table.Cell>
           <Icon
-            title={`(${v.lat}, ${v.lng})`}
-            name='camera' />
-        </Table.Cell>
-        <Table.Cell>
-          <Icon
             onClick={ () => P.toggleReadMore(v.eid) }
             name={P.chevron} />
           {P.addressData}
