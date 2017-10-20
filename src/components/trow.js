@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Header, Icon, Table } from 'semantic-ui-react'
 import ClipLink from './clip'
-import YelpStars from './yelpstars'
 import { cap } from '../classes/strings'
 
 export default class TableR extends Component {
@@ -31,10 +30,6 @@ export default class TableR extends Component {
         </Table.Cell>
         <Table.Cell>
           {v.distance.toFixed(2)} KM
-        </Table.Cell>
-        <Table.Cell>
-          <YelpStars
-            stars={3.5} />
         </Table.Cell>
         <Table.Cell title={v.id}>
           <Link to={P.iLoc} >

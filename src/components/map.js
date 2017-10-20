@@ -295,7 +295,6 @@ export default class MapWrap extends Component {
               <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell>Address</Table.HeaderCell>
               <Table.HeaderCell>Distance</Table.HeaderCell>
-              <Table.HeaderCell>Yelp</Table.HeaderCell>
               <Table.HeaderCell>Inspections</Table.HeaderCell>
               <Table.HeaderCell>Copy Link</Table.HeaderCell>
             </Table.Row>
@@ -305,7 +304,7 @@ export default class MapWrap extends Component {
           </Table.Body>
           <TableF
            cellData={[`${venueTableRows.length} venues`]}
-           padding={6} />
+           padding={5} />
         </Table>
       </div>
     )
