@@ -13,19 +13,19 @@ Seeded from this [starter](https://github.com/react-webpack-generators/react-web
 
 ## App Layout
 
-Route | Description | Completion | TODO
+Route | Description
 --- | --- | --- | ---
-/ | Intro blurb & recent github commits table | 95% | This is a temp view. Will become the search view.
-/map | Map and listing of local venues with link to inspections | 90% | geoloc on mobile chrome not always working
-/pho | List of nearby Pho soup houses | 90% | same as map but with isPho=true
-/inspections | Table of inspections for a given venue | 80% | add map / directions
-/search | Search venues by various terms | 0 | --
-/opendata | City of Toronto Open Data Licence | DONE | Merge with Licence / Source / GithubCommits
-/licence | GPL v3.0 GNU General Public Licence | DONE | Merge with Licence / Source / GithubCommits
-/source | GitHub links | DONE | Merge with Licence / Source / GithubCommits
-/twitterbot | Twitter feed for interactive twitter bot | DONE | AWS Lambda Bot
-/twitterhelp | Desc of twitterbot | DONE | Merge with twitterbot view
-/help | How to use the site | 0 | ---
+/ | Intro blurb & recent github commits table
+/map | Map and listing of local venues with link to inspections
+/pho | List of nearby Pho soup houses. Map with isPho=true
+/inspections | Table of inspections for a given venue
+/search | Not implemented
+/opendata | City of Toronto Open Data Licence
+/licence | GPL v3.0 GNU General Public Licence
+/source | GitHub links
+/twitterbot | Twitter feed for interactive twitter bot
+/twitterhelp | Desc of twitterbot
+/help | How to use the site. Not implemented
 
 ## Project Structure
 
